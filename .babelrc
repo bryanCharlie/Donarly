@@ -1,0 +1,24 @@
+{
+  "presets": ["react-native"],
+  "plugins": [
+  	"transform-decorators-legacy",
+    "transform-object-rest-spread",
+    ["module-resolver", {
+        "root": ["./src"],
+        "alias": {
+          "cex": "./src/cex",
+          "components": "./src/cex/components",
+          "containers": "./src/cex/containers",
+          "store": "./src/cex/store",
+          "reducers": "./src/cex/reducers",
+          "config": "./src/config/base",
+          "icons": "./src/icons",
+          "images": "./src/images",
+          "assets": "./src/assets",
+          "middleware": "./src/middleware",
+          "lib": "./src/lib"
+        }
+      }
+    ]
+  ]
+}
