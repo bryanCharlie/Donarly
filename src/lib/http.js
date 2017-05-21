@@ -14,7 +14,7 @@ const headers = () => {
     }
 }
 
-export const getUser = () => {
+export const getUser = async () => {
     let user
     try {
         user = await AsyncStorage.getItem(user_key)
@@ -24,7 +24,7 @@ export const getUser = () => {
     return user ? user : undefined
 }
 
-export const setUser = user => {
+export const setUser = async (user) => {
     try{
         await AsyncStorage.setItem(user_key, JSON.stringify(user))
     } catch (error){
@@ -32,7 +32,7 @@ export const setUser = user => {
     }
 }
 
-export const removeUser = () => {
+export const removeUser = async () => {
     try{
         await AsyncStorage.removeItem(user_key)
     } catch (error) {

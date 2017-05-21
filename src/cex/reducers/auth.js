@@ -1,5 +1,5 @@
 import { getUser, setUser } from 'lib/http'
-import { LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAILURE, LOG_OUT_USER }
+import { LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAILURE, LOG_OUT_USER } from 'actions/auth'
 
 const defaultState = {
 	//userAuthenticated: false,
