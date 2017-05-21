@@ -4,7 +4,7 @@ export const LOG_OUT_USER = 'LOG_OUT_USER'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 
-export const logInUser(user){
+export const logInUser = (user) => {
 	return{
 		type: LOGIN_USER,
 		http: {
@@ -20,7 +20,7 @@ export const logInUser(user){
 
 export const logOutUser = () => {
 	removeUser()
-	reutrn {
+	return {
 		type: LOG_OUT_USER
 	}
 }
