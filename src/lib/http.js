@@ -32,6 +32,14 @@ export const setUser = user => {
     }
 }
 
+export const removeUser = () => {
+    try{
+        await AsyncStorage.removeItem(user_key)
+    } catch (error) {
+        //you rly fked up fam
+    }
+}
+
 export const getToken = () => {
     const user = getUser()
     if( user ) {
