@@ -5,10 +5,12 @@ import {
 } from 'react-native'
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { makeStore } from 'store/configureStore'
+import { configureStore } from 'store/configureStore'
 import { MainScreen } from './MainScreen'
 
-const store = makeStore()
+const store = configureStore()
+
+console.log(store.getState())
 
 export default class Navigation extends Component {
   render(){

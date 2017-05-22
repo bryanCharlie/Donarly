@@ -1,10 +1,14 @@
-import { createStore, applyMiddleware } from 'redux'
-import rootReducer from 'reducers/rootReducer'
+import { createStore, applyMiddleware, compose } from 'redux'
+import { callFetchMiddleware } from 'middleware/fetch'
+import { rootReducer } from 'reducers/rootReducer'
+import thunk from 'redux-thunk'
 
-const middleWare = []
+const createStoreWithMiddleware = compose(
+	applyMiddleware(thunk),
+	applyMiddleware(callFetchMiddleware)
+)(createStore)
 
-const createStoreWithMiddleware = applyMiddleware(...middleWare)(createStore)
-
-export const makeStore = () => {
-  return createStoreWithMiddleware(rootReducer)
+export const configureStore = (initialState = {}) => {
+	const store = createStoreWithMiddleware(rootReducer, initialState)
+	return store
 }
