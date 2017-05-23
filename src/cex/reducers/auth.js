@@ -1,11 +1,12 @@
-import { getUser, setUser } from 'lib/http'
+//import { getUser, setUser } from 'lib/http'
 import { LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAILURE, LOG_OUT_USER } from 'actions/auth'
+import { AsyncStorage } from 'react-native'
 
 const defaultState = {
-	//userAuthenticated: false,
-	user: getUser(),
+	//userAuthenticated: false
 	isFetching: false,
-	error: false
+	error: false,
+	user: undefined
 }
 
 export const auth = (
