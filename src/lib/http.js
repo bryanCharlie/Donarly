@@ -1,6 +1,7 @@
-require('isomorphic-fetch')
+require('fetch-everywhere')
 
 import config from 'config'
+import { AsyncStorage } from 'react-native'
 
 const user_key = config.user_key
 
@@ -14,21 +15,29 @@ const headers = () => {
     }
 }
 
-export const getUser = () => {
+export const getUser = async () => {
     let user
-    try {
+    try{
         user = await AsyncStorage.getItem(user_key)
-    } catch (error) {
-        
+    } catch (error){
+        console.log(`an error happened: ${error}`)
     }
-    return user ? user : undefined
+    return user
 }
 
-export const setUser = user => {
+export const setUser = async (user) => {
     try{
         await AsyncStorage.setItem(user_key, JSON.stringify(user))
     } catch (error){
-        //you fked up fam
+        console.log(`an error happened: ${error}`)
+    }
+}
+
+export const removeUser = async () => {
+    try{
+        await AsyncStorage.removeItem(user_key)
+    } catch (error) {
+        //you rly fked up fam
     }
 }
 
