@@ -10,6 +10,7 @@
           "components": "./src/cex/components",
           "containers": "./src/cex/containers",
           "store": "./src/cex/store",
+          "actions": "./src/cex/actions",
           "reducers": "./src/cex/reducers",
           "config": "./src/config/base",
           "icons": "./src/icons",
