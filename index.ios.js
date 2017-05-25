@@ -4,6 +4,6 @@ const containers = './src/cex/containers'
 
 import React from 'react'
 import { AppRegistry } from 'react-native'
-import Navigation from 'containers/Navigation'
+import Main from 'containers/Main'
 
-AppRegistry.registerComponent('example', () => Navigation)
+AppRegistry.registerComponent('example', () => Main)

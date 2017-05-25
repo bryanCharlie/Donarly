@@ -17,15 +17,12 @@ const headers = () => {
 
 export const getUser = async () => {
     let user
-    try {
-        await AsyncStorage.getItem(user_key).then(res => {
-            user = res
-        })
-    } catch (error) {
+    try{
+        user = await AsyncStorage.getItem(user_key)
+    } catch (error){
         console.log(`an error happened: ${error}`)
     }
-
-    return user ? JSON.parse(user) : undefined
+    return user
 }
 
 export const setUser = async (user) => {
@@ -35,11 +32,6 @@ export const setUser = async (user) => {
         console.log(`an error happened: ${error}`)
     }
 }
-
-setUser({
-    name: 'bob',
-    token: 'some_token'
-})
 
 export const removeUser = async () => {
     try{

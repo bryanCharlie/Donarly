@@ -1,10 +1,38 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getUser } from 'lib/http'
+import * as authActions from 'actions/auth'
+
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        ...authActions
+    }, dispatch )
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 
 export class Home extends Component {
   constructor(props) {
      super(props);
   }
+
+  componentWillMount = () => {
+        console.log(this.props)
+        getUser().then(res => {
+            if(res){
+                this.props.logInUser(res)
+                this.props.navigation.navigate('NavigationScreen')
+            }
+        })
+   }
 
   static navigationOptions = {
         header: null,
