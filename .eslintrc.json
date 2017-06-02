@@ -1,0 +1,30 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "comma-dangle": ["warn", "never"], //no trailing commas
+        "indent": ["warn", 4], //an indent is 4 spaces
+        "linebreak-style": ["warn", "unix"],
+        "quotes": ["error", "single"], //single quotes only!!!
+        "semi": ["error", "always"], //must have a semicolon
+        "no-var": "error", //no vars
+        "no-unused-expressions": "warn",
+        "no-useless-concat": "warn",
+        "block-scoped-var": "error",
+        "consistent-return": "error"
+    }
+}
