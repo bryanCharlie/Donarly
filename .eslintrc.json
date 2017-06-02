@@ -16,12 +16,12 @@
         "react"
     ],
     "rules": {
-        "comma-dangle": ["warn", "never"], //no trailing commas
-        "indent": ["warn", 4], //an indent is 4 spaces
+        "comma-dangle": ["warn", "never"],
+        "indent": ["warn", 4],
         "linebreak-style": ["warn", "unix"],
-        "quotes": ["error", "single"], //single quotes only!!!
-        "semi": ["error", "always"], //must have a semicolon
-        "no-var": "error", //no vars
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "no-var": "error",
         "no-unused-expressions": "warn",
         "no-useless-concat": "warn",
         "block-scoped-var": "error",
