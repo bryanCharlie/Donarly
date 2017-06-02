@@ -5,7 +5,7 @@ import {
 } from 'react-native'
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { configureStore } from 'store/configureStore'
+import { configureStore } from 'store/ConfigureStore'
 import { MainScreen } from './MainScreen'
 
 const store = configureStore()
