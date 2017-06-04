@@ -13,7 +13,7 @@ export class Tile extends Component {
  }
 
    chooseColor() {
-     console.log('chosenColor called');
+     //console.log('chosenColor called');
   if (this.state.chosen === true) {
     return 0.4;
   }
@@ -21,8 +21,8 @@ export class Tile extends Component {
  }
 
   render() {
-    console.log('state opacity is', this.state.opacity);
-    console.log('chosen is: ', this.state.chosen);
+    //console.log('state opacity is', this.state.opacity);
+    //console.log('chosen is: ', this.state.chosen);
   return (
     <View>
     <View style={styles.viewStyle}>
