@@ -1,24 +1,24 @@
-import { Dimensions, View, Picker, Text, Slider, StyleSheet } from 'react-native'
-import ProgressBar from 'react-native-progress/Bar'
-import React, { Component } from 'react'
+import { Dimensions, View, Picker, Text, Slider, StyleSheet } from 'react-native';
+import ProgressBar from 'react-native-progress/Bar';
+import React, { Component } from 'react';
 
-viewWidth = (percentageWidth) => {
+const viewWidth = (percentageWidth) => {
     return Dimensions.get('window').width * (percentageWidth / 100);
-}
+};
 
-viewHeight = (percentageHeight) => {
+const viewHeight = (percentageHeight) => {
     return Dimensions.get('window').height * (percentageHeight / 100);
-}
+};
 
 const COLUMNS = 1;
 const MARGIN = viewWidth(1);
 const SPACING = (COLUMNS + 1) / COLUMNS * MARGIN;
 
 const grid = {
-  flex: 1,
-  flexWrap: 'wrap',
-  flexDirection: 'row',
-  justifyContent: 'flex-start'
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
 };
 
 const cell = {
@@ -27,7 +27,7 @@ const cell = {
   width: viewWidth(100) / COLUMNS - SPACING,
   backgroundColor: 'red',
   height: viewHeight(30)
-}
+};
 
 const styles = StyleSheet.create({
   slider: {
@@ -49,29 +49,29 @@ const styles = StyleSheet.create({
   donationHeading:{
     
   },
-  transactionHeading:{
+    transactionHeading:{
     
-  },
+    },
   total: {
     
   }
 });
 
-const chart_wh = 80
-const series = [123, 321, 123, 789, 537]
-const sliceColor = ['#F44336','#2196F3','#FFEB3B', '#4CAF50', '#FF9800']
+const chart_wh = 80;
+const series = [123, 321, 123, 789, 537];
+const sliceColor = ['#F44336','#2196F3','#FFEB3B', '#4CAF50', '#FF9800'];
 
 
 export class Settings extends Component{
 
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
-            selectedValue: "monthly",
+            selectedValue: 'monthly',
             maximumValue: 10,
             sliderValue: 5.24,
             madeUpDonationTotal: 8.40
-        }
+        };
     }
 
     render(){

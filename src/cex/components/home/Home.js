@@ -28,10 +28,14 @@ export class Home extends Component {
         console.log(this.props)
         getUser().then(res => {
             if(res){
-                this.props.logInUser(res)
+                this.props.loginReturningUser(res)
                 this.props.navigation.navigate('NavigationScreen')
             }
         })
+   }
+
+   componentWillReceiveProps = (props) => {
+    console.log(props)
    }
 
   static navigationOptions = {
