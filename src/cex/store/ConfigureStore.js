@@ -1,14 +1,14 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import { callFetchMiddleware } from 'middleware/fetch'
-import { rootReducer } from 'reducers/rootReducer'
-import thunk from 'redux-thunk'
+import { createStore, applyMiddleware, compose } from 'redux';
+import { callFetchMiddleware } from 'middleware/fetch';
+import { rootReducer } from 'reducers/rootReducer';
+import thunk from 'redux-thunk';
 
 const createStoreWithMiddleware = compose(
-	applyMiddleware(thunk),
-	applyMiddleware(callFetchMiddleware)
-)(createStore)
+    applyMiddleware(thunk),
+    applyMiddleware(callFetchMiddleware)
+)(createStore);
 
 export const configureStore = (initialState = {}) => {
-	const store = createStoreWithMiddleware(rootReducer, initialState)
-	return store
-}
+    const store = createStoreWithMiddleware(rootReducer, initialState);
+    return store;
+};

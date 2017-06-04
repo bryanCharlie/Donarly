@@ -40,14 +40,13 @@ export const removeUser = async () => {
         //you rly fked up fam
     }
 }
-
+//TODO FIX THIS. GETUSER RETURNS A PROMISE
 export const getToken = () => {
     const user = getUser()
     if( user ) {
         return JSON.parse(user).access_token
     }
 }
-
 const Authorize = ( endpoint ) => {
     const token = getToken()
     if( token ){
