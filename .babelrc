@@ -17,7 +17,8 @@
           "images": "./src/images",
           "assets": "./src/assets",
           "middleware": "./src/middleware",
-          "lib": "./src/lib"
+          "lib": "./src/lib",
+          "styles": "./src/styles"
         }
       }
     ]
