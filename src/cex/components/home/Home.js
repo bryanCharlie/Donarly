@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUser } from 'lib/http';
 import * as authActions from 'actions/auth';
+import style from 'styles/main';
 
 const mapStateToProps = state => {
-    return {
-        auth: state.auth
-    };
+  return {
+    auth: state.auth
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -39,42 +40,42 @@ export class Home extends Component {
    }
 
   static navigationOptions = {
-        header: null,
+        header: null
   }
 
   goToSignUp = () => {
-   this.props.navigation.navigate('SignUp')
+   this.props.navigation.navigate('SignUp');
   }
 
  goToLogin = () => {
-   this.props.navigation.navigate('Login')
+   this.props.navigation.navigate('Login');
  }
   render() {
     return (
-    <Image source={require('images/bg4.png')} style={styles.container}>
+    <Image source={require('images/bg4.png')} style={style.container}>
 
-        <View style = {styles.logoContainer}>
-            <Image style={styles.logo} source = {require('images/logo2.png')}/>
-              <Text style = {styles.title}>
+        <View style = {style.logoContainer}>
+            <Image style={style.logo} source = {require('images/logo2.png')}/>
+              <Text style = {style.title}>
               Spare Change
               </Text>
         </View>
 
-        <View style={styles.viewContainer}>
+        <View style={style.viewContainer}>
             <TouchableOpacity
-            style = {styles.buttonContainer}
+            style = {style.buttonContainer}
             onPress={this.goToSignUp}
             >
-               <Text style={styles.button}>
+               <Text style={style.button}>
                  Sign Up
                </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-            style = {styles.buttonContainer}
+            style = {style.buttonContainer}
             onPress={this.goToLogin}
             >
-               <Text style={styles.button}>
+               <Text style={style.button}>
                  Login
                </Text>
             </TouchableOpacity>
@@ -85,59 +86,3 @@ export class Home extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-
-
-
-  container: {
-    padding: 5,
-    flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'stretch'
-  },
-
-viewContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-
-  },
-  buttonContainer:{
-    backgroundColor: '#ffffff',
-    opacity: 0.5,
-    marginTop: 0,
-    borderRadius: 10,
-    padding: 5,
-    marginLeft: 5,
-    marginRight: 5,
-    width: 125,
-    justifyContent: 'flex-end'
-    },
-  button: {
-    textAlign: 'center',
-    fontWeight: '600',
-    margin: 5
-  },
-
-  logoContainer:{
-    alignItems: 'center',
-    marginTop: 100,
-    opacity: 0.8,
-  },
-  logo: {
-    height: 200,
-    width: 200,
-    borderColor: 'white',
-    borderWidth: 3,
-    borderRadius: 100,
-  },
-  title: {
-    paddingTop: 20,
-    opacity: 0.7,
-    marginBottom: 20
-
-  },
-})
