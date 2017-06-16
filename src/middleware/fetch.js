@@ -23,7 +23,7 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
                     console.log(res);
                     return dispatch({
                         type: LOGIN_SUCCESS,
-                        user: { 
+                        user: {
                             username: body.username,
                             token: 'some_token'
                         },
@@ -39,6 +39,6 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
             });
         }
 
-    return next(action);
+        return next(action);
     };
 };
