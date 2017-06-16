@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUser } from 'lib/http';
 import * as authActions from 'actions/auth';
-import style from 'styles/main';
+import { GlobalStyle, HomeStyle } from 'styles/main';
 
 const mapStateToProps = state => {
-  return {
-    auth: state.auth
-  };
+    return {
+        auth: state.auth
+    };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -25,64 +25,62 @@ export class Home extends Component {
         super(props);
     }
 
-  componentWillMount = () => {
-        console.log(this.props)
+    componentWillMount = () => {
+        console.log(this.props);
         getUser().then(res => {
             if(res){
-                this.props.loginReturningUser(res)
-                this.props.navigation.navigate('NavigationScreen')
+                this.props.loginReturningUser(res);
+                this.props.navigation.navigate('NavigationScreen');
             }
-        })
-   }
+        });
+    }
 
-   componentWillReceiveProps = (props) => {
-    console.log(props)
-   }
+     componentWillReceiveProps = (props) => {
+         console.log(props);
+     }
 
-  static navigationOptions = {
+    static navigationOptions = {
         header: null
-  }
+    }
 
-  goToSignUp = () => {
-   this.props.navigation.navigate('SignUp');
-  }
+    goToSignUp = () => {
+        this.props.navigation.navigate('Categories');
+    }
 
  goToLogin = () => {
-   this.props.navigation.navigate('Login');
+     this.props.navigation.navigate('Login');
  }
-  render() {
-    return (
-    <Image source={require('images/bg4.png')} style={style.container}>
+ render() {
+        return (
+            <Image source={require('images/bg4.png')} style={GlobalStyle.container}>
 
-        <View style = {style.logoContainer}>
-            <Image style={style.logo} source = {require('images/logo2.png')}/>
-              <Text style = {style.title}>
-              Spare Change
-              </Text>
-        </View>
+                <View style = {HomeStyle.logoContainer}>
+                    <Image style={HomeStyle.logo} source = {require('images/logo2.png')}/>
+                    <Text style = {HomeStyle.title}>
+                        Donarly
+                    </Text>
+                </View>
 
-        <View style={style.viewContainer}>
-            <TouchableOpacity
-            style = {style.buttonContainer}
-            onPress={this.goToSignUp}
-            >
-               <Text style={style.button}>
-                 Sign Up
-               </Text>
-            </TouchableOpacity>
+                <View style={HomeStyle.viewContainer}>
+                    <TouchableOpacity
+                        style = {HomeStyle.buttonContainer}
+                        onPress={this.goToSignUp}
+                    >
+                        <Text style={HomeStyle.button}>
+                        Sign Up
+                        </Text>
+                    </TouchableOpacity>
 
-            <TouchableOpacity
-            style = {style.buttonContainer}
-            onPress={this.goToLogin}
-            >
-               <Text style={style.button}>
-                 Login
-               </Text>
-            </TouchableOpacity>
-
-
-        </View>
-      </Image>
-    );
-  }
+                    <TouchableOpacity
+                        style = {HomeStyle.buttonContainer}
+                        onPress={this.goToLogin}
+                    >
+                        <Text style={HomeStyle.button}>
+                        Login
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </Image>
+        );
+    }
 }

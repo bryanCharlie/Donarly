@@ -15,7 +15,7 @@
   ],
   "rules": {
     "comma-dangle": ["warn", "never"],
-    "indent": ["warn", 2],
+    "indent": ["warn", 4],
     "linebreak-style": ["warn", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],

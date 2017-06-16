@@ -1,7 +1,7 @@
-const API_ENDPOINT = ''
+const API_ENDPOINT = '';
 
 let config = {
     user_key: 'charity_user'
-}
+};
 
-export default config
+export default config;
