@@ -3,7 +3,7 @@ import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUser } from 'lib/http';
-import * as authActions from 'actions/auth';
+import { loginUser, loginReturningUser, logOutUser } from 'actions/auth';
 import { GlobalStyle, HomeStyle } from 'styles/main';
 
 const mapStateToProps = state => {
@@ -14,7 +14,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        ...authActions
+        loginUser,
+        loginReturningUser,
+        logOutUser
     }, dispatch );
 };
 
