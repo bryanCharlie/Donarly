@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUser } from 'lib/http';
+import { getUser, getToken } from 'lib/http';
 import { loginUser, loginReturningUser, logOutUser } from 'actions/auth';
 import { GlobalStyle, HomeStyle } from 'styles/main';
 

@@ -14,7 +14,7 @@ export const auth = (
     state = { ...defaultState },
     action
 ) => {
-    const { type, user, message } = action;
+    const { type, data, message } = action;
 
     switch(type){
     case LOGIN_USER:
@@ -26,7 +26,7 @@ export const auth = (
     case LOGIN_RETURNING_USER:
         return {
             ...state, ...{
-                user,
+                user: data,
                 message
             }
         };
@@ -35,8 +35,8 @@ export const auth = (
         return {
             ...state, ...{
                 isFetching: false,
-                user,
-                message: message
+                user: data,
+                message
             }
         };
     case LOGIN_FAILURE:
@@ -44,7 +44,7 @@ export const auth = (
             ...state, ...{
                 isFetching: false,
                 error: true,
-                message: message
+                message
             }
         };
     case LOG_OUT_USER:
