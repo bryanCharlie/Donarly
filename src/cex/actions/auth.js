@@ -1,4 +1,6 @@
-import { removeUser } from 'lib/http';
+import { removeUser, _FETCH, POST } from 'lib/http';
+import config from 'config';
+
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOG_OUT_USER = 'LOG_OUT_USER';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -7,13 +9,12 @@ export const LOGIN_RETURNING_USER = 'LOGIN_RETURNING_USER';
 
 export const loginUser = (user) => {
     return{
-        type: LOGIN_USER,
+        types: [ LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAILURE ],
         http: {
             success: 'Welcome!',
             failure: 'Invalid email or password',
-            body: {
-                username: user.name,
-                password: user.password
+            callAPI: () => {
+                return _FETCH(config.API_LOGIN_ENDPOINT, POST, JSON.stringify({ username: user.username, password: user.password }), token);
             }
         }
     };

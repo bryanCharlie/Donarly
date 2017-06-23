@@ -1,18 +1,18 @@
-require('fetch-everywhere');
+export const GET = 'GET';
+export const POST = 'POST';
+export const PUT = 'PUT';
+export const PATCH = 'PATCH';
+export const DELETE = 'DELETE';
 
 import config from 'config';
 import { AsyncStorage } from 'react-native';
 
+
 const user_key = config.user_key;
 
-const headers = () => {
-    return {
-        credentials: 'include',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    };
+const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
 };
 
 export const getUser = async () => {
@@ -40,47 +40,49 @@ export const removeUser = async () => {
         //you rly fked up fam
     }
 };
-//TODO FIX THIS. GETUSER RETURNS A PROMISE
-export const getToken = () => {
-    const user = getUser();
-    if( user ) {
-        return JSON.parse(user).access_token;
-    }
-};
-const Authorize = ( endpoint ) => {
-    const token = getToken();
+
+const Authorize = ( endpoint, token ) => {
     if( token ){
         endpoint += `?access_token=${token}`;
+        console.log('messed wth shit');
     }
     return endpoint;
 };
 
-export const POST = ( endpoint, options ) => {
-    return fetch( Authorize(endpoint),
-        { ...headers(), ...options, ...{ method: POST } }
-    );
+export const _FETCH = ( endpoint, method, body, token = {} ) => {
+    return fetch(endpoint, {
+        method: method,
+        headers: headers,
+        body: body
+    });
 };
 
-export const DELETE = ( endpoint, options ) => {
-    return fetch( Authorize(endpoint),
-        { ...headers(), ...options, ...{ method: DELETE } }
-    );
-};
+// export const POST = ( endpoint, options, token ) => {
+//     return fetch( Authorize(endpoint, token),
+//         { ...{ method: POST }, ...headers(), ...options }
+//     );
+// };
 
-export const PATCH = ( endpoint, options ) => {
-    return fetch( Authorize(endpoint),
-        { ...headers(), ...options, ...{ method: PATCH } }
-    );
-};
+// export const DELETE = ( endpoint, options, token ) => {
+//     return fetch( Authorize(endpoint, token),
+//         { ...{ method: DELETE }, ...headers(), ...options }
+//     );
+// };
 
-export const PUT = ( endpoint, options ) => {
-    return fetch( Authorize(endpoint),
-        { ...headers(), ...options, ...{ method: PUT } }
-    );
-};
+// export const PATCH = ( endpoint, options, token ) => {
+//     return fetch( Authorize(endpoint, token),
+//         { ...{ method: PATCH }, ...headers(), ...options }
+//     );
+// };
 
-export const GET = ( endpoint, options ) => {
-    return fetch( Authorize(endpoint),
-        { ...headers(), ...options, ...{ method: GET } }
-    );
-};
+// export const PUT = ( endpoint, options, token ) => {
+//     return fetch( Authorize(endpoint, token),
+//         { ...{ method: PUT }, ...headers(), ...options }
+//     );
+// };
+
+// export const GET = ( endpoint, options, token ) => {
+//     return fetch( Authorize(endpoint, token),
+//         { ...{ method: GET }, ...headers(), ...options }
+//     );
+// };
