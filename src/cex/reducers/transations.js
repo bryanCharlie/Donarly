@@ -1,4 +1,4 @@
-import { GET_PROFILE, GET_PROFILE_SUCCESS, GET_PROFILE_FAILURE } from 'actions/transactions';
+import { GET_TRANSACTIONS, GET_TRANSACTIONS_SUCCESS, GET_TRANSACTIONS_FAILURE } from 'actions/transactions';
 
 const defaultState = {
     isfetching: false,
@@ -15,14 +15,14 @@ export const transactions = (
     const { type, data, message } = action;
 
     switch(type){
-    case GET_PROFILE:
+    case GET_TRANSACTIONS:
         return {
             ...state,
             isfetching: true,
             error: false
         };
 
-    case GET_PROFILE_SUCCESS:
+    case GET_TRANSACTIONS_SUCCESS:
         return {
             ...state,
             isfetching: false,
@@ -31,7 +31,7 @@ export const transactions = (
             transactions: data
         };
 
-    case GET_PROFILE_FAILURE:
+    case GET_TRANSACTIONS_FAILURE:
         return {
             ...state,
             isfetching: false,
