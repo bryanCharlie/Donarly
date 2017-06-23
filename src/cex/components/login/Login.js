@@ -9,7 +9,7 @@ export class Login extends Component {
             email: '',
             password: '',
             error: false
-        }
+        };
     }
     onLogin = () => {
         this.props.navigation.navigate('Profile');

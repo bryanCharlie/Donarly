@@ -25,7 +25,7 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
                     message: success
                 });
             })
-            .then(err => {
+            .catch(err => {
                 return dispatch({
                     type: types[2],
                     message: failure
