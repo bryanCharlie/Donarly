@@ -5,60 +5,33 @@ console.log('in fetch middlware');
 
 export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destructuring. Extracting store.dispatch and store,getState
     return next => action => {
-        const { types } = action;
+        const { type } = action;
 
-        if(!action.http || types.length != 3){
+        if(!action.http || type.length != 3){
             return next(action);
         }
 
-        dispatch(types[0]);
+        dispatch({type: type[0]});
 
         const { success, failure, callAPI } = action.http;
 
         token = getState().auth.user ? getState().auth.user.token : undefined;
 
-        callAPI(token).then(res => res.json())
+        return callAPI(token).then(res => res.json())
             .then(responseJSON => {
+                console.log(responseJSON)
                 return dispatch({
-                    type: types[1],
+                    type: type[1],
                     data: responseJSON,
                     message: success
                 });
             })
             .catch(err => {
                 return dispatch({
-                    type: types[2],
+                    type: type[2],
                     message: failure
                 });
             });
-
-        // _FETCH('https://flask-json-api.herokuapp.com/auth/login',
-        //     'POST',
-        //     JSON.stringify({
-        //         'username': 'bcharlie@mail.com',
-        //         'password': 'ttirocks123'
-        //     })
-        //     ).then(res => res.json())
-        //         .then(responseJSON => {
-        //             console.log(responseJSON);
-        //         });
-
-
-
-        // fetch('https://flask-json-api.herokuapp.com/auth/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         username: 'bcharlie@mail.com',
-        //         password: 'ttirocks123'
-        //     })
-        // }).then(res => res.json())
-        // .then(responseJSON => {
-        //     console.log(responseJSON);
-        // });
 
         //console.log(callAPI(token))
 

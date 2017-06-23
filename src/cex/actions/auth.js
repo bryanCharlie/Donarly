@@ -9,7 +9,7 @@ export const LOGIN_RETURNING_USER = 'LOGIN_RETURNING_USER';
 
 export const loginUser = (user) => {
     return{
-        types: [ LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAILURE ],
+        type: [ LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAILURE ],
         http: {
             success: 'Welcome!',
             failure: 'Invalid email or password',
