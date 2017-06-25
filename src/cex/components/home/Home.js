@@ -29,7 +29,13 @@ export class Home extends Component {
 
     componentWillMount = () => {
         console.log(this.props);
-        this.props.loginUser({username: 'bcharlie@mail.com', password: 'ttirocks123'}).then(console.log('OMFG THIS SHIT WORKS'));
+        // getUser().then(res => { //TODO fix this. Currently returns {"username":"Bryan Charlie","token":"some_token"}
+        //     console.log(res);
+        //     if(res){
+        //         this.props.loginReturningUser(user);
+        //         this.goToNavigationScreen();
+        //     }
+        // });
     }
 
     componentWillReceiveProps = (props) => {
@@ -38,6 +44,10 @@ export class Home extends Component {
 
     static navigationOptions = {
         header: null
+    }
+
+    goToNavigationScreen = () => {
+        this.props.navigate('NavigationScreen');
     }
 
     goToSignUp = () => {

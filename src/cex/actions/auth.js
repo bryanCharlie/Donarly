@@ -14,7 +14,7 @@ export const loginUser = (user) => {
             success: 'Welcome!',
             failure: 'Invalid email or password',
             callAPI: () => {
-                return _FETCH(config.API_LOGIN_ENDPOINT, POST, JSON.stringify({ username: user.username, password: user.password }));
+                return _FETCH(config.API_LOGIN_ENDPOINT, POST, JSON.stringify({ username: 'bcharlie@mail.com', password: 'ttirocks123' }));
             }
         }
     };
