@@ -11,13 +11,11 @@ const default_headers = {
 };
 
 export const getUser = async () => {
-    let user;
     try{
-        user = await AsyncStorage.getItem(user_key);
+        return await AsyncStorage.getItem(user_key);
     } catch (error){
         console.log(`an error happened: ${error}`);
     }
-    return user;
 };
 
 export const setUser = async (user) => {
