@@ -1,4 +1,9 @@
-# SpareChange
+# donarly
+
+## how to overcome the red-screen of death
+#### aka "The development server returned response error code:500"
+
+in your console: npm run start:reset
 
 ## folder structure
 
@@ -19,4 +24,3 @@ Contains the redux login functions. To log a user in, call the redux action `log
 ## how logging in and out works
 
 We store a key-value pair in Asyncstorage. The value is a JSON object with a users username and access token. If you look in `base.js` the key is `charity_user`. When a user logs in we store the object, when they sign out we delete the object, when they return to the app after they already signed in, instead of signing in again we just fetch the object from Asyncstorage.
-

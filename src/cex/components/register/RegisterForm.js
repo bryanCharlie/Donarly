@@ -10,10 +10,7 @@ export class RegisterForm extends Component {
     }
 
     onSignUp(){
-        this.props.navigator.push({
-            name: 'Login',
-            passProps: {}
-        });
+        console.log(this.props);
     }
 
     render() {

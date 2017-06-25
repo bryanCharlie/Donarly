@@ -15,7 +15,7 @@ export class Register extends Component {
                     <View style = {RegisterStyle.logoContainer}>
                         <Image style={RegisterStyle.logo} source = {require('images/logo2.png')}/>
                         <Text style = {RegisterStyle.title}>
-                        Donarly
+                        donarly
                         </Text>
                     </View>
                     <View>

@@ -38,6 +38,7 @@ export const removeUser = async () => {
         await AsyncStorage.removeItem(user_key);
     } catch (error) {
         //you rly fked up fam
+      // lol -from Alester
     }
 };
 //TODO FIX THIS. GETUSER RETURNS A PROMISE

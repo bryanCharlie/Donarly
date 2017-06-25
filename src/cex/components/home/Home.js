@@ -57,7 +57,7 @@ export class Home extends Component {
                 <View style = {HomeStyle.logoContainer}>
                     <Image style={HomeStyle.logo} source = {require('images/logo2.png')}/>
                     <Text style = {HomeStyle.title}>
-                        Donarly
+                        donarly
                     </Text>
                 </View>
 

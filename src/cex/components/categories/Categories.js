@@ -3,8 +3,22 @@ import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Tile } from './Tile';
 import { Header } from './Header';
 import { CategoriesStyle } from 'styles/main';
+import * as categoryActions from 'actions/category';
 
 
+const mapStateToProps = state => {
+    return {
+        categories: state.categories
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        ...categoryActions
+    }, dispatch );
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 export class Categories extends Component {
     constructor(props) {
         super(props);
@@ -16,10 +30,6 @@ export class Categories extends Component {
         header: null
     }
 
-    state = {
-        categories: [],
-        title: 'category'
-    };
 
     onPress = (category) => {
         if (this.inArray(this.state.categories, category) === false) {
@@ -76,7 +86,7 @@ export class Categories extends Component {
     }
 
     render() {
-        console.log('state is :', this.state.location);
+        console.log('state is :', this.state.categories);
         return (
             <View style={{ flex: 1, backgroundColor: '#FAFAFA'}}>
                 <Header headerText={' Charity Category'} next={this.onNext} back={this.goBack} />
