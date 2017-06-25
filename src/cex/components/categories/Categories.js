@@ -32,22 +32,7 @@ export class Categories extends Component {
 
 
     onPress = (category) => {
-        if (this.inArray(this.state.categories, category) === false) {
-            const arr = this.state.categories.slice();
-            arr.push(category);
-            console.log('a category just got pushed');
-            this.setState({
-                categories: arr
-            });
-        } else {
-            const arr = this.state.categories.slice();
-            const index = arr.indexOf(category);
-            console.log('a category just got removed');
-            arr.splice(index, 1);
-            this.setState({
-                categories: arr
-            });
-        }
+        categoryActions.updateCategory(category);
     }
 
     inArray(arr, obj) {
@@ -86,7 +71,7 @@ export class Categories extends Component {
     }
 
     render() {
-        console.log('state is :', this.state.categories);
+        console.log('state is :', this.props.categories);
         return (
             <View style={{ flex: 1, backgroundColor: '#FAFAFA'}}>
                 <Header headerText={' Charity Category'} next={this.onNext} back={this.goBack} />
