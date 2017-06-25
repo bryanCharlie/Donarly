@@ -29,17 +29,12 @@ export class Home extends Component {
 
     componentWillMount = () => {
         console.log(this.props);
-        getUser().then(res => {
-            if(res){
-                this.props.loginReturningUser(res);
-                this.props.navigation.navigate('NavigationScreen');
-            }
-        });
+        this.props.loginUser({username: 'bcharlie@mail.com', password: 'ttirocks123'}).then(console.log('OMFG THIS SHIT WORKS'));
     }
 
-     componentWillReceiveProps = (props) => {
-         console.log(props);
-     }
+    componentWillReceiveProps = (props) => {
+        console.log(props);
+    }
 
     static navigationOptions = {
         header: null
@@ -49,10 +44,10 @@ export class Home extends Component {
         this.props.navigation.navigate('Categories');
     }
 
- goToLogin = () => {
-     this.props.navigation.navigate('Login');
- }
- render() {
+    goToLogin = () => {
+        this.props.navigation.navigate('Login');
+    }
+    render() {
         return (
             <Image source={require('images/bg4.png')} style={GlobalStyle.container}>
 
