@@ -54,7 +54,7 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
                         });
                     }
                     return Promise.resolve(responseJSON);
-                }, (err) => {
+                }, (err) => { //TODO fix this error
                     console.log('An error occured');
                 });
             }
