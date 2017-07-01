@@ -19,7 +19,7 @@ export class Register extends Component {
                         </Text>
                     </View>
                     <View>
-                        <RegisterForm navigator={this.props.navigator} />
+                        <RegisterForm navigation={this.props.navigation} />
                     </View>
                 </ScrollView>
             </Image>

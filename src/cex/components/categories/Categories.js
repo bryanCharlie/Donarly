@@ -2,9 +2,27 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Tile } from './Tile';
 import { Header } from './Header';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { CategoriesStyle } from 'styles/main';
+import * as categoryActions from 'actions/category';
 
 
+
+
+const mapStateToProps = state => {
+    return {
+        categories: state.categories
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        ...categoryActions
+    }, dispatch );
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 export class Categories extends Component {
     constructor(props) {
         super(props);
@@ -21,7 +39,7 @@ export class Categories extends Component {
         title: 'category'
     };
 
-    onPress = (category) => {
+    onPress = (category) => { // possibly move to sperate lib file
         if (this.inArray(this.state.categories, category) === false) {
             const arr = this.state.categories.slice();
             arr.push(category);
@@ -39,6 +57,7 @@ export class Categories extends Component {
             });
         }
     }
+
 
     inArray(arr, obj) {
         return (arr.indexOf(obj) !== -1);
@@ -71,12 +90,14 @@ export class Categories extends Component {
         );
     }
 
-    onNext(){
+    onNext= () => {
+        console.log('Categories props ',this.props);
+        this.props.updateCategory(this.state.categories);
         this.props.navigation.navigate('Register');
     }
 
     render() {
-        console.log('state is :', this.state.location);
+        console.log('state is :', this.state.categories);
         return (
             <View style={{ flex: 1, backgroundColor: '#FAFAFA'}}>
                 <Header headerText={' Charity Category'} next={this.onNext} back={this.goBack} />
@@ -87,7 +108,7 @@ export class Categories extends Component {
                     <ScrollView>
                         {this.renderLocations()}
                     </ScrollView>
-                    <TouchableOpacity onPress={()=>{this.onNext();}}>
+                    <TouchableOpacity onPress={this.onNext}>
                         <Text>Next</Text>
                     </TouchableOpacity>
                 </View>

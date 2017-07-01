@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text, TextInput, ScrollView, TouchableHighlight, ActivityIndicator } from 'react-native';
 import { List, ListItem, Button } from 'react-native-elements';
 
-export default class OrgList extends Component{
+export class OrgList extends Component{
     constructor(props){
         super(props);
         this.state = {
