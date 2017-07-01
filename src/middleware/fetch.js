@@ -44,7 +44,7 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
                     if(responseJSON.status === 200){
                         return dispatch({
                             type: type[1],
-                            data: responseJSON,
+                            data: responseJSON.data,
                             message: success
                         });
                     } else if(responseJSON.status === 401) {
@@ -54,7 +54,7 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
                         });
                     }
                     return Promise.resolve(responseJSON);
-                }, (err) => {
+                }, (err) => { //TODO fix this error
                     console.log('An error occured');
                 });
             }
