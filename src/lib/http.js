@@ -1,28 +1,21 @@
-require('fetch-everywhere');
-
 import config from 'config';
 import { AsyncStorage } from 'react-native';
 
+
 const user_key = config.user_key;
 
-const headers = () => {
-    return {
-        credentials: 'include',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    };
+const default_headers = {
+    'credentials': 'include',
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
 };
 
 export const getUser = async () => {
-    let user;
     try{
-        user = await AsyncStorage.getItem(user_key);
+        return await AsyncStorage.getItem(user_key);
     } catch (error){
         console.log(`an error happened: ${error}`);
     }
-    return user;
 };
 
 export const setUser = async (user) => {
@@ -41,47 +34,52 @@ export const removeUser = async () => {
       // lol -from Alester
     }
 };
-//TODO FIX THIS. GETUSER RETURNS A PROMISE
-export const getToken = () => {
-    const user = getUser();
-    if( user ) {
-        return JSON.parse(user).access_token;
-    }
-};
-const Authorize = ( endpoint ) => {
-    const token = getToken();
-    if( token ){
-        endpoint += `?access_token=${token}`;
-    }
-    return endpoint;
+
+const apply_auth_header = ( token ) => {
+    let headers;
+    headers = {
+        ...default_headers,
+        Authorization: token ? `Basic ${token}` : undefined
+    };
+
+    console.log(headers);
+    return headers;
 };
 
-export const POST = ( endpoint, options ) => {
-    return fetch( Authorize(endpoint),
-        { ...headers(), ...options, ...{ method: POST } }
+export const _FETCH = ( endpoint, method, body, token ) => {
+    return fetch(endpoint, {
+        method: method,
+        headers: apply_auth_header(token),
+        body: body
+    });
+};
+
+export const POST = ( endpoint, options, token ) => {
+    return fetch( endpoint,
+        { ...{ method: 'POST' }, headers: apply_auth_header(token), ...options }
     );
 };
 
-export const DELETE = ( endpoint, options ) => {
-    return fetch( Authorize(endpoint),
-        { ...headers(), ...options, ...{ method: DELETE } }
+export const DELETE = ( endpoint, options, token ) => {
+    return fetch( endpoint,
+        { ...{ method: 'DELETE' }, headers: apply_auth_header(token), ...options }
     );
 };
 
-export const PATCH = ( endpoint, options ) => {
-    return fetch( Authorize(endpoint),
-        { ...headers(), ...options, ...{ method: PATCH } }
+export const PATCH = ( endpoint, options, token ) => {
+    return fetch( endpoint,
+        { ...{ method: 'PATCH' }, headers: apply_auth_header(token), ...options }
     );
 };
 
-export const PUT = ( endpoint, options ) => {
-    return fetch( Authorize(endpoint),
-        { ...headers(), ...options, ...{ method: PUT } }
+export const PUT = ( endpoint, options, token ) => {
+    return fetch( endpoint,
+        { ...{ method: 'PUT' }, headers: apply_auth_header(token), ...options }
     );
 };
 
-export const GET = ( endpoint, options ) => {
-    return fetch( Authorize(endpoint),
-        { ...headers(), ...options, ...{ method: GET } }
+export const GET = ( endpoint, options, token ) => {
+    return fetch( endpoint,
+        { ...{ method: 'GET' }, headers: apply_auth_header(token), ...options }
     );
 };

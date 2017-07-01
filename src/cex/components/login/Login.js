@@ -10,7 +10,6 @@ export class Login extends Component {
             password: '',
             error: false
         };
-        this.onLogin = this.onLogin.bind(this);
     }
     onLogin = () => {
         this.props.navigation.navigate('Profile');

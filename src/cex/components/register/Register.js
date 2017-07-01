@@ -15,11 +15,11 @@ export class Register extends Component {
                     <View style = {RegisterStyle.logoContainer}>
                         <Image style={RegisterStyle.logo} source = {require('images/logo2.png')}/>
                         <Text style = {RegisterStyle.title}>
-                        donarly
+                        Donarly
                         </Text>
                     </View>
                     <View>
-                        <RegisterForm navigator={this.props.navigator} />
+                        <RegisterForm navigation={this.props.navigation} />
                     </View>
                 </ScrollView>
             </Image>

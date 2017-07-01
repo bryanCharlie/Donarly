@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUser } from 'lib/http';
-import * as authActions from 'actions/auth';
+import { getUser, getToken } from 'lib/http';
+import { loginUser, loginReturningUser, logOutUser } from 'actions/auth';
 import { GlobalStyle, HomeStyle } from 'styles/main';
 
 const mapStateToProps = state => {
@@ -14,7 +14,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        ...authActions
+        loginUser,
+        loginReturningUser,
+        logOutUser
     }, dispatch );
 };
 
@@ -27,37 +29,42 @@ export class Home extends Component {
 
     componentWillMount = () => {
         console.log(this.props);
-        getUser().then(res => {
-            if(res){
-                this.props.loginReturningUser(res);
-                this.props.navigation.navigate('NavigationScreen');
-            }
-        });
+        // getUser().then(res => { //TODO fix this. Currently returns {"username":"Bryan Charlie","token":"some_token"}
+        //     console.log(res);
+        //     if(res){
+        //         this.props.loginReturningUser(user);
+        //         this.goToNavigationScreen();
+        //     }
+        // });
     }
 
-     componentWillReceiveProps = (props) => {
-         console.log(props);
-     }
+    componentWillReceiveProps = (props) => {
+        console.log(props);
+    }
 
     static navigationOptions = {
         header: null
+    }
+
+    goToNavigationScreen = () => {
+        this.props.navigate('NavigationScreen');
     }
 
     goToSignUp = () => {
         this.props.navigation.navigate('Categories');
     }
 
- goToLogin = () => {
-     this.props.navigation.navigate('Login');
- }
- render() {
+    goToLogin = () => {
+        this.props.navigation.navigate('Login');
+    }
+    render() {
         return (
             <Image source={require('images/bg4.png')} style={GlobalStyle.container}>
 
                 <View style = {HomeStyle.logoContainer}>
                     <Image style={HomeStyle.logo} source = {require('images/logo2.png')}/>
                     <Text style = {HomeStyle.title}>
-                        donarly
+                        Donarly
                     </Text>
                 </View>
 
