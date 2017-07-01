@@ -6,14 +6,13 @@ import { RegisterFormStyle } from 'styles/main';
 export class RegisterForm extends Component {
     constructor(props) {
         super(props);
-        this.onSignUp= this.onSignUp.bind(this);
+      //  this.onSignUp= this.onSignUp.bind(this);
     }
 
-    onSignUp(){
-        this.props.navigator.push({
-            name: 'Login',
-            passProps: {}
-        });
+    onSignUp=()=>{
+        console.log('RegisterForm props ',this.props);
+        this.props.navigation.navigate('NavigationScreen');
+
     }
 
     render() {
