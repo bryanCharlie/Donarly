@@ -26,17 +26,18 @@ Contains the redux login functions. To log a user in, call the redux action `log
 We store a key-value pair in Asyncstorage. The value is a JSON object with a users username and access token. If you look in `base.js` the key is `charity_user`. When a user logs in we store the object, when they sign out we delete the object, when they return to the app after they already signed in, instead of signing in again we just fetch the object from Asyncstorage.
 
 ## Miscellaneous Guidelines
-*We will be using semicolons
-*Every Tab is equal to 4 spaces
-*EsLint will be our linter   for  “eslint.rc” file
-*Comment if code is specific IOS and android
-*Comment blocks of code that you write with your name
-*Github branch naming convention will be done by feature
-*Within components we don’t write “export default const …” only “export”
-*Development dependencies should be install “npm install --save-dev”
-*Document what was done for each task
+* We will be using semicolons
+* Every Tab is equal to 4 spaces
+* EsLint will be our linter   for  “eslint.rc” file
+* Comment if code is specific IOS and android
+* Comment blocks of code that you write with your name
+* Github branch naming convention will be done by feature
+* Within components we don’t write “export default const …” only “export”
+* Development dependencies should be install “npm install --save-dev”
+* Document what was done for each task
 
 
 ## Useful Links
 [Cool React Native  Modules](http://www.awesome-react-native.com/)
 [Our Flask API](https://flask-json-api.herokuapp.com/)
+[readme.md cheat sheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md)
