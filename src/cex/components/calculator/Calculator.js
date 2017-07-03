@@ -74,6 +74,11 @@ export class Settings extends Component{
         };
     }
 
+    static navigationOptions = {
+        header: null
+    }
+
+
     render(){
         return(
             <View style={grid}>

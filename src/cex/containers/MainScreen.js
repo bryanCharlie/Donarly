@@ -8,6 +8,8 @@ import { Register } from 'components/register/Register';
 import { NavigationScreen } from './NavigationScreen';
 import { Profile } from 'components/profile/Profile';
 import { Settings } from 'components/calculator/Calculator';
+import { OrganizationContainer } from 'components/organizations/OrganizationContainer';
+import { OrgDetail } from 'components/organizations/OrgDetail';
 
 const HomeScreen = DrawerNavigator({
     Home: { screen: Home }
@@ -18,5 +20,10 @@ export const MainScreen = StackNavigator({
     Categories: { screen: Categories },
     Login: { screen: Login },
     Register: { screen: Register },
-    NavigationScreen: { screen: NavigationScreen }
+    NavigationScreen: { screen: NavigationScreen },
+    OrgDetail: {screen: OrgDetail,
+        mode: 'modal',
+        navigationOptions: ({navigation}) =>({
+            org: navigation.state.params.org
+        })}
 });

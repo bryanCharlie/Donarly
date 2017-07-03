@@ -12,7 +12,7 @@ Implemented path aliases. For example a path like `require(‘../../images/avata
 ## lib/http.js
 
 Contains function to get, set, and delete a user from Asyncstorage. Also has http functions like GET, PUT, POST, etc.
-----
+
 ## config folder
 
 If you look in the .babelrc, base.js from this folder is aliased as a global variable called config. Anything added here will act like a global configuration property. This is where we put things like API_ENDPOINTS. `"config": "./src/config/base"` `import config from 'config'`
