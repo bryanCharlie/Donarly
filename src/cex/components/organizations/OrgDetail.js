@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text, TextInput, ScrollView, TouchableHighlight, ActivityIndicator } from 'react-native';
 import {List, ListItem, Button, Card} from 'react-native-elements';
 
-export default class OrgDetail extends Component{
+export class OrgDetail extends Component{
     constructor(props){
         super(props);
         const org = this.props.org;
@@ -15,12 +15,13 @@ export default class OrgDetail extends Component{
 
 
     render(){
-        const org = this.props.org;
+        console.log('in orgDetail', this.props.navigation.state.params.org);
+        const org = this.props.navigation.state.params.org;
         return(
             <ScrollView style={{flex: 1, flexDirection: 'column', alignSelf: 'center'}}>
                 <Card
                     title={org.charityName}
-                    image={require('./images/donate.jpg')}
+                    //image={require('./images/donate.jpg')}
                     containerStye={{}}>
                     <Text style={styles.text}>City: {org.city}</Text>
                     <Text style={styles.text}>State: {org.state} </Text>
@@ -40,13 +41,6 @@ export default class OrgDetail extends Component{
                         fontFamily='Lato'
                         buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 5}}
                         title='Donate Now' />
-                    <Button
-                        icon={{name: 'code'}}
-                        backgroundColor='#FFC157'
-                        fontFamily='Lato'
-                        buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 5}}
-                        onPress={() => {this.backToList();}}
-                        title='Back To List' />
                 </Card>
 
 

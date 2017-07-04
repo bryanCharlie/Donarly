@@ -17,13 +17,15 @@ export class OrgList extends Component{
                 return oid;
             }
         });
-        console.log('SLECTED',selected);
-        this.props.navigator.push({
-            name: 'OrgDetail',
-            passProps: {
-                org: selected[0]
-            }
-        });
+        console.log('SELECTED',selected[0]);
+        // this.props.navigator.push({
+        //     name: 'OrgDetail',
+        //     passProps: {
+        //         org: selected[0]
+        //     }
+        // });
+        this.props.navigation.navigate('OrgDetail', {org:selected[0]});
+
     }
 
     render(){
