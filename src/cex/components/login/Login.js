@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
 import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { loginUser } from 'actions/auth';
 import { GlobalStyle, LoginStyle } from 'styles/main';
+
+
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        loginUser
+    }, dispatch );
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
+
+
 export class Login extends Component {
     constructor(props){
         super(props);
-        this.setState = {
+        this.state = {
             email: '',
             password: '',
             error: false
         };
     }
+
     onLogin = () => {
-        this.props.navigation.navigate('Profile');
+        console.log(this.state.email);
+        this.props.loginUser({username: this.state.email, password: this.state.password}).then(res => {
+            if(this.props.auth.user){
+                this.props.navigation.navigate('Categories');
+            }
+        });
     }
     render() {
         const displayError = () => {
@@ -32,8 +57,8 @@ export class Login extends Component {
                         autoCorrect={false}
                         autoCapitalize="none"
                         style={LoginStyle.input}
-                        onTextChange={(text) => {
-                            this.setState({username: text});
+                        onChangeText={(text) => {
+                            this.setState({email: text});
                         }}
                     />
                     <TextInput
@@ -43,7 +68,7 @@ export class Login extends Component {
                         style={LoginStyle.input}
                         secureTextEntry={true}
                         ref = {(input) => this.password = input}
-                        onTextChange={(text) => {
+                        onChangeText={(text) => {
                             this.setState({password: text});
                         }}
                     />

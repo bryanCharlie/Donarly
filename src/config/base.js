@@ -1,8 +1,5 @@
-const API_ENDPOINT = '';
-
 let config = {
-    user_key: 'charity_user',
-    API_LOGIN_ENDPOINT: 'https://flask-json-api.herokuapp.com/auth/login'
+    user_key: 'charity_user'
 };
 
-export default config;
+export config;

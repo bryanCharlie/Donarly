@@ -28,7 +28,7 @@ export const setUser = async (user) => {
 
 export const removeUser = async () => {
     try{
-        await AsyncStorage.removeItem(user_key);
+        return await AsyncStorage.removeItem(user_key);
     } catch (error) {
         //you rly fked up fam
       // lol -from Alester
@@ -37,10 +37,14 @@ export const removeUser = async () => {
 
 const apply_auth_header = ( token ) => {
     let headers;
-    headers = {
-        ...default_headers,
-        Authorization: token ? `Basic ${token}` : undefined
-    };
+    if(!token){
+        headers = default_headers;
+    } else {
+        headers = {
+            ...default_headers,
+            Authorization: token ? `Basic ${token}` : undefined
+        };
+    }
 
     console.log(headers);
     return headers;

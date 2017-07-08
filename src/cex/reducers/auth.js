@@ -1,4 +1,4 @@
-//import { getUser, setUser } from 'lib/http'
+import { getUser, setUser, removeUser } from 'lib/http';
 import { LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAILURE, LOG_OUT_USER, LOGIN_RETURNING_USER } from 'actions/auth';
 import { AsyncStorage } from 'react-native';
 
@@ -48,10 +48,13 @@ export const auth = (
             }
         };
     case LOG_OUT_USER:
+        removeUser();
         return {
             ...state, ...{
                 isFetching: false,
-                error: false
+                error: false,
+                user: undefined,
+                message: undefined
             }
         };
     default:

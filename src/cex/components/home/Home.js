@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUser, getToken } from 'lib/http';
+import { getUser, removeUser, getToken } from 'lib/http';
 import { loginUser, loginReturningUser, logOutUser } from 'actions/auth';
+import { getUserProfile } from 'actions/profile';
 import { GlobalStyle, HomeStyle } from 'styles/main';
 
 const mapStateToProps = state => {
@@ -16,7 +17,8 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({
         loginUser,
         loginReturningUser,
-        logOutUser
+        logOutUser,
+        getUserProfile
     }, dispatch );
 };
 
@@ -28,14 +30,11 @@ export class Home extends Component {
     }
 
     componentWillMount = () => {
-        console.log(this.props);
-        // getUser().then(res => { //TODO fix this. Currently returns {"username":"Bryan Charlie","token":"some_token"}
-        //     console.log(res);
-        //     if(res){
-        //         this.props.loginReturningUser(user);
-        //         this.goToNavigationScreen();
-        //     }
-        // });
+        getUser().then(res => {
+            if(res){
+                this.props.loginReturningUser(res);
+            }
+        }).then(res => this.props.getUserProfile());
     }
 
     componentWillReceiveProps = (props) => {
