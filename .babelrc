@@ -12,7 +12,7 @@
           "store": "./src/cex/store",
           "actions": "./src/cex/actions",
           "reducers": "./src/cex/reducers",
-          "config": "./src/config/base",
+          "config": "./src/config/dev",
           "icons": "./src/icons",
           "images": "./src/images",
           "assets": "./src/assets",

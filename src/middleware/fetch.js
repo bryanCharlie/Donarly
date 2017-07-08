@@ -1,6 +1,8 @@
 import { POST, PUT, GET, DELETE, _FETCH, getUser, setUser, removeUser } from 'lib/http';
 import { LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAILURE } from 'actions/auth';
 
+const btoa = require('Base64').btoa;
+
 console.log('in fetch middlware');
 
 export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destructuring. Extracting store.dispatch and store,getState
@@ -15,22 +17,21 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
 
         const { success, failure, callAPI } = action.http;
 
-        token = getState().auth.user ? getState().auth.user.token : undefined;
+        const token = getState().auth.user ? getState().auth.user.token : undefined;
+
+        const auth_token = btoa(`${token}:`);
 
 
-
-        // return  fetch('http://127.0.0.1:5000/auth/', {
+        // return  fetch('http://127.0.0.1:5000/donations/donation-profile', {
         //     method: 'GET',
         //     headers: {
         //         'credentials': 'include',
         //         'Accept': 'application/json',
         //         'Content-Type': 'application/json',
-        //         'Authorization': 'Basic IXlKaGJHY2lPaUpJVXpJMU5pSXNJbVY0Y0NJNk1UUTVPRFE0TlRnd05Dd2lhV0YwSWpveE5EazRNems1TkRBMGZRLmV5SnBaQ0k2TVgwLnlNTUpBS0c0QkU0dDdRTG53VzFBMUMxbkdpdHB2Vm5YSXBsSHgwOHkzWkU6'
+        //         'Authorization': 'Basic ' + auth_token
         //     }
-        // })
-
-
-        callAPI(token).then(res => {
+        // }).then(res => res.json().then(responseJSON => console.log(responseJSON)))
+        return callAPI(auth_token).then(res => {
             if( res.status >= 400 ){
                 return res.text().then(responseText => { 
                     console.log(responseText);
@@ -41,6 +42,7 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
                 });
             } else  {
                 return res.json().then(responseJSON => {
+                    console.log(responseJSON);
                     if(responseJSON.status === 200){
                         return dispatch({
                             type: type[1],
@@ -48,6 +50,7 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
                             message: success
                         });
                     } else if(responseJSON.status === 401) {
+                        console.log(responseJSON);
                         return dispatch({
                             type: type[2],
                             message: responseJSON.message
@@ -59,7 +62,7 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
                 });
             }
         }, err => {
-            console.log(' An error occured. Please try again.');
+            console.log(err, ' An error occured. Please try again.');
         });
         return next(action);
     };

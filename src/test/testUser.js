@@ -22,5 +22,4 @@ export const testUser = {
         'card_type': 'visa',
         'card_num': '4444'
     }
-
 };
