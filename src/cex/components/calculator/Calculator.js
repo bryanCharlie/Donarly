@@ -1,5 +1,6 @@
 import { Dimensions, View, Picker, Text, Slider, StyleSheet } from 'react-native';
 import ProgressBar from 'react-native-progress/Bar';
+import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import React, { Component } from 'react';
 
 const viewWidth = (percentageWidth) => {
@@ -75,6 +76,14 @@ export class Settings extends Component{
     }
 
     static navigationOptions = {
+        tabBarLabel: 'Settings',
+        tabBarIcon: ({tintColor}) => {
+            return( <MaterialIcons
+                      name='settings'
+                      size={35}
+                      color={ tintColor }
+                  />);
+        },
         header: null
     }
 

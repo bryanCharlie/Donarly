@@ -42,3 +42,6 @@ We store a key-value pair in Asyncstorage. The value is a JSON object with a use
 2. [Our Flask API](https://flask-json-api.herokuapp.com/)
 3. [readme.md cheat sheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md)
 4. [React-Native-Elements (for our icons)](https://github.com/KevM/React-Native-Elements)
+5. [All Icons FA, Foundation, etc..](https://github.com/oblador/react-native-vector-icons)
+6. [TabNavigator Docs](https://reactnavigation.org/docs/navigators/tab)
+7. [TabNavigator Example code](https://github.com/react-community/react-navigation/blob/master/docs/api/navigators/TabNavigator.md)

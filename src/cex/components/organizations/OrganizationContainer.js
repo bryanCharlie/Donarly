@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, TextInput, ScrollView, TouchableHighlight, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Text, TextInput, ScrollView, TouchableHighlight, ActivityIndicator, Image } from 'react-native';
+import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import {List, ListItem, Button} from 'react-native-elements';
 import { OrgList } from './OrgList';
 
@@ -30,6 +31,20 @@ export class OrganizationContainer extends Component{
     }
 
     static navigationOptions = {
+        tabBarLabel: 'Home',
+        tabBarIcon: ({tintColor}) => {
+            // return ( <Image
+            // source={require('icons/homeIcon.png')}
+            // style={styles.icon, {tintColor:tintColor}}
+            // />
+          //);
+            return( <MaterialIcons
+                        name='home'
+                        size={35}
+                        color={ tintColor }
+                    />);
+        },
+
         header: null
     }
 
@@ -147,5 +162,9 @@ const styles = StyleSheet.create({
     },
     listItem:{
         color: '#000000'
+    },
+    icon:{
+        width: 6,
+        height: 6
     }
 });
