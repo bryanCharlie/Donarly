@@ -8,12 +8,12 @@ export const GET_PROFILE_FAILURE = 'GET_PROFILE_FAILURE';
 
 export const getUserProfile = () => {
     return {
-        type: ['GET_PROFILE', 'GET_PROFILE_SUCCESS', 'GET_PROFILE_FAILURE'],
+        type: [ GET_PROFILE, GET_PROFILE_SUCCESS, GET_PROFILE_FAILURE ],
         http: {
             success: '',
             failure: 'An error occured. Please try again.',
             callAPI: (token) => {
-                return GET(`${config.API_TRANSACTION_ENDPOINT}/payment-profile`, {}, token);
+                return GET(`${config.API_USERS_ENDPOINT}/payment-profile`, {}, token);
             }
         }
     };
