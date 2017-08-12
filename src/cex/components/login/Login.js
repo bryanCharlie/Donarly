@@ -35,7 +35,7 @@ export class Login extends Component {
         console.log(this.state.email);
         this.props.loginUser({username: this.state.email, password: this.state.password}).then(res => {
             if(this.props.auth.user){
-                this.props.navigation.navigate('Categories');
+                this.props.navigation.navigate('NavigationScreen');
             }
         });
     }
