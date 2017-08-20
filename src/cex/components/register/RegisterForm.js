@@ -6,36 +6,40 @@ import { Field, reduxForm } from 'redux-form';
 import { registerUser } from 'actions/auth';
 import { RegisterFormStyle } from 'styles/main';
 
-//form validition constantss
-// const email = value =>
-// value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-//   'Invalid email address' : undefined;
-const email = value =>{
-    let val = value;
-    if(value){
-        val = value.trim(); // removing any leading and trailing whitespace
+
+const validate = values => {
+    const errors = {};
+    if (!values.email) {
+        errors.email = 'Required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email.trim())) {
+        errors.email = 'Invalid email address';
     }
-    return  val && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val) ? 'Invalid email address' : undefined;
+
+    if (!values.password) {
+        errors.password = 'Required';
+    }else if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z-!$%^&*()_+|~=`{}\[\]:/;<>?,.@# ]{8,}$/.test(values.password))
+        errors.password='Invalid password, must contain at least: 8 characters, one uppercase, one lowercase and, one number';
+
+    if (!values.confirmPassword){
+        errors.confirmPassword = 'Required';
+    }else if(values.password != values.confirmPassword){
+        errors.confirmPassword ='passwords not the same';
+    }
+
+    if(!values.firstname){
+        errors.firstname ='Required';
+    }else if (values.firstname.length > 35) {
+        errors.firstname = 'name too long';
+    }
+
+    if(!values.lastname){
+        errors.lastname ='Required';
+    }else if (values.lastname.length > 35) {
+        errors.lastname = 'name too long';
+    }
+
+    return errors;
 };
-
-const password = value =>
-value && !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z-!$%^&*()_+|~=`{}\[\]:/;<>?,.@# ]{8,}$/.test(value)?
-'Invalid password, must contain at least: 8 characters, one uppercase, one lowercase and, one number': undefined;
-
-// const confirmPassword = value =>{// TODO finish thissss
-//     if(value === state.password){
-//         return undefined;
-//     }
-//     else{
-//         return 'password not same';
-//     }
-// };
-
-const maxLength = max => value => value && value.length > max ? `Must be ${max} characters or less` : undefined;
-
-const maxLength35 = maxLength(35);
-
-const required = value => value ? undefined : 'Required';
 
 const mapStateToProps = state => {
     return {
@@ -79,11 +83,17 @@ class RegisterForm extends Component {
 
 // this is some dirty code ...
     MyTextInput=(props)=> {
-        const { input, type , meta, touched, secureTextEntry, placeholder,  ...inputProps } = props;
+        const { input, type, name, meta, touched, secureTextEntry, placeholder,  ...inputProps } = props;
         formStates = ['asyncValidating', 'dirty', 'pristine', 'valid', 'invalid', 'submitting',
             'submitSucceeded', 'submitFailed'];
         console.log({placeholder},{meta});
         console.log('this curr value: ', input.value);
+
+        const passState = () => {//TODO I was fucking with this recently 
+            if({name} != confirmPassword){
+                this.setState({ name : input.value });
+            }
+        };
         return (
           <View>
             <TextInput
@@ -93,6 +103,7 @@ class RegisterForm extends Component {
               onFocus={input.onFocus}
               value={input.value}
               secureTextEntry={secureTextEntry}
+              type ={type}
               placeholder ={placeholder}
               style={RegisterFormStyle.input}
               />
@@ -128,52 +139,46 @@ class RegisterForm extends Component {
     onChange=(text)=>{
         // const stateprop = this.props.name;
         // this.setState({stateprop: text});
-        console.log('onChange logging',text);
     }
 
 
     render() {
-        console.log('regFrom state', this.state);
+        console.log('regForm state', this.state);
         return (
             <View>
 
                 <Field name='email'
                 component={this.MyTextInput}
-                validate={[email, required]}
                 secureTextEntry= {false}
-                onChange= {(event) => this.onChange(event)}
+                type= 'email'
                 placeholder = "Email"
                  />
 
                 <Field name='password'
                 component={this.MyTextInput}
-                validate={[password, required]}
                 secureTextEntry={true}
-                onChange= {this.onChange}
+                type ='password'
                 placeholder = "password"
                 />
 
-                <Field name="password confirm"
+                <Field name='confirmPassword'
                 component={this.MyTextInput}
-                validate={[this.confirmPassword, required]}
                 secureTextEntry={true}
-                onChange= {this.onChange}
+                type ='password'
                 placeholder = "confirm password"
                 />
 
                 <Field name="firstname"
                 component={this.MyTextInput}
-                validate={[maxLength35, required]}
                 secureTextEntry= {false}
-                onChange= {this.onChange}
+                type ='text'
                 placeholder = "Firstname"
                 />
 
                 <Field name="lastname"
                  component={this.MyTextInput}
-                 validate={[maxLength35, required]}
                  secureTextEntry= {false}
-                 onChange= {this.onChange}
+                 type ='text'
                  placeholder = "Lastname"
                 />
 
@@ -197,4 +202,5 @@ class RegisterForm extends Component {
     }
 }
 
-export default reduxForm({ form: 'signIn' })(RegisterForm);
+export default reduxForm({ form: 'signIn',
+    validate  })(RegisterForm);
