@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 const createStoreWithMiddleware = compose(
     applyMiddleware(thunk),
     applyMiddleware(callFetchMiddleware)
+    // add redux form here
 )(createStore);
 
 export const configureStore = (initialState = {}) => {

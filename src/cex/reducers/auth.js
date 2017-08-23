@@ -1,5 +1,5 @@
 import { getUser, setUser, removeUser } from 'lib/http';
-import { LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAILURE, LOG_OUT_USER, LOGIN_RETURNING_USER } from 'actions/auth';
+import { LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAILURE, LOG_OUT_USER, LOGIN_RETURNING_USER,REGISTER_USER,REGISTER_SUCCESS,REGISTER_FAILURE } from 'actions/auth';
 import { AsyncStorage } from 'react-native';
 
 const defaultState = {
@@ -31,7 +31,6 @@ export const auth = (
             }
         };
     case LOGIN_SUCCESS:
-        setUser(data);
         return {
             ...state, ...{
                 isFetching: false,
@@ -57,6 +56,31 @@ export const auth = (
                 message: undefined
             }
         };
+    case REGISTER_USER:
+        return{
+            ... state, ...{
+                isFetching: true
+            }
+        };
+    case REGISTER_SUCCESS:
+        setUser(data);
+        return {
+            ...state, ...{
+                isFetching: false,
+                user: data,
+                message
+            }
+        };
+    case REGISTER_FAILURE:
+        return{
+            ...state, ...{
+                isFetching: false,
+                user: undefined,
+                error: true,
+                message
+            }
+        };
+
     default:
         return state;
     }
