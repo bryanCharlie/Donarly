@@ -46,10 +46,10 @@ export const registerUser = (user) =>{
         type: [REGISTER_USER, REGISTER_SUCCESS, REGISTER_FAILURE],
         http: {
             success: 'Welcome!',
-            failure: '',
+            failure: 'Please try again.',
             callAPI: (token) => {
                 return POST(`${config.API_AUTH_ENDPOINT}/register`, {
-                    body: JSON.stringify({ username: user.username, password: user.password, firstname: user.firstname, lastname: user.lastname})
+                    body: JSON.stringify({ first_name: user.firstname, last_name: user.lastname, email: user.username, password: user.password })
                 });
             }
         }

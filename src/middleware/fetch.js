@@ -18,7 +18,6 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
         const { success, failure, callAPI } = action.http;
 
         const token = getState().auth.user ? getState().auth.user.token : undefined;
-
         const auth_token = btoa(`${token}:`);
 
 
