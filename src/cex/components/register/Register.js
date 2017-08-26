@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Text, ScrollView } from 'react-native';
-import ReduxRegisterForm from 'components/register/RegisterForm';
+import { ReduxRegisterForm } from 'components/register/RegisterForm';
 
 import { GlobalStyle, RegisterStyle } from 'styles/main';
 
