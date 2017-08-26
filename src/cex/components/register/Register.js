@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Text, ScrollView } from 'react-native';
-import RegisterForm from './RegisterForm';
+import { ReduxRegisterForm } from 'components/register/RegisterForm';
 
 import { GlobalStyle, RegisterStyle } from 'styles/main';
 
@@ -19,7 +19,7 @@ export class Register extends Component {
                         </Text>
                     </View>
                     <View>
-                        <RegisterForm navigation={this.props.navigation} />
+                        <ReduxRegisterForm navigation={this.props.navigation} />
                     </View>
                 </ScrollView>
             </Image>
