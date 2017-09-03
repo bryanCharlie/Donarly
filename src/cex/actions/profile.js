@@ -13,7 +13,7 @@ export const getUserProfile = () => {
             success: '',
             failure: 'An error occured. Please try again.',
             callAPI: (token) => {
-                return GET(`${config.API_USERS_ENDPOINT}/payment-profile`, {}, token);
+                return GET(`${config.API_TRANSACTION_ENDPOINT}/payment-profile`, {});
             }
         }
     };
