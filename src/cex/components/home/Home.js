@@ -58,16 +58,25 @@ export class Home extends Component {
     }
     render() {
         return (
-            <Image source={require('images/bg4.png')} style={GlobalStyle.container}>
-
+            <View style = {HomeStyle.viewContainer}>
                 <View style = {HomeStyle.logoContainer}>
-                    <Image style={HomeStyle.logo} source = {require('images/logo2.png')}/>
+                    <Image style={HomeStyle.logo} source = {require('images/logo3.png')}/>
                     <Text style = {HomeStyle.title}>
                         Donarly
                     </Text>
                 </View>
 
                 <View style={HomeStyle.viewContainer}>
+
+                    <TouchableOpacity
+                        style = {HomeStyle.buttonContainer}
+                        onPress={this.goToLogin}
+                    >
+                        <Text style={HomeStyle.button}>
+                        Sign In
+                        </Text>
+                    </TouchableOpacity>
+
                     <TouchableOpacity
                         style = {HomeStyle.buttonContainer}
                         onPress={this.goToSignUp}
@@ -77,16 +86,8 @@ export class Home extends Component {
                         </Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity
-                        style = {HomeStyle.buttonContainer}
-                        onPress={this.goToLogin}
-                    >
-                        <Text style={HomeStyle.button}>
-                        Login
-                        </Text>
-                    </TouchableOpacity>
                 </View>
-            </Image>
+            </View>
         );
     }
 }
