@@ -56,43 +56,41 @@ export const GlobalStyle = StyleSheet.create({
 export const HomeStyle = StyleSheet.create({
     viewContainer: {
         flex: 1,
-        flexDirection: 'row',
+        backgroundColor: 'white',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'
     },
     buttonContainer:{
-        backgroundColor: '#ffffff',
-        opacity: 0.5,
-        marginTop: 0,
-        borderRadius: 10,
-        padding: 5,
-        marginLeft: 5,
-        marginRight: 5,
-        width: 150,
-        justifyContent: 'flex-end'
+        borderRadius: 12,
+        borderWidth: 1.2,
+        borderColor: '#D6D700',
+        opacity: 0.8,
+        height: 28,
+        width: 140,
+        padding: 7.5,
+        marginBottom: 20
     },
     button: {
+        color: '#D6D700',
+        fontSize: 9,
         textAlign: 'center',
-        fontWeight: '600',
-        margin: 5
+        fontWeight: 'bold'
     },
     logoContainer:{
         alignItems: 'center',
-        marginTop: 100,
+        marginTop: 90,
         opacity: 0.8
     },
     logo: {
-        height: 200,
-        width: 200,
-        borderColor: 'white',
-        borderWidth: 3,
-        borderRadius: 100
+        height: 275,
+        width: 240
     },
     title: {
-        paddingTop: 20,
-        opacity: 0.7,
-        marginBottom: 20,
-        backgroundColor: 'transparent'
+        fontFamily: 'Euphemia UCAS',
+        color: '#48A898',
+        fontSize: 60,
+        textAlign: 'center'
     }
 });
 
@@ -169,8 +167,10 @@ export const LoginStyle = StyleSheet.create({
         justifyContent: 'center'
     },
     button: {
+        color: '#D6D700',
+        fontSize: 7,
         textAlign: 'center',
-        fontWeight: '600'
+        fontWeight: 'bold'
     }
 });
 
