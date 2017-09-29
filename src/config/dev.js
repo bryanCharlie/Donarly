@@ -1,4 +1,4 @@
-const API_ENDPOINT_BASE = 'http://10.0.2.2:5000';
+const API_ENDPOINT_BASE = 'http://127.0.0.1:5000';
 
 let config = {
     user_key: 'charity_user',
