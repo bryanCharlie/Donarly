@@ -15,7 +15,7 @@
           "config": "./src/config/dev",
           "icons": "./src/icons",
           "images": "./src/images",
-          "assets": "./src/assets",
+          "assets": "./src/cex/components/assets",
           "middleware": "./src/middleware",
           "lib": "./src/lib",
           "styles": "./src/styles"
