@@ -5,7 +5,7 @@ const btoa = require('Base64').btoa;
 
 console.log('in fetch middlware');
 
-export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destructuring. Extracting store.dispatch and store,getState
+export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destructuring. Extracting store.dispatch and store.getState
     return next => action => {
         const { type } = action;
 
