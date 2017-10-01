@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Text, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, TextInput, Text, TouchableHighlight, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Field, reduxForm } from 'redux-form';
@@ -20,7 +20,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
-
 
 class RegisterForm extends Component {
 
@@ -55,7 +54,7 @@ class RegisterForm extends Component {
         console.log({placeholder},{meta});
         console.log('this curr value: ', input.value);
 
-        const passState = () => {//TODO I was fucking with this recently 
+        const passState = () => {//TODO fix
             if({name} != confirmPassword){
                 this.setState({ name : input.value });
             }
@@ -64,6 +63,7 @@ class RegisterForm extends Component {
           <View>
             <TextInput
               {...inputProps}
+              multiline={true}
               onChangeText={input.onChange}
               onBlur={input.onBlur}
               onFocus={input.onFocus}
@@ -71,17 +71,19 @@ class RegisterForm extends Component {
               secureTextEntry={secureTextEntry}
               type ={type}
               placeholder ={placeholder}
+              placeholderTextColor = '#C08200'
               style={RegisterFormStyle.input}
               />
               {touched && ((error && <Text>{error}</Text>) || (warning && <Text>{warning}</Text>))}
+              </View>
 
-              <Text>The { input.name} input is:</Text>
- {
-   formStates.filter((state) => meta[state]).map((state) => {
-       return <Text key={state}> - { state }</Text>;
-   })
- }
-          </View>
+       //       <Text>The { input.name } input is:</Text>
+// {
+ //  formStates.filter((state) => meta[state]).map((state) => {
+  //     return <Text key={state}> - { state }</Text>;
+  // })
+ //}
+   //       </View>
         );
     }
 
@@ -113,7 +115,22 @@ class RegisterForm extends Component {
     render() {
         console.log('regForm state', this.state);
         return (
+
             <View>
+
+                <Field name="firstname"
+                component={this.MyTextInput}
+                secureTextEntry= {false}
+                type ='text'
+                placeholder = "First Name"
+                />
+
+                <Field name="lastname"
+                 component={this.MyTextInput}
+                 secureTextEntry= {false}
+                 type ='text'
+                 placeholder = "Last Name"
+                />
 
                 <Field name='email'
                 component={this.MyTextInput}
@@ -126,43 +143,28 @@ class RegisterForm extends Component {
                 component={this.MyTextInput}
                 secureTextEntry={true}
                 type ='password'
-                placeholder = "password"
+                placeholder = "Password"
                 />
 
                 <Field name='confirmPassword'
                 component={this.MyTextInput}
                 secureTextEntry={true}
                 type ='password'
-                placeholder = "confirm password"
-                />
-
-                <Field name="firstname"
-                component={this.MyTextInput}
-                secureTextEntry= {false}
-                type ='text'
-                placeholder = "Firstname"
-                />
-
-                <Field name="lastname"
-                 component={this.MyTextInput}
-                 secureTextEntry= {false}
-                 type ='text'
-                 placeholder = "Lastname"
+                placeholder = "Confirm Password"
                 />
 
 
                 <Text style = {RegisterFormStyle.agreement}>
-                By creating an account you agree to our {'\n'}
+                By creating an account, you agree to our {'\n'}
                     <Text style={RegisterFormStyle.boldText}>
                     Terms & Conditions
-                    </Text> and
-                    <Text style={RegisterFormStyle.boldText}>
+                    </Text> and <Text style={RegisterFormStyle.boldText}>
                     Privacy Policy
                     </Text>
                 </Text>
                 <TouchableHighlight onPress={this.onSignUp} style = {RegisterFormStyle.buttonContainer}>
                     <Text style={RegisterFormStyle.signUpButton}>
-                        Sign Up
+                        Next
                     </Text>
                 </TouchableHighlight>
             </View>

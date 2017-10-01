@@ -25,6 +25,7 @@ export const loginUser = (user) => {
         }
     };
 };
+
 export const loginReturningUser = (user) => {
     console.log(user, ' in auth action');
     return{
@@ -33,6 +34,7 @@ export const loginReturningUser = (user) => {
         message: 'Welcome Back!'
     };
 };
+
 export const logOutUser = () => {
     return {
         type: LOG_OUT_USER

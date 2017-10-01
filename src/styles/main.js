@@ -178,20 +178,24 @@ export const RegisterFormStyle = StyleSheet.create({
     container: {
         padding: 30
     },
+    name: {
+        flex: 2,
+        flexDirection: 'row'
+    },
     input: {
         height: 35,
-        color: '#ffffff',
-        marginBottom: 10,
-        paddingHorizontal : 10,
-        borderRadius: 10,
+        fontSize: 15,
+        color: 'white',
+        marginBottom: 15,
         fontWeight: '500',
-        borderWidth: 1,
-        borderColor: '#f9e5e5'
+        borderBottomColor: 'white',
+        borderBottomWidth: 1
     },
     agreement: {
         fontWeight: '100',
-        fontSize: 10,
-        marginTop: 10,
+        fontSize: 12,
+        marginTop: 150,
+        marginBottom: 20,
         textAlign: 'center',
         color: '#ffffff',
         backgroundColor: 'transparent'
@@ -205,6 +209,7 @@ export const RegisterFormStyle = StyleSheet.create({
         marginTop: 40,
         borderRadius: 10,
         padding: 10,
+        marginBottom: 15,
         justifyContent: 'center'
     },
     signUpButton: {
@@ -214,12 +219,25 @@ export const RegisterFormStyle = StyleSheet.create({
 });
 
 export const RegisterStyle = StyleSheet.create({
+    headerContainer: {
+        flexDirection: 'row',
+        marginBottom: 30
+    },
+    header: {
+        flex: 3,
+        fontWeight: '600',
+        textAlign: 'center',
+        marginBottom: 20,
+        color: '#ffffff',
+        fontSize: 20,
+        backgroundColor: 'transparent'
+    },
     container: {
         padding: 30,
-        flex: 1,
         width: null,
         height: null,
-        resizeMode: 'stretch'
+        resizeMode: 'stretch',
+        backgroundColor: "#F0A202"
     },
     logoContainer:{
         alignItems: 'center',
@@ -228,6 +246,10 @@ export const RegisterStyle = StyleSheet.create({
     logo: {
         height: 100,
         width: 100
+    },
+    backButtonStyle: {
+        width: 30,
+        height: 32
     },
     title: {
         paddingTop: 10,

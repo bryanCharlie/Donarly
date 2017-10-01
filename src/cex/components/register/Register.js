@@ -1,23 +1,35 @@
 import React, { Component } from 'react';
-import { View, Image, Text, ScrollView } from 'react-native';
+import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { ReduxRegisterForm } from 'components/register/RegisterForm';
 
 import { GlobalStyle, RegisterStyle } from 'styles/main';
+
 
 export class Register extends Component {
     constructor(props) {
         super(props);
     }
+
+    static navigationOptions = {
+        header: null
+    }
+
+    goBack = () => {
+        this.props.navigation.navigate('Categories');
+    }
+
     render() {
         return (
-            <Image source = {require('images/bg4.png')} style={RegisterStyle.container}>
+            <Image style={RegisterStyle.container}>
+                <View style = {RegisterStyle.headerContainer}>
+                <TouchableOpacity onPress={this.goBack} >
+                    <Image style = {RegisterStyle.backButtonStyle} source={require('icons/back.png')}/>
+                </TouchableOpacity>
+                    <Text style = {RegisterStyle.header}>
+                     Enter Profile Info
+                    </Text>
+                </View>
                 <ScrollView>
-                    <View style = {RegisterStyle.logoContainer}>
-                        <Image style={RegisterStyle.logo} source = {require('images/logo2.png')}/>
-                        <Text style = {RegisterStyle.title}>
-                        Donarly
-                        </Text>
-                    </View>
                     <View>
                         <ReduxRegisterForm navigation={this.props.navigation} />
                     </View>
