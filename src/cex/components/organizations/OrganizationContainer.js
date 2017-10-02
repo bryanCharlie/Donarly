@@ -4,6 +4,13 @@ import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import {List, ListItem, Button} from 'react-native-elements';
 import { OrgList } from './OrgList';
 
+/*
+EVERYTHING IN HERE HAS TO GO. NONE OF THIS CODE IS USEABLE
+
+For example, if a user writes "Jack & Jill", the text may get encoded as "Jack &amp; Jill". Without encodeURIComponent 
+the ampersand could be interpretted on the server as the start of a new field and jeopardize the integrity of the data.
+*/
+
 function urlForQueryAndPage(key, value) {
     let data = {
         searchTerm: '',
