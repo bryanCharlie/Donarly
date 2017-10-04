@@ -42,7 +42,7 @@ export const logOutUser = () => {
 };
 
 export const registerUser = (user) =>{
-  // TODO Finish this
+  // TODO Finish this...
     console.log(`${config.API_AUTH_ENDPOINT}/register`);
     return{
         type: [REGISTER_USER, REGISTER_SUCCESS, REGISTER_FAILURE],

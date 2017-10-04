@@ -20,7 +20,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
-
 class RegisterForm extends Component {
 
     constructor(props) {
@@ -33,11 +32,11 @@ class RegisterForm extends Component {
             error: false
         };
         this.confirmPassword = this.confirmPassword.bind(this);
-        this.onChange= this.onChange.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    confirmPassword = value =>{// TODO finish thissss
-        console.log('password state val',this.state.password);
+    confirmPassword = (value) =>{// TODO finish thissss
+        console.log('password state val', this.state.password);
         if(value === this.state.password){
             return undefined;
         }
@@ -59,6 +58,7 @@ class RegisterForm extends Component {
                 this.setState({ name : input.value });
             }
         };
+
         return (
           <View>
             <TextInput
@@ -74,17 +74,17 @@ class RegisterForm extends Component {
               placeholderTextColor = '#C08200'
               style={RegisterFormStyle.input}
               />
-              {touched && ((error && <Text>{error}</Text>) || (warning && <Text>{warning}</Text>))}
-              </View>
 
-       //       <Text>The { input.name } input is:</Text>
-// {
- //  formStates.filter((state) => meta[state]).map((state) => {
-  //     return <Text key={state}> - { state }</Text>;
-  // })
- //}
-   //       </View>
+          </View>
+          //   {
+          //      formStates.filter((state) => meta[state]).map((state) => {
+          //          return <Text key = {state}> - {state}</Text>;
+          //      })
+          //   }
+
+         // </View>
         );
+
     }
 
     componentWillMount=()=>{
@@ -92,7 +92,7 @@ class RegisterForm extends Component {
     }
 
     onSignUp=()=>{
-        console.log('RegisterForm props ',this.props);
+        console.log('RegisterForm props',this.props);
         // this.props.navigation.navigate('NavigationScreen'); for testing purposes
         this.props.registerUser({
             lastname: this.state.lastname,
@@ -107,63 +107,65 @@ class RegisterForm extends Component {
     }
 
     onChange=(text)=>{
-        // const stateprop = this.props.name;
-        // this.setState({stateprop: text});
+        const stateprop = this.props.name;
+        this.setState(stateprop: text).then(res => {
+            this.validate(text);
+        })
+
     }
 
 
     render() {
-        console.log('regForm state', this.state);
+        console.log('regForm state',this.state);
         return (
 
             <View>
 
-                <Field name="firstname"
-                component={this.MyTextInput}
-                secureTextEntry= {false}
+                <Field name = "firstname"
+                component = {this.MyTextInput}
+                secureTextEntry = {false}
                 type ='text'
                 placeholder = "First Name"
                 />
 
-                <Field name="lastname"
-                 component={this.MyTextInput}
-                 secureTextEntry= {false}
-                 type ='text'
+                <Field name = "lastname"
+                 component = {this.MyTextInput}
+                 secureTextEntry = {false}
+                 type = 'text'
                  placeholder = "Last Name"
                 />
 
-                <Field name='email'
-                component={this.MyTextInput}
-                secureTextEntry= {false}
-                type= 'email'
+                <Field name = 'email'
+                component = {this.MyTextInput}
+                secureTextEntry = {false}
+                type = 'email'
                 placeholder = "Email"
                  />
 
-                <Field name='password'
-                component={this.MyTextInput}
-                secureTextEntry={true}
-                type ='password'
+                <Field name = 'password'
+                component = {this.MyTextInput}
+                secureTextEntry = {true}
+                type = 'password'
                 placeholder = "Password"
                 />
 
-                <Field name='confirmPassword'
-                component={this.MyTextInput}
-                secureTextEntry={true}
-                type ='password'
+                <Field name = 'confirmPassword'
+                component = {this.MyTextInput}
+                secureTextEntry = {true}
+                type = 'password'
                 placeholder = "Confirm Password"
                 />
 
-
                 <Text style = {RegisterFormStyle.agreement}>
                 By creating an account, you agree to our {'\n'}
-                    <Text style={RegisterFormStyle.boldText}>
+                    <Text style = {RegisterFormStyle.boldText}>
                     Terms & Conditions
-                    </Text> and <Text style={RegisterFormStyle.boldText}>
+                    </Text> and <Text style = {RegisterFormStyle.boldText}>
                     Privacy Policy
                     </Text>
                 </Text>
-                <TouchableHighlight onPress={this.onSignUp} style = {RegisterFormStyle.buttonContainer}>
-                    <Text style={RegisterFormStyle.signUpButton}>
+                <TouchableHighlight onPress = {this.onSignUp} style = {RegisterFormStyle.buttonContainer}>
+                    <Text style = {RegisterFormStyle.signUpButton}>
                         Next
                     </Text>
                 </TouchableHighlight>
