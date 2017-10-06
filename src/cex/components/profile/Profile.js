@@ -7,6 +7,7 @@ import { getUser, removeUser, getToken } from 'lib/http';
 import { loginUser, loginReturningUser, logOutUser } from 'actions/auth';
 import { getUserProfile } from 'actions/profile';
 import { GlobalStyle, HomeStyle } from 'styles/main';
+import { Button } from 'components/assets/Button';
 
 export class Profile extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ export class Profile extends Component {
             if(res){
                 this.props.loginReturningUser(res);
             }
-        }).then(res => this.props.getUserProfile());
+        }).then(res => console.log('logged in'));
     }
 
     componentWillReceiveProps = (props) => {
@@ -43,19 +44,18 @@ export class Profile extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-
-              <View style={{ flex: 1 }}>
-                  <View
-
+                <View style={{ flex: 1 }}>
+                    <View
                     style={{
                         alignItems: 'center',
                         backgroundColor: 'red',
                         justifyContent: 'center',
                         height: Dimensions.get('window').height / 3
                     }}>
+                    <Button onButtonPress={() => {}} buttonColor={'orange'} buttonText={'HEYYYYY'} textColor={'blue'}/>
                     <Text style={{ color: 'white' }}>Test</Text>
-                  </View>
-                  <View
+                    </View>
+                    <View
                     style={{
                         alignItems: 'flex-start',
                         backgroundColor: 'green',
@@ -63,8 +63,8 @@ export class Profile extends Component {
                         height: Dimensions.get('window').height / 3
                     }}>
                     <Text style={{ color: 'white' }}>Test</Text>
-                  </View>
-                  <View
+                    </View>
+                    <View
                     style={{
                         alignItems: 'center',
                         backgroundColor: 'blue',
@@ -72,8 +72,8 @@ export class Profile extends Component {
                         height: Dimensions.get('window').height / 3
                     }}>
                     <Text style={{ color: 'white' }}>Test</Text>
-                  </View>
-              </View>
+                    </View>
+                </View>
             </View>
         );
     }

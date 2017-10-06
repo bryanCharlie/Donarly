@@ -38,4 +38,3 @@ export const searhCharity = (search_value, page_num) => {
         }
     };
 };
-

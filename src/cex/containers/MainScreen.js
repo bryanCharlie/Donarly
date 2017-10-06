@@ -10,6 +10,7 @@ import { Profile } from 'components/profile/Profile';
 import { Settings } from 'components/calculator/Calculator';
 import { OrganizationContainer } from 'components/organizations/OrganizationContainer';
 import { OrgDetail } from 'components/organizations/OrgDetail';
+import { charityCard } from 'components/assets/card';
 
 const HomeScreen = DrawerNavigator({
     Home: { screen: Home }

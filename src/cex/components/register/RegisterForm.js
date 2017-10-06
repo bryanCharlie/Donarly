@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, TextInput, Text, TouchableHighlight, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Field, reduxForm } from 'redux-form';
@@ -18,6 +19,13 @@ const mapDispatchToProps = dispatch => {
         registerUser
     }, dispatch );
 };
+
+const resetAction = NavigationActions.reset({// The Reset action wipes the whole navigation state and replaces it with the result of several actions.
+    index: 0,
+    actions: [
+        NavigationActions.navigate({ routeName: 'NavigationScreen'})
+    ]
+});
 
 @connect(mapStateToProps, mapDispatchToProps)
 class RegisterForm extends Component {
@@ -101,7 +109,8 @@ class RegisterForm extends Component {
             password: this.state.password
         }).then(res =>{
             if(this.props.auth.user){
-                this.props.navigation.navigate('NavigationScreen');
+              //  this.props.navigation.navigate('NavigationScreen');
+                this.props.navigation.dispatch(resetAction);
             }
         });
     }

@@ -3,7 +3,8 @@ import { View, TextInput, Text, TouchableOpacity, KeyboardAvoidingView, ScrollVi
 import { StyleSheet } from 'react-native';
 
 export const Button = ({onButtonPress, buttonColor, buttonText, textColor}) => { //es6 destructuring.
-    const style = applyButtonBackgroundColor(buttonColor);    return(
+    const style = applyButtonBackgroundColor(buttonColor);    
+    return(
         <TouchableOpacity onPress= { onButtonPress }>
             <View style = {style}>
                 <Text style = {{ color: textColor }}> { buttonText } </Text>
