@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
+// import { Container} from 'native-base';
 
-export const Card = ({ title, thumbnailURI, orgImageURI, description, ratingImageURL }) => {
+export const BaseCard = ({ title, thumbnailURI, orgImageURI, description, ratingImageURL }) => {
     return (
       <Container>
         <Header />
@@ -26,7 +27,7 @@ export const Card = ({ title, thumbnailURI, orgImageURI, description, ratingImag
               <Left>
                 <Button transparent textStyle={{color: '#87838B'}}>
                   <Icon name="logo-github" />
-                  <Image source={{uri: ratingImageURI}}/>
+                  {/* <Image source={{uri: ratingImageURI}}/> */}
                 </Button>
               </Left>
             </CardItem>

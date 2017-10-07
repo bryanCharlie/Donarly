@@ -1,41 +1,49 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
-import { Card, ListItem, Rating } from 'react-native-elements';
-import { Button } from 'assets/button';
-
-
-const ratingCompleted = (rating)=> {
-    console.log('Rating is: ' + rating);
-};
-
-export const charityCard = ({charitySummary, charityImg, charityRating, charityTitle }) =>  { // es6 destructuring amicoollykebyranyet??
-
-    return(
-          // implemented with Text and Button as children
-          <Card
-            containerStyle = {{borderRadius:10}}
-            image={charityImg}
-            wrapperStyle={{borderRadius:10}}
-            imageStyle={{backgroundColor:'white'}}
-            featuredTitle= {charityTitle} >
-            <View>
-            <Rating
-              type='star'
-              startingValue={charityRating}
-              readonly
-              ratingBackgroundColor= '#E4571E'
-              onFinishRating ={ratingCompleted}
-              imageSize={30}
-              style={{ paddingVertical: 10}}
-              />
-            <Text style={{marginBottom: 10}}>
-              {charitySummary}
-            </Text>
-            <Button
-            buttonColor = '#F0A202'
-            buttonText = 'See More '
-            />
-            </View>
-          </Card>
+import { Image } from 'react-native';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+export class CardBase extends Component {
+    render() {
+        return (
+            <Container >
+                <Content>
+                    <Card>
+                        <CardItem cardBody style={{
+                            borderBottomLeftRadius: 0,
+                            borderBottomRightRadius: 0,
+                            borderTopLeftRadius: 7,
+                            borderTopRightRadius: 7,
+                            overflow: 'hidden'}}>
+                            <Image source={ require('images/bg4.png') } style={{ height: 200, width: null, flex: 1}}>
+                                <Text style={{backgroundColor: 'transparent'}}>Charity</Text>
+                            </Image>
+                        </CardItem>
+                        <CardItem style={{
+                            borderBottomLeftRadius: 7,
+                            borderBottomRightRadius: 7,
+                            borderTopLeftRadius: 0,
+                            borderTopRightRadius: 0,
+                            backgroundColor: '#a9a9a9',
+                            overflow: 'hidden'
+                        }}>
+                            <Left>
+                                <Button transparent>
+                                    <Icon active name="thumbs-up" />
+                                    <Text>12 Likes</Text>
+                                </Button>
+                            </Left>
+                            <Body>
+                                <Button transparent>
+                                    <Icon active name="chatbubbles" />
+                                    <Text>4 Comments</Text>
+                                </Button>
+                            </Body>
+                            <Right>
+                                <Text>11h ago</Text>
+                            </Right>
+                        </CardItem>
+                    </Card>
+                </Content>
+            </Container>
         );
-};
+    }
+}
