@@ -10,11 +10,12 @@ import { Profile } from 'components/profile/Profile';
 import { Settings } from 'components/calculator/Calculator';
 import { OrganizationContainer } from 'components/organizations/OrganizationContainer';
 import { OrgDetail } from 'components/organizations/OrgDetail';
-import { charityCard } from 'components/assets/card';
+// import { charityCard } from 'components/assets/cardElement';
+import { CardBase } from 'components/assets/Card';
 
-const HomeScreen = DrawerNavigator({
-    Home: { screen: Home }
-});
+// const HomeScreen = DrawerNavigator({
+//     Home: { screen: Home }
+// });
 
 export const MainScreen = StackNavigator({
     Home: { screen: Home },
