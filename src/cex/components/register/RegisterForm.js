@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, TextInput, Text, TouchableHighlight, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { NavigationActions } from 'react-navigation';
+//import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Field, reduxForm } from 'redux-form';
@@ -43,6 +44,7 @@ class RegisterForm extends Component {
         this.onChange = this.onChange.bind(this);
     }
 
+
     confirmPassword = (value) =>{// TODO finish thissss
         console.log('password state val', this.state.password);
         if(value === this.state.password){
@@ -55,13 +57,34 @@ class RegisterForm extends Component {
 
 // this is some dirty code ...
     MyTextInput=(props)=> {
-        const { input, type, name, meta, touched, secureTextEntry, placeholder,  ...inputProps } = props;
-        formStates = ['asyncValidating', 'dirty', 'pristine', 'valid', 'invalid', 'submitting',
-            'submitSucceeded', 'submitFailed'];
+        const {
+            input,
+            type,
+            name,
+            meta,
+            touched,
+            secureTextEntry,
+            placeholder,
+            errorMessage,
+            ...inputProps
+        } = props;
+
+        formStates = [
+        'asyncValidating',
+        'dirty',
+        'pristine',
+        'valid',
+        'invalid',
+        'submitting',
+        'submitSucceeded',
+        'submitFailed'];
+
         console.log({placeholder},{meta});
+        console.log('RegisterForm props',this.state);
+        console.log({errorMessage});
         console.log('this curr value: ', input.value);
 
-        const passState = () => {//TODO fix
+        const passState = () => { //TODO fix
             if({name} != confirmPassword){
                 this.setState({ name : input.value });
             }
@@ -69,9 +92,10 @@ class RegisterForm extends Component {
 
         return (
           <View>
+            <View style = {RegisterFormStyle.inputLine}>
+
             <TextInput
               {...inputProps}
-              multiline={true}
               onChangeText={input.onChange}
               onBlur={input.onBlur}
               onFocus={input.onFocus}
@@ -80,17 +104,16 @@ class RegisterForm extends Component {
               type ={type}
               placeholder ={placeholder}
               placeholderTextColor = '#C08200'
+              errorMessage={input.validate}
               style={RegisterFormStyle.input}
               />
+            </View>
 
-          </View>
-          //   {
-          //      formStates.filter((state) => meta[state]).map((state) => {
-          //          return <Text key = {state}> - {state}</Text>;
-          //      })
-          //   }
+            <Text style = {RegisterFormStyle.errorNotice}>
+            {this.showError(meta.dirty, meta.touched, meta.error)}
+            </Text>
 
-         // </View>
+         </View>
         );
 
     }
@@ -99,9 +122,16 @@ class RegisterForm extends Component {
       //  console.log(this.props.handleSubmit);
     }
 
+//Robbi
+    showError = (dirty, touched, error) => {
+        if(dirty & touched){
+            if(!error)
+                return '';
+            return <Text> - {error} </Text>;
+        }
+    }
+
     onSignUp=()=>{
-        console.log('RegisterForm props',this.props);
-        // this.props.navigation.navigate('NavigationScreen'); for testing purposes
         this.props.registerUser({
             lastname: this.state.lastname,
             firstname: this.state.firstname,
@@ -110,7 +140,7 @@ class RegisterForm extends Component {
         }).then(res =>{
             if(this.props.auth.user){
               //  this.props.navigation.navigate('NavigationScreen');
-                this.props.navigation.dispatch(resetAction);
+              //  this.props.navigation.dispatch(resetAction);
             }
         });
     }
@@ -120,15 +150,12 @@ class RegisterForm extends Component {
         this.setState(stateprop: text).then(res => {
             this.validate(text);
         })
-
     }
-
 
     render() {
         console.log('regForm state',this.state);
         return (
-
-            <View>
+            <View style = {RegisterFormStyle.container}>
 
                 <Field name = "firstname"
                 component = {this.MyTextInput}
@@ -173,7 +200,7 @@ class RegisterForm extends Component {
                     Privacy Policy
                     </Text>
                 </Text>
-                <TouchableHighlight onPress = {this.onSignUp} style = {RegisterFormStyle.buttonContainer}>
+                <TouchableHighlight onPress = {this.onSignUp()} style = {RegisterFormStyle.buttonContainer}>
                     <Text style = {RegisterFormStyle.signUpButton}>
                         Next
                     </Text>

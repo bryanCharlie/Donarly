@@ -7,7 +7,7 @@ import { getUser, removeUser, getToken } from 'lib/http';
 import { loginUser, loginReturningUser, logOutUser } from 'actions/auth';
 import { getUserProfile } from 'actions/profile';
 import { GlobalStyle, HomeStyle } from 'styles/main';
-import { Button } from 'components/assets/Button';
+import { Button } from 'components/assets/button';
 
 export class Profile extends Component {
     constructor(props) {

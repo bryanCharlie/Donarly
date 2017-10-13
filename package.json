@@ -19,6 +19,7 @@
     "isomorphic-fetch": "^2.2.1",
     "npm": "^4.6.1",
     "react": "16.0.0-alpha.6",
+    "react-input-password": "^1.0.21",
     "react-native": "0.44.0",
     "react-native-elements": "^0.17.0",
     "react-native-progress": "^3.2.1",

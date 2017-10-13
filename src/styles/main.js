@@ -176,26 +176,29 @@ export const LoginStyle = StyleSheet.create({
 
 export const RegisterFormStyle = StyleSheet.create({
     container: {
-        padding: 30
+        paddingBottom: 50
     },
-    name: {
-        flex: 2,
-        flexDirection: 'row'
+    errorNotice: {
+        fontSize: 10,
+        fontWeight: '100',
+        color: '#880909'
+    },
+    inputLine: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 1,
+        marginTop: 10
     },
     input: {
-        height: 35,
+        height: 30,
         fontSize: 15,
         color: 'white',
-        marginBottom: 15,
+        marginTop: 7,
         fontWeight: '500',
-        borderBottomColor: 'white',
-        borderBottomWidth: 1
     },
     agreement: {
         fontWeight: '100',
         fontSize: 12,
-        marginTop: 150,
-        marginBottom: 20,
+        marginTop: 100,
         textAlign: 'center',
         color: '#ffffff',
         backgroundColor: 'transparent'

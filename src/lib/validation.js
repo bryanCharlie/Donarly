@@ -17,13 +17,13 @@ export const validate = values => {
         errors.confirmPassword = 'The passwords entered do not match.';
     }
 
-    if(!values.firstname){  //TODO modify...
+    if(!values.firstname){  //TODO modify... --Robbi
         errors.firstname = 'Required';
     }else if (values.firstname.length > 35) {
         errors.firstname = 'Name is too long';
     }
 
-    if(!values.lastname){   //TODO modify... character validity
+    if(!values.lastname){   //TODO modify... character validity --Robbi
         errors.lastname = 'Required';
     }else if (values.lastname.length > 35) {
         errors.lastname = 'Name is too long';
