@@ -44,7 +44,6 @@ class RegisterForm extends Component {
         this.onChange = this.onChange.bind(this);
     }
 
-
     confirmPassword = (value) =>{// TODO finish thissss
         console.log('password state val', this.state.password);
         if(value === this.state.password){
@@ -65,7 +64,6 @@ class RegisterForm extends Component {
             touched,
             secureTextEntry,
             placeholder,
-            errorMessage,
             ...inputProps
         } = props;
 
@@ -81,7 +79,6 @@ class RegisterForm extends Component {
 
         console.log({placeholder},{meta});
         console.log('RegisterForm props',this.state);
-        console.log({errorMessage});
         console.log('this curr value: ', input.value);
 
         const passState = () => { //TODO fix
@@ -104,7 +101,6 @@ class RegisterForm extends Component {
               type ={type}
               placeholder ={placeholder}
               placeholderTextColor = '#C08200'
-              errorMessage={input.validate}
               style={RegisterFormStyle.input}
               />
             </View>
@@ -132,6 +128,7 @@ class RegisterForm extends Component {
     }
 
     onSignUp=()=>{
+        console.log('RegisterForm props',this.props);
         this.props.registerUser({
             lastname: this.state.lastname,
             firstname: this.state.firstname,
@@ -153,8 +150,9 @@ class RegisterForm extends Component {
     }
 
     render() {
-        console.log('regForm state',this.state);
+        console.log('regForm state',this.state); //for checking
         return (
+
             <View style = {RegisterFormStyle.container}>
 
                 <Field name = "firstname"
@@ -200,7 +198,7 @@ class RegisterForm extends Component {
                     Privacy Policy
                     </Text>
                 </Text>
-                <TouchableHighlight onPress = {this.onSignUp()} style = {RegisterFormStyle.buttonContainer}>
+                <TouchableHighlight onPress = {this.onSignUp} style = {RegisterFormStyle.buttonContainer}>
                     <Text style = {RegisterFormStyle.signUpButton}>
                         Next
                     </Text>
