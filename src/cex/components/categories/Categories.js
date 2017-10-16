@@ -7,7 +7,6 @@ import { bindActionCreators } from 'redux';
 import { CategoriesStyle } from 'styles/main';
 import * as categoryActions from 'actions/category';
 
-
 const mapStateToProps = state => {
     return {
         categories: state.categories
@@ -59,7 +58,6 @@ export class Categories extends Component {
     inArray(arr, obj) {
         return (arr.indexOf(obj) !== -1);
     }
-
 
     goBack() {
         this.props.navigator.pop();

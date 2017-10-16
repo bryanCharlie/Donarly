@@ -62,18 +62,18 @@ export const HomeStyle = StyleSheet.create({
         alignItems: 'center'
     },
     buttonContainer:{
-        borderRadius: 12,
+        borderRadius: 15,
         borderWidth: 1.2,
-        borderColor: '#D6D700',
+        borderColor: '#F0A202',
         opacity: 0.8,
-        height: 28,
-        width: 140,
+        height: 30,
+        width: 175,
         padding: 7.5,
         marginBottom: 20
     },
     button: {
-        color: '#D6D700',
-        fontSize: 9,
+        color: '#F0A202',
+        fontSize: 10,
         textAlign: 'center',
         fontWeight: 'bold'
     },
@@ -88,7 +88,7 @@ export const HomeStyle = StyleSheet.create({
     },
     title: {
         fontFamily: 'Euphemia UCAS',
-        color: '#48A898',
+        color: '#2A9D8F',
         fontSize: 60,
         textAlign: 'center'
     }
@@ -175,9 +175,6 @@ export const LoginStyle = StyleSheet.create({
 });
 
 export const RegisterFormStyle = StyleSheet.create({
-    container: {
-        paddingBottom: 50
-    },
     errorNotice: {
         fontSize: 10,
         fontWeight: '100',
@@ -186,13 +183,12 @@ export const RegisterFormStyle = StyleSheet.create({
     inputLine: {
         borderBottomColor: 'white',
         borderBottomWidth: 1,
-        marginTop: 10
+        alignContent: 'flex-end'
     },
     input: {
-        height: 30,
+        height: 50,
         fontSize: 15,
         color: 'white',
-        marginTop: 7,
         fontWeight: '500',
     },
     agreement: {
@@ -209,7 +205,7 @@ export const RegisterFormStyle = StyleSheet.create({
     buttonContainer:{
         backgroundColor: '#ffffff',
         opacity: 0.5,
-        marginTop: 40,
+        marginTop: 15,
         borderRadius: 10,
         padding: 10,
         marginBottom: 15,
@@ -237,10 +233,10 @@ export const RegisterStyle = StyleSheet.create({
     },
     container: {
         padding: 30,
+        flex: 1,
         width: null,
         height: null,
-        resizeMode: 'stretch',
-        backgroundColor: "#F0A202"
+        backgroundColor: '#F0A202'
     },
     logoContainer:{
         alignItems: 'center',

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { ReduxRegisterForm } from 'components/register/RegisterForm';
+import { NavigationActions } from 'react-navigation';
 
 import { GlobalStyle, RegisterStyle } from 'styles/main';
-
 
 export class Register extends Component {
     constructor(props) {
@@ -14,27 +14,29 @@ export class Register extends Component {
         header: null
     }
 
-    goBack = () => {
-        this.props.navigation.navigate('Categories');
+    navigateReturn = () => {
+        this.props.navigation.goBack();
     }
 
     render() {
         return (
-            <Image style={RegisterStyle.container}>
+            <View style={RegisterStyle.container}>
                 <View style = {RegisterStyle.headerContainer}>
-                <TouchableOpacity onPress={this.goBack} >
-                    <Image style = {RegisterStyle.backButtonStyle} source={require('icons/back.png')}/>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={this.navigateReturn}>
+                        <Image style = {RegisterStyle.backButtonStyle} source={require('icons/back.png')}/>
+                    </TouchableOpacity>
+
                     <Text style = {RegisterStyle.header}>
-                     Enter Profile Info
+                        Enter Profile Info
                     </Text>
                 </View>
+
                 <ScrollView>
                     <View>
                         <ReduxRegisterForm navigation={this.props.navigation} />
                     </View>
                 </ScrollView>
-            </Image>
+            </View>
         );
     }
 }

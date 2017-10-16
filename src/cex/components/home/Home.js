@@ -45,7 +45,7 @@ export class Home extends Component {
         header: null
     }
 
-    goToNavigationScreen = () => {
+    goToNavigationScreen = () => {//Note: not being used
         this.props.navigate('NavigationScreen');
     }
 

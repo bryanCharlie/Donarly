@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, TextInput, Text, TouchableHighlight, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-//import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Field, reduxForm } from 'redux-form';
@@ -44,7 +43,7 @@ class RegisterForm extends Component {
         this.onChange = this.onChange.bind(this);
     }
 
-    confirmPassword = (value) =>{// TODO finish thissss
+    confirmPassword = (value) =>{
         console.log('password state val', this.state.password);
         if(value === this.state.password){
             return undefined;
@@ -76,12 +75,12 @@ class RegisterForm extends Component {
         'submitting',
         'submitSucceeded',
         'submitFailed'];
-
+//for checking
         console.log({placeholder},{meta});
         console.log('RegisterForm props',this.state);
         console.log('this curr value: ', input.value);
 
-        const passState = () => { //TODO fix
+        const passState = () => {
             if({name} != confirmPassword){
                 this.setState({ name : input.value });
             }
@@ -92,6 +91,7 @@ class RegisterForm extends Component {
             <View style = {RegisterFormStyle.inputLine}>
 
             <TextInput
+              underlineColorAndroid='transparent'
               {...inputProps}
               onChangeText={input.onChange}
               onBlur={input.onBlur}
@@ -111,7 +111,6 @@ class RegisterForm extends Component {
 
          </View>
         );
-
     }
 
     componentWillMount=()=>{
@@ -128,7 +127,6 @@ class RegisterForm extends Component {
     }
 
     onSignUp=()=>{
-        console.log('RegisterForm props',this.props);
         this.props.registerUser({
             lastname: this.state.lastname,
             firstname: this.state.firstname,
@@ -136,8 +134,7 @@ class RegisterForm extends Component {
             password: this.state.password
         }).then(res =>{
             if(this.props.auth.user){
-              //  this.props.navigation.navigate('NavigationScreen');
-              //  this.props.navigation.dispatch(resetAction);
+              this.props.navigation.dispatch(resetAction);
             }
         });
     }
@@ -153,7 +150,7 @@ class RegisterForm extends Component {
         console.log('regForm state',this.state); //for checking
         return (
 
-            <View style = {RegisterFormStyle.container}>
+            <View>
 
                 <Field name = "firstname"
                 component = {this.MyTextInput}
