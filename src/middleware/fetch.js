@@ -30,9 +30,10 @@ export const callFetchMiddleware = ( { dispatch, getState } ) => { //ES6 destruc
         //         'Authorization': 'Basic ' + auth_token
         //     }
         // }).then(res => res.json().then(responseJSON => console.log(responseJSON)))
+        
         return callAPI(auth_token).then(res => {
             if( res.status >= 400 ){
-                return res.text().then(responseText => { 
+                return res.text().then(responseText => {
                     console.log(responseText);
                     return dispatch({
                         type: type[2],

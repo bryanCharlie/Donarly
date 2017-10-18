@@ -25,6 +25,7 @@ export const loginUser = (user) => {
         }
     };
 };
+
 export const loginReturningUser = (user) => {
     console.log(user, ' in auth action');
     return{
@@ -33,6 +34,7 @@ export const loginReturningUser = (user) => {
         message: 'Welcome Back!'
     };
 };
+
 export const logOutUser = () => {
     return {
         type: LOG_OUT_USER
@@ -40,7 +42,7 @@ export const logOutUser = () => {
 };
 
 export const registerUser = (user) =>{
-  // TODO Finish this
+  // TODO Finish this...
     console.log(`${config.API_AUTH_ENDPOINT}/register`);
     return{
         type: [REGISTER_USER, REGISTER_SUCCESS, REGISTER_FAILURE],

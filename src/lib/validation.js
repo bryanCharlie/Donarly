@@ -9,24 +9,24 @@ export const validate = values => {
     if (!values.password) {
         errors.password = 'Required';
     }else if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z-!$%^&*()_+|~=`{}\[\]:/;<>?,.@# ]{8,}$/.test(values.password))
-        errors.password='Invalid password, must contain at least: 8 characters, one uppercase, one lowercase and, one number';
+        errors.password = 'Invalid password, must contain at least: 8 characters, one uppercase, one lowercase and, one number';
 
     if (!values.confirmPassword){
         errors.confirmPassword = 'Required';
     }else if(values.password != values.confirmPassword){
-        errors.confirmPassword ='passwords not the same';
+        errors.confirmPassword = 'The passwords entered do not match.';
     }
 
-    if(!values.firstname){
-        errors.firstname ='Required';
+    if(!values.firstname){  //TODO modify... --Robbi
+        errors.firstname = 'Required';
     }else if (values.firstname.length > 35) {
-        errors.firstname = 'name too long';
+        errors.firstname = 'Name is too long';
     }
 
-    if(!values.lastname){
-        errors.lastname ='Required';
+    if(!values.lastname){   //TODO modify... character validity --Robbi
+        errors.lastname = 'Required';
     }else if (values.lastname.length > 35) {
-        errors.lastname = 'name too long';
+        errors.lastname = 'Name is too long';
     }
 
     return errors;

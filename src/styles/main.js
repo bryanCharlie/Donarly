@@ -62,18 +62,18 @@ export const HomeStyle = StyleSheet.create({
         alignItems: 'center'
     },
     buttonContainer:{
-        borderRadius: 12,
+        borderRadius: 15,
         borderWidth: 1.2,
-        borderColor: '#D6D700',
+        borderColor: '#F0A202',
         opacity: 0.8,
-        height: 28,
-        width: 140,
+        height: 30,
+        width: 175,
         padding: 7.5,
         marginBottom: 20
     },
     button: {
-        color: '#D6D700',
-        fontSize: 9,
+        color: '#F0A202',
+        fontSize: 10,
         textAlign: 'center',
         fontWeight: 'bold'
     },
@@ -88,7 +88,7 @@ export const HomeStyle = StyleSheet.create({
     },
     title: {
         fontFamily: 'Euphemia UCAS',
-        color: '#48A898',
+        color: '#2A9D8F',
         fontSize: 60,
         textAlign: 'center'
     }
@@ -175,23 +175,26 @@ export const LoginStyle = StyleSheet.create({
 });
 
 export const RegisterFormStyle = StyleSheet.create({
-    container: {
-        padding: 30
+    errorNotice: {
+        fontSize: 10,
+        fontWeight: '100',
+        color: '#880909'
+    },
+    inputLine: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 1,
+        alignContent: 'flex-end'
     },
     input: {
-        height: 35,
-        color: '#ffffff',
-        marginBottom: 10,
-        paddingHorizontal : 10,
-        borderRadius: 10,
+        height: 50,
+        fontSize: 15,
+        color: 'white',
         fontWeight: '500',
-        borderWidth: 1,
-        borderColor: '#f9e5e5'
     },
     agreement: {
         fontWeight: '100',
-        fontSize: 10,
-        marginTop: 10,
+        fontSize: 12,
+        marginTop: 100,
         textAlign: 'center',
         color: '#ffffff',
         backgroundColor: 'transparent'
@@ -202,9 +205,10 @@ export const RegisterFormStyle = StyleSheet.create({
     buttonContainer:{
         backgroundColor: '#ffffff',
         opacity: 0.5,
-        marginTop: 40,
+        marginTop: 15,
         borderRadius: 10,
         padding: 10,
+        marginBottom: 15,
         justifyContent: 'center'
     },
     signUpButton: {
@@ -214,12 +218,25 @@ export const RegisterFormStyle = StyleSheet.create({
 });
 
 export const RegisterStyle = StyleSheet.create({
+    headerContainer: {
+        flexDirection: 'row',
+        marginBottom: 30
+    },
+    header: {
+        flex: 3,
+        fontWeight: '600',
+        textAlign: 'center',
+        marginBottom: 20,
+        color: '#ffffff',
+        fontSize: 20,
+        backgroundColor: 'transparent'
+    },
     container: {
         padding: 30,
         flex: 1,
         width: null,
         height: null,
-        resizeMode: 'stretch'
+        backgroundColor: '#F0A202'
     },
     logoContainer:{
         alignItems: 'center',
@@ -228,6 +245,10 @@ export const RegisterStyle = StyleSheet.create({
     logo: {
         height: 100,
         width: 100
+    },
+    backButtonStyle: {
+        width: 30,
+        height: 32
     },
     title: {
         paddingTop: 10,

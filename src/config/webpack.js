@@ -22,6 +22,7 @@ process.env.REACT_WEBPACK_ENV = env
  * @param  {String} wantedEnv The wanted environment
  * @return {Object} Webpack config
  */
+ 
 function buildConfig(wantedEnv) {
   let isValid = wantedEnv && wantedEnv.length > 0 && allowedEnvs.indexOf(wantedEnv) !== -1
   let validEnv = isValid ? wantedEnv : 'dev'

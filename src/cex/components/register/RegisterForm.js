@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Text, TouchableHighlight, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, TextInput, Text, TouchableHighlight, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -28,8 +28,6 @@ const resetAction = NavigationActions.reset({// The Reset action wipes the whole
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-
-
 class RegisterForm extends Component {
 
     constructor(props) {
@@ -42,11 +40,11 @@ class RegisterForm extends Component {
             error: false
         };
         this.confirmPassword = this.confirmPassword.bind(this);
-        this.onChange= this.onChange.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    confirmPassword = value =>{// TODO finish thissss
-        console.log('password state val',this.state.password);
+    confirmPassword = (value) =>{
+        console.log('password state val', this.state.password);
         if(value === this.state.password){
             return undefined;
         }
@@ -57,20 +55,43 @@ class RegisterForm extends Component {
 
 // this is some dirty code ...
     MyTextInput=(props)=> {
-        const { input, type, name, meta, touched, secureTextEntry, placeholder,  ...inputProps } = props;
-        formStates = ['asyncValidating', 'dirty', 'pristine', 'valid', 'invalid', 'submitting',
-            'submitSucceeded', 'submitFailed'];
+        const {
+            input,
+            type,
+            name,
+            meta,
+            touched,
+            secureTextEntry,
+            placeholder,
+            ...inputProps
+        } = props;
+
+        formStates = [
+        'asyncValidating',
+        'dirty',
+        'pristine',
+        'valid',
+        'invalid',
+        'submitting',
+        'submitSucceeded',
+        'submitFailed'];
+//for checking
         console.log({placeholder},{meta});
+        console.log('RegisterForm props',this.state);
         console.log('this curr value: ', input.value);
 
-        const passState = () => {//TODO I was fucking with this recently
+        const passState = () => {
             if({name} != confirmPassword){
                 this.setState({ name : input.value });
             }
         };
+
         return (
           <View>
+            <View style = {RegisterFormStyle.inputLine}>
+
             <TextInput
+              underlineColorAndroid='transparent'
               {...inputProps}
               onChangeText={input.onChange}
               onBlur={input.onBlur}
@@ -79,17 +100,16 @@ class RegisterForm extends Component {
               secureTextEntry={secureTextEntry}
               type ={type}
               placeholder ={placeholder}
+              placeholderTextColor = '#C08200'
               style={RegisterFormStyle.input}
               />
-              {touched && ((error && <Text>{error}</Text>) || (warning && <Text>{warning}</Text>))}
+            </View>
 
-              <Text>The { input.name} input is:</Text>
- {
-   formStates.filter((state) => meta[state]).map((state) => {
-       return <Text key={state}> - { state }</Text>;
-   })
- }
-          </View>
+            <Text style = {RegisterFormStyle.errorNotice}>
+            {this.showError(meta.dirty, meta.touched, meta.error)}
+            </Text>
+
+         </View>
         );
     }
 
@@ -97,9 +117,16 @@ class RegisterForm extends Component {
       //  console.log(this.props.handleSubmit);
     }
 
+//Robbi
+    showError = (dirty, touched, error) => {
+        if(dirty & touched){
+            if(!error)
+                return '';
+            return <Text> - {error} </Text>;
+        }
+    }
+
     onSignUp=()=>{
-        console.log('RegisterForm props ',this.props);
-        // this.props.navigation.navigate('NavigationScreen'); for testing purposes
         this.props.registerUser({
             lastname: this.state.lastname,
             firstname: this.state.firstname,
@@ -107,71 +134,70 @@ class RegisterForm extends Component {
             password: this.state.password
         }).then(res =>{
             if(this.props.auth.user){
-              //  this.props.navigation.navigate('NavigationScreen');
-                this.props.navigation.dispatch(resetAction);
+              this.props.navigation.dispatch(resetAction);
             }
         });
     }
 
     onChange=(text)=>{
-        // const stateprop = this.props.name;
-        // this.setState({stateprop: text});
+        const stateprop = this.props.name;
+        this.setState(stateprop: text).then(res => {
+            this.validate(text);
+        })
     }
 
-
     render() {
-        console.log('regForm state', this.state);
+        console.log('regForm state',this.state); //for checking
         return (
+
             <View>
 
-                <Field name='email'
-                component={this.MyTextInput}
-                secureTextEntry= {false}
-                type= 'email'
+                <Field name = "firstname"
+                component = {this.MyTextInput}
+                secureTextEntry = {false}
+                type ='text'
+                placeholder = "First Name"
+                />
+
+                <Field name = "lastname"
+                 component = {this.MyTextInput}
+                 secureTextEntry = {false}
+                 type = 'text'
+                 placeholder = "Last Name"
+                />
+
+                <Field name = 'email'
+                component = {this.MyTextInput}
+                secureTextEntry = {false}
+                type = 'email'
                 placeholder = "Email"
                  />
 
-                <Field name='password'
-                component={this.MyTextInput}
-                secureTextEntry={true}
-                type ='password'
-                placeholder = "password"
+                <Field name = 'password'
+                component = {this.MyTextInput}
+                secureTextEntry = {true}
+                type = 'password'
+                placeholder = "Password"
                 />
 
-                <Field name='confirmPassword'
-                component={this.MyTextInput}
-                secureTextEntry={true}
-                type ='password'
-                placeholder = "confirm password"
+                <Field name = 'confirmPassword'
+                component = {this.MyTextInput}
+                secureTextEntry = {true}
+                type = 'password'
+                placeholder = "Confirm Password"
                 />
-
-                <Field name="firstname"
-                component={this.MyTextInput}
-                secureTextEntry= {false}
-                type ='text'
-                placeholder = "Firstname"
-                />
-
-                <Field name="lastname"
-                 component={this.MyTextInput}
-                 secureTextEntry= {false}
-                 type ='text'
-                 placeholder = "Lastname"
-                />
-
 
                 <Text style = {RegisterFormStyle.agreement}>
-                By creating an account you agree to our {'\n'}
-                    <Text style={RegisterFormStyle.boldText}>
+                By creating an account, you agree to our {'\n'}
+                    <Text style = {RegisterFormStyle.boldText}>
                     Terms & Conditions
-                    </Text> and
-                    <Text style={RegisterFormStyle.boldText}>
+                    </Text> and <Text style = {RegisterFormStyle.boldText}>
                     Privacy Policy
                     </Text>
                 </Text>
-                <TouchableHighlight onPress={this.onSignUp} style = {RegisterFormStyle.buttonContainer}>
-                    <Text style={RegisterFormStyle.signUpButton}>
-                        Sign Up
+                <TouchableHighlight onPress = {this.onSignUp} style = {RegisterFormStyle.buttonContainer}>
+                    <Text style = {RegisterFormStyle.signUpButton}>
+                        Next
                     </Text>
                 </TouchableHighlight>
             </View>

@@ -7,9 +7,6 @@ import { bindActionCreators } from 'redux';
 import { CategoriesStyle } from 'styles/main';
 import * as categoryActions from 'actions/category';
 
-
-
-
 const mapStateToProps = state => {
     return {
         categories: state.categories
@@ -58,11 +55,9 @@ export class Categories extends Component {
         }
     }
 
-
     inArray(arr, obj) {
         return (arr.indexOf(obj) !== -1);
     }
-
 
     goBack() {
         this.props.navigator.pop();
@@ -100,7 +95,7 @@ export class Categories extends Component {
         console.log('state is :', this.state.categories);
         return (
             <View style={{ flex: 1, backgroundColor: '#FAFAFA'}}>
-                <Header headerText={' Charity Category'} next={this.onNext} back={this.goBack} />
+                <Header headerText={'Charity Category'} next={this.onNext} back={this.goBack} />
                 <View style={CategoriesStyle.container}>
                     <Text style={{ fontSize: 16, paddingTop: 10, paddingBottom: 10}}>
                         What charity orginizations are you interesed in ?

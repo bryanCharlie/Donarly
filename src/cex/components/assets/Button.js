@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TextInput, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { StyleSheet } from 'react-native';
 
-export const Button = ({onButtonPress, buttonColor, buttonText, textColor}) => { //es6 destructuring.
+export const Button = ({onButtonPress, buttonColor, buttonText, textColor}) => { //es6 destructuring
     const style = applyButtonBackgroundColor(buttonColor);    
     return(
         <TouchableOpacity onPress= { onButtonPress }>
