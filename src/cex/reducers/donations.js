@@ -35,6 +35,7 @@ export const donations = (
         return {
             ...state, ...{
                 isFetching: false,
+                error: true,
                 message
             }
         };
