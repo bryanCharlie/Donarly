@@ -16,29 +16,3 @@ const style = {
     height: 150, 
     width: 200
 };
-
-/**
-export class ImageButton extends Component {
-    constructor(props){
-        super(props);
-        
-        const imgUri = this.props.orgImageURI;
-    }
-    
-    render(){
-        return(
-            <Button>
-            <TouchableOpacity onPress= { onButtonPress }>
-                <View>
-                    <Image source={{uri: imgUri}} style={style}/>
-                </View>
-            </TouchableOpacity>
-            </Button>
-        );
-    }
-}
-
-const style = {
-    height: 150, 
-    width: 200
-}; */
