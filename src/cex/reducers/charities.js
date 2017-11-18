@@ -8,8 +8,8 @@ const defaultState = {
     error: false,
     categories: undefined,
     current_page: 1,
-    selected_charity: undefined,
-    message: undefined
+    message: undefined,
+    charities: undefined
 };
 
 export const charities = (
@@ -20,17 +20,43 @@ export const charities = (
 
     switch(type){
     case GET_CHARITY_CATEGORIES:
-        return '';
+        return {
+            ...state,
+            isFetching: true
+        };
     case GET_CHARITY_CATEGORIES_SUCCESS:
-        return '';
+        return {
+            ...state,
+            isFetching: false,
+            categories: data
+        };
     case GET_CHARITY_CATEGORIES_FAILURE:
-        return '';
+        return {
+            ...state,
+            isFetching: false,
+            error: true,
+            message
+        };
     case SEARCH_CHARITY:
-        return '';
+        return {
+            ...state,
+            isFetching: true
+        };
     case SEARCH_CHARITY_SUCCESS:
-        return '';
+        return {
+            ...state,
+            isFetching: false,
+            current_page: state.current_page++,
+            charities: data
+        };
     case SEARCH_CHARITY_FAILURE:
-        return '';
+        return {
+            ...state,
+            isFetching: false,
+            current_page: 1,
+            error: true,
+            message
+        };
     default:
         return defaultState;
     }

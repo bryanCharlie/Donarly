@@ -30,7 +30,7 @@ export const searhCharity = (search_value, page_num) => {
             success: '',
             failure: 'Service currently unavailable. Please try again.',
             callAPI: (token) => {
-                return GET(`${config.API_CHARITIES_ENDPOINT}/categories`, {
+                return GET(`${config.API_CHARITIES_ENDPOINT}/organizations`, {
                     page_num,
                     search_value
                 }, token);

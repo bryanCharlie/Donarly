@@ -4,10 +4,10 @@ const defaultState = {
     isfetching: false,
     error: false,
     message: undefined,
-    transactions: undefined
+    profile: undefined
 };
 
-export const transactions = (
+export const profile = (
     state = { ...defaultState },
     action
     ) => {
@@ -28,7 +28,7 @@ export const transactions = (
             isfetching: false,
             error: false,
             message: message,
-            transactions: data
+            profile: data
         };
 
     case GET_PROFILE_FAILURE:
