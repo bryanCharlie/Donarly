@@ -9,6 +9,9 @@ export const GlobalStyle = StyleSheet.create({
         height: null,
         resizeMode: 'stretch'
     },
+    image: {
+        padding: 2
+    },
     input: {
         height: 35,
         color: '#ffffff',
