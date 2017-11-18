@@ -36,19 +36,19 @@ export const charities = (
             isFetching: false,
             error: true,
             message
-        }
+        };
     case SEARCH_CHARITY:
         return {
             ...state,
             isFetching: true
-        }
+        };
     case SEARCH_CHARITY_SUCCESS:
         return {
             ...state,
             isFetching: false,
             current_page: state.current_page++,
             charities: data
-        }
+        };
     case SEARCH_CHARITY_FAILURE:
         return {
             ...state,

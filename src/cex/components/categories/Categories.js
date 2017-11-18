@@ -5,7 +5,7 @@ import { Header } from './Header';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CategoriesStyle } from 'styles/main';
-import * as categoryActions from 'actions/category';
+import { retreiveCategories } from 'actions/charities';
 
 const mapStateToProps = state => {
     return {
@@ -15,7 +15,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        ...categoryActions
+        retreiveCategories
     }, dispatch );
 };
 

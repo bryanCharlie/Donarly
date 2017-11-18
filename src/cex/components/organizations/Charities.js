@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import { OrgList } from './OrgList';
-import { retreiveCategories, searhCharity } from 'action/charities'
+import { retreiveCategories, searhCharity } from 'actions/charities';
 
 const mapStateToProps = state => {
     return {
@@ -17,7 +19,7 @@ const mapDispatchToProps = dispatch => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 
-export class OrganizationContainer extends Component{
+export class Charities extends Component{
     componentDidMount = () => {
         this.props.retreiveCategories();
     }

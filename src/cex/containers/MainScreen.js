@@ -8,7 +8,7 @@ import { Register } from 'components/register/Register';
 import { NavigationScreen } from './NavigationScreen';
 import { Profile } from 'components/profile/Profile';
 import { Settings } from 'components/calculator/Calculator';
-import { OrganizationContainer } from 'components/organizations/OrganizationContainer';
+import { Charities } from 'components/organizations/Charities';
 import { OrgDetail } from 'components/organizations/OrgDetail';
 import { CardBase } from 'components/assets/Card';
 
