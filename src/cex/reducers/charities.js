@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native';
 
 const defaultState = {
     //userAuthenticated: false
-    isFetching: false,
+    isFetching: true,
     error: false,
     categories: undefined,
     current_page: 1,

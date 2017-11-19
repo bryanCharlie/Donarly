@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native';
 
 const defaultState = {
     //userAuthenticated: false
-    isFetching: false,
+    isFetching: true,
     error: false,
     donation_profile: undefined,
     message: undefined

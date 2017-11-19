@@ -59,44 +59,7 @@ export class Card extends Component {
                     }}>
                         {this.props.title}
                     </Text>
-                    
-                    <View style ={{
-                        paddingTop: responsiveHeight(2),
-                        paddingBottom: responsiveHeight(2),
-                        width: responsiveWidth(100),
-                        backgroundColor: this.props.descriptionColor, //Dynamic color change
-                        flexWrap: 'wrap',
-                        alignItems: 'flex-start',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        position: 'absolute',
-                        bottom: 0
-                    }}>
-                        <View style={{ //Rating 
-                            justifyContent: 'center',
-                            marginLeft: responsiveWidth(3),
-                            marginRight: responsiveWidth(2),
-                            width: responsiveWidth(30),
-                            flexDirection: 'column'
-                        }}>
-                            <StarRating
-                                disabled={false}
-                                maxStars={5}
-                                rating={this.state.starCount}
-                                selectedStar={(rating) => this.onStarRatingPress(rating)}
-                                starColor={'#022F40'}
-                                starSize={20}
-                            />
-                        </View>
-                        <View style={{
-                            width: responsiveWidth(65),
-                            flexDirection: 'column'
-                        }}>
-                            <Text>{this.props.description}</Text>
-                        </View>
-                    </View>
                 </ImageBackground>
-            
             </View>
         );
     }

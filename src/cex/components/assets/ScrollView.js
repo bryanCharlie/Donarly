@@ -1,20 +1,27 @@
 import React from 'react';
-import {ScrollView, Text} from 'react-native';
+import {RNScrollView, Text} from 'react-native';
 import { Dimensions } from 'react-native';
 
-export const ScrollView = ({...restProps}) => { //es6 destructuring
-    const scrolledToBottom = (e) => {
-        const windowHeight = Dimensions.get('window').height,
-            height = e.nativeEvent.contentSize.height,
-            offset = e.nativeEvent.contentOffset.y;
+export class ScrollView extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            content: this.props.children
+        };
+    }
 
-        if( windowHeight + offset >= height ){
-            console.log('End Scroll');
+    onScroll = (e) => {
+        if(this.props.onScroll){
+            this.props.onScroll(e);
         }
-    }; 
-    return(
-        <ScrollView onScroll={scrolledToBottom} {...restProps}>
-            {...this.props.children}
-        </ScrollView>
-    );
-};
+
+        //scroll logic
+    }
+
+    render(){
+        const {onScroll, ...restProps} = this.props;
+        return <RNScrollView onScroll={this.onScroll} {...restProps} >
+            {this.state.content}
+        </RNScrollView>;
+    }
+}
