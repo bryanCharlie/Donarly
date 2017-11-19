@@ -10,7 +10,7 @@ import { Profile } from 'components/profile/Profile';
 import { Settings } from 'components/calculator/Calculator';
 import { Charities } from 'components/organizations/Charities';
 import { OrgDetail } from 'components/organizations/OrgDetail';
-import { CardBase } from 'components/assets/Card';
+import { Card } from 'components/assets/Card';
 
 //DrawerNavigator isn't doing anything as of now, So I comment it out. -RK
 
@@ -19,7 +19,7 @@ import { CardBase } from 'components/assets/Card';
 // });
 
 export const MainScreen = StackNavigator({
-    Home: { screen: Home },
+    Home: { screen: Card },
     Categories: { screen: Categories },
     Login: { screen: Login },
     Register: { screen: Register },
