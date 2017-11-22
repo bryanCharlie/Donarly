@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import { Home } from 'components/home/Home';
 import { Categories } from 'components/categories/Categories';
-import { OrganizationContainer } from 'components/organizations/OrganizationContainer';
+import { Charities } from 'components/organizations/Charities';
 import { Settings } from 'components/calculator/Calculator';
 
 export const NavigationScreen = TabNavigator({
-    Home: { screen: OrganizationContainer },
+    Home: { screen: Charities },
     Settings: { screen: Settings }
 }, //RouteConfigs
     {
