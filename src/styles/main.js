@@ -12,6 +12,11 @@ export const GlobalStyle = StyleSheet.create({
     image: {
         padding: 2
     },
+    imageButton: {
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     input: {
         height: 35,
         color: '#ffffff',
@@ -65,18 +70,18 @@ export const HomeStyle = StyleSheet.create({
         alignItems: 'center'
     },
     buttonContainer:{
-        borderRadius: 15,
-        borderWidth: 1.2,
+        borderRadius: 18,
+        borderWidth: 1.5,
         borderColor: '#F0A202',
         opacity: 0.8,
-        height: 30,
-        width: 175,
-        padding: 7.5,
+        height: 37,
+        width: 230,
+        padding: 8,
         marginBottom: 20
     },
     button: {
         color: '#F0A202',
-        fontSize: 10,
+        fontSize: 13,
         textAlign: 'center',
         fontWeight: 'bold'
     },
