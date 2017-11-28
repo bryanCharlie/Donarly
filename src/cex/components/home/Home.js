@@ -65,7 +65,7 @@ export class Home extends Component {
                         Donarly
                     </Text>
                 </View>
-
+                
                 <View style={HomeStyle.viewContainer}>
 
                     <TouchableOpacity
