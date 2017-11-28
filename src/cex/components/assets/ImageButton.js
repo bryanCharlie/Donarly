@@ -14,7 +14,7 @@ export const ImageButton = ({onButtonPress, imgSrc, imgH, imgW}) => {
 };
 
 ImageButton.defaultProps = {
-	imgH: Dimensions.get('window').height*0.9, //90% of the screen's aspect ratio
-	imgW: Dimensions.get('window').width*0.9, //90% of the screen's aspect ratio
+	imgH: Dimensions.get('window').height*0.1, //90% of the screen's aspect ratio
+	imgW: Dimensions.get('window').width*0.95, //90% of the screen's aspect ratio
 	imgSrc: require('images/donate.jpg') //to be changed (or not) by a default image for image buttons
-}
+};

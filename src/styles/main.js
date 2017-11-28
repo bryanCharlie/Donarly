@@ -13,7 +13,6 @@ export const GlobalStyle = StyleSheet.create({
         padding: 2
     },
     imageButton: {
-        flex: 1,
         padding: 10,
         justifyContent: 'center',
         alignItems: 'center'
