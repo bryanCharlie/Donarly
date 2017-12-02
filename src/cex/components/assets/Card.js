@@ -99,7 +99,7 @@ Card.defaultProps = {
     title: 'Donarly', // Charity's Title
     imgSrc: require('images/bg3.jpg'), // Charity's promotion picutre
     descriptionColor: '#E4572E', // background color of rating and description
-    description: 'Donarly Inc. helps connect charities with donars', // Details about the Charity/Compnay
+    description: 'Donarly Inc. helps connect charities with donors', // Details about the Charity/Compnay
     imageHeight: responsiveHeight(30), //ranges from 0-200
     rating: 5 //Inital rating for any Charity
 };
