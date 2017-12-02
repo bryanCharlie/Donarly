@@ -21,7 +21,7 @@ import { Card } from 'components/assets/Card';
 // });
 
 export const MainScreen = StackNavigator({
-    Home: { screen: Card },
+    Home: { screen: Home },
     Categories: { screen: Categories },
     Login: { screen: Login },
     Register: { screen: Register },
