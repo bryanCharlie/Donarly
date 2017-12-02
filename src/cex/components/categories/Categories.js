@@ -87,7 +87,7 @@ export class Categories extends Component {
 
     onNext= () => {
         console.log('Categories props ',this.props);
-        this.props.updateCategory(this.state.categories);
+        this.props.retreiveCategories();
         this.props.navigation.navigate('Register');
     }
 
