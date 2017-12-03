@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 export const GlobalStyle = StyleSheet.create({
@@ -58,6 +58,35 @@ export const GlobalStyle = StyleSheet.create({
     signUpButton: {
         textAlign: 'center',
         fontWeight: '600'
+    }
+});
+
+export const SearchStyle = StyleSheet.create({
+    input: {
+        textAlign: 'left',
+        height: 36,
+        fontSize: 20,
+        color: '#06594b',
+        fontFamily: 'Avenir-Roman',
+        flex: 1
+    },
+    image: {
+        height: 32,
+        width: 32,
+        margin: 9
+    },
+    container: {
+        width: Dimensions.get('window').width,
+        height: 54,
+        borderWidth: 9,
+        borderColor: '#e4572e',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    bar: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });
 

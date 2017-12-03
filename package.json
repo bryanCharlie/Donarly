@@ -23,6 +23,7 @@
     "react-native-progress": "^3.2.1",
     "react-native-responsive-dimensions": "^1.0.1",
     "react-native-star-rating": "^1.0.8",
+    "react-native-swiper": "^1.5.13",
     "react-native-vector-icons": "^4.2.0",
     "react-navigation": "^1.0.0-beta.9",
     "react-redux": "^5.0.4",

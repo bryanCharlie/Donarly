@@ -13,6 +13,7 @@ import { OrgDetail } from 'components/organizations/OrgDetail';
 import { Card } from 'components/assets/Card';
 import { CreditContainer } from 'components/credit-card/CreditContainer';
 
+import { CardSwiper } from 'components/assets/CardSwiper';
 
 // import { ImageButton } from 'components/assets/ImageButton';
 
@@ -23,14 +24,10 @@ import { CreditContainer } from 'components/credit-card/CreditContainer';
 // });
 
 export const MainScreen = StackNavigator({
-    Home: { screen: CreditContainer },
+    Home: { screen: Home },
     Categories: { screen: Categories },
     Login: { screen: Login },
     Register: { screen: Register },
     NavigationScreen: { screen: NavigationScreen },
-    OrgDetail: {screen: OrgDetail,
-        mode: 'modal',
-        navigationOptions: ({navigation}) =>({
-            org: navigation.state.params.org
-        })}
+    OrgDetail: { screen: Charities }
 });
