@@ -225,6 +225,92 @@ export const RegisterFormStyle = StyleSheet.create({
     }
 });
 
+export const CreditFormStyle = StyleSheet.create({
+    errorNotice: {
+        fontSize: 10,
+        fontWeight: '100',
+        color: '#880909'
+    },
+    inputLine: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 1,
+        alignContent: 'flex-end'
+    },
+    input: {
+        height: 50,
+        fontSize: 15,
+        color: 'white',
+        fontWeight: '500',
+    },
+    agreement: {
+        fontWeight: '100',
+        fontSize: 12,
+        marginTop: 100,
+        textAlign: 'center',
+        color: '#ffffff',
+        backgroundColor: 'transparent'
+    },
+    boldText: {
+        fontWeight: '700'
+    },
+    buttonContainer:{
+        backgroundColor: '#ffffff',
+        opacity: 0.5,
+        marginTop: 15,
+        borderRadius: 10,
+        padding: 10,
+        marginBottom: 15,
+        justifyContent: 'center'
+    },
+    signUpButton: {
+        textAlign: 'center',
+        fontWeight: '600'
+    }
+});
+
+export const CreditStyle = StyleSheet.create({
+    headerContainer: {
+        flexDirection: 'row',
+        marginBottom: 30
+    },
+    header: {
+        flex: 3,
+        fontWeight: '600',
+        textAlign: 'center',
+        marginBottom: 20,
+        color: '#ffffff',
+        fontSize: 20,
+        backgroundColor: 'transparent'
+    },
+    container: {
+        padding: 30,
+        flex: 1,
+        width: null,
+        height: null,
+        backgroundColor: '#022F40'
+    },
+    logoContainer:{
+        alignItems: 'center',
+        marginTop: 50
+    },
+    logo: {
+        height: 100,
+        width: 100
+    },
+    backButtonStyle: {
+        width: 30,
+        height: 32
+    },
+    title: {
+        paddingTop: 10,
+        opacity: 0.9,
+        marginBottom: 20,
+        color: '#ffffff',
+        fontWeight: '700',
+        fontSize: 20,
+        backgroundColor: 'transparent'
+    }
+});
 export const RegisterStyle = StyleSheet.create({
     headerContainer: {
         flexDirection: 'row',
