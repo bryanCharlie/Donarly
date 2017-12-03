@@ -27,9 +27,5 @@ export const MainScreen = StackNavigator({
     Login: { screen: Login },
     Register: { screen: Register },
     NavigationScreen: { screen: NavigationScreen },
-    OrgDetail: {screen: OrgDetail,
-        mode: 'modal',
-        navigationOptions: ({navigation}) =>({
-            org: navigation.state.params.org
-        })}
+    OrgDetail: { screen: Charities }
 });
