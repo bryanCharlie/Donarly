@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View, TextInput, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { StyleSheet } from 'react-native';
 
-export const Button = ({onButtonPress, buttonColor, buttonText, textColor}) => { //es6 destructuring
-    const style = applyButtonBackgroundColor(buttonColor);    
+export const Button = ({onButtonPress, buttonColor, buttonText, textColor, height, width}) => { //es6 destructuring
+    const style = applyButtonBackgroundColor(buttonColor, height, width);    
     return(
         <TouchableOpacity onPress= { onButtonPress }>
             <View style = {style}>
@@ -13,10 +13,10 @@ export const Button = ({onButtonPress, buttonColor, buttonText, textColor}) => {
     );
 };
 
-const applyButtonBackgroundColor = (buttonColor) => {
+const applyButtonBackgroundColor = (buttonColor, height, width) => {
     return {
-        height: 40,
-        width: 175,
+        height: height,
+        width: width,
         alignItems: 'center',
         backgroundColor: buttonColor, 
         justifyContent: 'center', 
