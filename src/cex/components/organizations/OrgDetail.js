@@ -21,9 +21,9 @@ export class OrgDetail extends Component{
     }
 
     render(){
-        console.log('Props ',this.props.data);
+        console.log('Detail Props ',this.props.data);
         const data = this.props.data;
-        if(data.length < 1){
+        if(data === undefined || data.lenght === 0){
             return(
                 <View>
                     <Text style={{textAlign: 'center'}}>Nothing to show...</Text>

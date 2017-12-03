@@ -59,14 +59,12 @@ export class OrgModal extends Component {
                     <View style={styles.modalButtons}>
                         <Button
                             backgroundColor='#53F2D3'
-                            fontFamily='Lato'
                             borderRadius={20}
                             buttonStyle={styles.button}
                             title='Donate'
                         />
                         <Button
                             backgroundColor='#629DF3'
-                            fontFamily='Lato'
                             borderRadius={20}
                             buttonStyle={styles.button}
                             title='Add'
@@ -103,12 +101,10 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     text: {
-        fontFamily: 'Lato',
         fontSize: 16,
         color: '#fff',
     },
     dots: {
-        fontFamily: 'Lato',
         fontWeight: 'bold',
         fontSize: 32,
         color: '#fff',
