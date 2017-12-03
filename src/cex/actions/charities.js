@@ -23,6 +23,22 @@ export const retreiveCategories = () => {
     };
 };
 
+export const retreiveCharitiesByCategory  = (category, page_num) => {
+    return{
+        type: [ SEARCH_CHARITY, SEARCH_CHARITY_SUCCESS, SEARCH_CHARITY_FAILURE ],
+        http: {
+            success: '',
+            failure: 'Service currently unavailable. Please try again.',
+            callAPI: (token) => {
+                return POST(`${config.API_CHARITIES_ENDPOINT}/categories`, {
+                    category,
+                    search_value
+                }, token);
+            }
+        }
+    };
+};
+
 export const searhCharity = (search_value, page_num) => {
     return{
         type: [ SEARCH_CHARITY, SEARCH_CHARITY_SUCCESS, SEARCH_CHARITY_FAILURE ],
