@@ -195,11 +195,11 @@ class CreditCardForm extends Component {
                     Privacy Policy
                     </Text>
                 </Text>
-                <TouchableHighlight onPress = {this.onSignUp} style = {CreditFormStyle.buttonContainer}>
+                <TouchableOpacity onPress = {this.onSignUp} style = {CreditFormStyle.buttonContainer}>
                     <Text style = {CreditFormStyle.signUpButton}>
                         Finish
                     </Text>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
         );
     }
