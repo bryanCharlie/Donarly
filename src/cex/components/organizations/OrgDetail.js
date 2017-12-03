@@ -1,56 +1,52 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, TextInput, ScrollView, TouchableHighlight, ActivityIndicator } from 'react-native';
-import {List, ListItem, Button, Card} from 'react-native-elements';
+import { View, StyleSheet, Modal, Text, Image, ScrollView, TouchableHighlight, ActivityIndicator } from 'react-native';
+import { List, ListItem, Button} from 'react-native-elements';
+import { OrgModal } from './OrgModal';
 
 export class OrgDetail extends Component{
     constructor(props){
         super(props);
-        const org = this.props.org;
-        this.backToList = this.backToList.bind(this);
+        this.state = {
+            selectedOrg : {},
+        };
+        this.selected = this.selected.bind(this);
     }
 
-    backToList(){
-        this.props.navigator.pop();
+    selected(ein){
+        const selected = this.props.data.find((oid) => {
+            return ein === oid.ein;
+        });
+        console.log('SELECTED', selected);
+        this.setState({ selectedOrg: selected});
     }
-
 
     render(){
-        console.log('in orgDetail', this.props.navigation.state.params.org);
-        const org = this.props.navigation.state.params.org;
-        return(
-            <ScrollView style={{flex: 1, flexDirection: 'column', alignSelf: 'center'}}>
-                <Card
-                    title={org.charityName}
-                    //image={require('./images/donate.jpg')}
-                    containerStye={{}}>
-                    <Text style={styles.text}>City: {org.city}</Text>
-                    <Text style={styles.text}>State: {org.state} </Text>
-                    <Text style={styles.text}>Zip: {org.zipCode}</Text>
-                    <Text style={styles.text}>Url: {org.url}</Text>
-                    <Text style={styles.text}>Accepting Donations: Yes!</Text>
-                    <Text style={styles.text}>Income Tax Deduction Eligible: Yes!</Text>
-                    <Button
-                        icon={{name: 'code'}}
-                        backgroundColor='#53F2D3'
-                        fontFamily='Lato'
-                        buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 5}}
-                        title='Add To Favorites' />
-                    <Button
-                        icon={{name: 'code'}}
-                        backgroundColor='#629DF3'
-                        fontFamily='Lato'
-                        buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 5}}
-                        title='Donate Now' />
-                </Card>
-
-
-            </ScrollView>
-        );
+        console.log('Props ',this.props.data);
+        const data = this.props.data;
+        if(data.length < 1){
+            return(
+                <View>
+                    <Text style={{textAlign: 'center'}}>Nothing to show...</Text>
+                </View>
+            );
+        }else{
+            return(
+                <View>
+                    <OrgModal data={this.state.selectedOrg}/>
+                    <List>
+                        {
+                            data.map((d,i) => (
+                                <ListItem
+                                    roundAvatar
+                                    key={i}
+                                    title={d.charityName}
+                                    onPress={()=>{this.selected(d.ein);}}
+                                />
+                            ))
+                        }
+                    </List>
+                </View>
+            );
+        }
     }
 }
-
-const styles = StyleSheet.create({
-    text: {
-        fontSize: 20
-    }
-});

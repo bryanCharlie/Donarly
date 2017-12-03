@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { OrgList } from './OrgList';
+import { bindActionCreators } from 'redux';
+import { OrgDetail } from './OrgDetail';
 import { retreiveCategories, searhCharity } from 'actions/charities';
 
 const mapStateToProps = state => {
@@ -13,6 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
         retreiveCategories,
+        // retreiveCharitiesByCategory,
         searhCharity
     }, dispatch );
 };
@@ -20,31 +22,32 @@ const mapDispatchToProps = dispatch => {
 @connect(mapStateToProps, mapDispatchToProps)
 
 export class Charities extends Component{
-    componentDidMount = () => {
-        this.props.retreiveCategories();
+    componentWillMount = () => {
+        // this.props.retreiveCharitiesByCategory('');
     }
+
+    render(){
+        // dummy data
+        // return(<OrgDetail data={[
+        //     {
+        //         charityName: 'Angelo foundation',
+        //         city: 'Cambridge',
+        //         state: 'Massachusetts',
+        //         zipCode: '02478',
+        //         url: 'www.deeznuts.com',
+        //         ein: 1
+        //     },
+        //     {
+        //         charityName: 'NOT ANGELO foundation',
+        //         city: 'NEW YORK CITY',
+        //         state: 'NEW YORK',
+        //         zipCode: '11372',
+        //         url: 'www.nyc.gov.com',
+        //         ein: 2
+        //     }
+        // ]} />);
+        return <OrgDetail data={this.props.charities} />;
+    }
+
 }
-const styles = StyleSheet.create({
-    container:{
-        flex: 1
-    },
-    button:{
-        backgroundColor:'#48BBEC'
-    },
-    input: {
-        height: 35,
-        color: '#000000',
-        margin : 20,
-        borderRadius: 10,
-        fontWeight: '500',
-        borderWidth: 1,
-        borderColor: '#f9e5e5'
-    },
-    listItem:{
-        color: '#000000'
-    },
-    icon:{
-        width: 6,
-        height: 6
-    }
-});
+
