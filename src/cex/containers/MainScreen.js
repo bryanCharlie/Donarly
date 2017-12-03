@@ -11,6 +11,7 @@ import { Settings } from 'components/calculator/Calculator';
 import { Charities } from 'components/organizations/Charities';
 import { OrgDetail } from 'components/organizations/OrgDetail';
 import { Card } from 'components/assets/Card';
+import { CardSwiper } from 'components/assets/CardSwiper';
 
 // import { ImageButton } from 'components/assets/ImageButton';
 
@@ -21,7 +22,7 @@ import { Card } from 'components/assets/Card';
 // });
 
 export const MainScreen = StackNavigator({
-    Home: { screen: Card },
+    Home: { screen: Home },
     Categories: { screen: Categories },
     Login: { screen: Login },
     Register: { screen: Register },
