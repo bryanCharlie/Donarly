@@ -10,6 +10,14 @@ export const REGISTER_USER = 'REGISTER_USER';
 export const REGISTER_SUCCESS ='REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
+/*
+    Called with OBJECT
+    {
+        username: "something@mail.com",
+        password: "12345"
+    }
+*/
+
 export const loginUser = (user) => {
     console.log(`${config.API_AUTH_ENDPOINT}/login`);
     return{
@@ -40,6 +48,16 @@ export const logOutUser = () => {
         type: LOG_OUT_USER
     };
 };
+
+/*
+    Called with OBJECT
+    {
+        first_name: "john",
+        last_name: "doe",
+        email: "something@mail.com",
+        password: "1234"
+    }
+*/
 
 export const registerUser = (user) =>{
   // TODO Finish this...

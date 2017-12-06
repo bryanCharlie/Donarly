@@ -5,6 +5,9 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';
 export const GET_PROFILE_FAILURE = 'GET_PROFILE_FAILURE';
 
+/*
+    Called with no params
+*/
 
 export const getUserProfile = () => {
     return {
