@@ -21,7 +21,7 @@ export const retreiveCategories = () => {
             success: '',
             failure: 'Service currently unavailable. Please try again.',
             callAPI: (token) => {
-                return GET(`${config.API_CHARITIES_ENDPOINT}/categories`, {}, token);
+                return GET(`${config.API_CHARITIES_ENDPOINT}/category-list`, {}, token);
             }
         }
     };
@@ -56,7 +56,7 @@ export const retreiveCharitiesByCategory  = (category, page_num) => {
             success: '',
             failure: 'Service currently unavailable. Please try again.',
             callAPI: (token) => {
-                return POST(`${config.API_CHARITIES_ENDPOINT}/categories`, {
+                return GET(`${config.API_CHARITIES_ENDPOINT}/organizations-by-category`, {
                     category,
                     search_value
                 }, token);
