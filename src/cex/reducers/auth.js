@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native';
 
 const defaultState = {
     //userAuthenticated: false
-    isFetching: false,
+    isFetching: true,
     error: false,
     user: undefined,
     message: undefined
@@ -20,7 +20,8 @@ export const auth = (
     case LOGIN_USER:
         return {
             ...state, ...{
-                isFetching: true
+                isFetching: true,
+                error: false
             }
         };
     case LOGIN_RETURNING_USER:

@@ -1,7 +1,7 @@
 import { GET_TRANSACTIONS, GET_TRANSACTIONS_SUCCESS, GET_TRANSACTIONS_FAILURE } from 'actions/transactions';
 
 const defaultState = {
-    isfetching: false,
+    isfetching: true,
     error: false,
     message: undefined,
     transactions: undefined

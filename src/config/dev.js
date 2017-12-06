@@ -1,4 +1,4 @@
-const API_ENDPOINT_BASE = 'http://127.0.0.1:5000';
+const API_ENDPOINT_BASE = 'https://flask-json-api.herokuapp.com';
 
 let config = {
     user_key: 'charity_user',

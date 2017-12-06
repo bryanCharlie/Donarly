@@ -1,7 +1,7 @@
 import { GET_PROFILE, GET_PROFILE_SUCCESS, GET_PROFILE_FAILURE } from 'actions/transactions';
 
 const defaultState = {
-    isfetching: false,
+    isfetching: true,
     error: false,
     message: undefined,
     profile: undefined

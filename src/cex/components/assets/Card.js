@@ -9,6 +9,15 @@ import StarRating from 'react-native-star-rating';
 import { Button } from './Button';
 
 export class Card extends Component {
+    static defaultProps = {
+        title: 'Donarly', // Charity's Title
+        imgSrc: require('images/bg3.jpg'), // Charity's promotion picutre
+        descriptionColor: '#E4572E', // background color of rating and description
+        description: 'Donarly Inc. helps connect charities with donars', // Details about the Charity/Compnay
+        imageHeight: responsiveHeight(30), //ranges from 0-200
+        rating: 5 //Inital rating for any Charity
+    }
+
     constructor(props) {
         super(props);
         // //state of this Component
@@ -118,15 +127,3 @@ export class Card extends Component {
         );
     }
 }
-    
-//All the props that can be passes while using this card. 
-//Default values if custom props weren't given. 
-Card.defaultProps = {
-    title: 'Donarly', // Charity's Title
-    imgSrc: require('images/donate.jpg'), // Charity's promotion picutre
-    descriptionColor: '#E4572E', // background color of rating and description
-    description: 'Donarly Inc. helps connect charities with donars. ', // Details about the Charity/Compnay
-    imageHeight: responsiveHeight(30), //ranges from 0-100,
-    descWidth: responsiveWidth(100),
-    rating: 5 //Inital rating for any Charity
-};
