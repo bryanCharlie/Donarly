@@ -11,6 +11,11 @@ import { Settings } from 'components/calculator/Calculator';
 import { Charities } from 'components/organizations/Charities';
 import { OrgDetail } from 'components/organizations/OrgDetail';
 import { Card } from 'components/assets/Card';
+import { CreditContainer } from 'components/credit-card/CreditContainer';
+
+import { CardSwiper } from 'components/assets/CardSwiper';
+
+// import { ImageButton } from 'components/assets/ImageButton';
 
 //DrawerNavigator isn't doing anything as of now, So I comment it out. -RK
 
@@ -19,14 +24,10 @@ import { Card } from 'components/assets/Card';
 // });
 
 export const MainScreen = StackNavigator({
-    Home: { screen: Card },
+    Home: { screen: Home },
     Categories: { screen: Categories },
     Login: { screen: Login },
     Register: { screen: Register },
     NavigationScreen: { screen: NavigationScreen },
-    OrgDetail: {screen: OrgDetail,
-        mode: 'modal',
-        navigationOptions: ({navigation}) =>({
-            org: navigation.state.params.org
-        })}
+    OrgDetail: { screen: Charities }
 });

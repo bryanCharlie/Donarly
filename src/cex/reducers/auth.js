@@ -20,7 +20,8 @@ export const auth = (
     case LOGIN_USER:
         return {
             ...state, ...{
-                isFetching: true
+                isFetching: true,
+                error: false
             }
         };
     case LOGIN_RETURNING_USER:
