@@ -10,6 +10,10 @@ export const SEARCH_CHARITY_FAILURE = 'SEARCH_CHARITY_FAILURE';
 export const GET_CHARITY_DATA = 'GET_CHARITY_DATA';
 export const UPDATE_CURRENT_PAGE = 'UPDATE_CURRENT_PAGE';
 
+/*
+    Called with no parameter
+*/
+
 export const retreiveCategories = () => {
     return{
         type: [ GET_CHARITY_CATEGORIES, GET_CHARITY_CATEGORIES_SUCCESS, GET_CHARITY_CATEGORIES_FAILURE ],
@@ -22,6 +26,28 @@ export const retreiveCategories = () => {
         }
     };
 };
+
+/*
+    Called with category={integer} page_num={integer}
+
+    The Category will be the index of the selection. For example to get charities by category "Animals"
+
+    retreiveCharitiesByCategory(0, <page_num>)
+
+    [
+        "Animals",
+        "Arts, Culture, Humanities",
+        "Education",
+        "Environment",
+        "Health",
+        "Human Services",
+        "International",
+        "Human and Civil Rights",
+        "Religion",
+        "Community Development",
+        "Research and Public Policy"
+    ]
+*/
 
 export const retreiveCharitiesByCategory  = (category, page_num) => {
     return{
@@ -38,6 +64,11 @@ export const retreiveCharitiesByCategory  = (category, page_num) => {
         }
     };
 };
+
+/*
+    Called with search_value={string | integer} page_num={integer}
+    general search function.
+*/
 
 export const searhCharity = (search_value, page_num) => {
     return{
