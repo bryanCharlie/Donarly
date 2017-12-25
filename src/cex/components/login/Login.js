@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loginUser } from 'actions/auth';
+import { loginUser, logOutUser } from 'actions/auth';
 import { getUserProfile } from 'actions/profile';
 import { GlobalStyle, LoginStyle } from 'styles/main';
 
 
 const mapStateToProps = state => {
     return {
-        auth: state.auth
+        auth: state.auth,
+        profile: state.profile
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
         loginUser,
+        logOutUser,
         getUserProfile
     }, dispatch );
 };
@@ -39,13 +41,7 @@ export class Login extends Component {
             if(this.props.auth.user){
                 this.props.getUserProfile()
                 .then(res => {
-                    if(this.props.profile.userIsAuthenticated){
-                        this.props.navigation.navigate('NavigationScreen');
-                    }
-                    else {
-                        this.props.logOutUser();
-                        this.props.navigation.navigate('Home');
-                    }
+                        console.log("IN LOGIN GETTING USER PROFILE ", this.props.profile)
                 });
             }
         });

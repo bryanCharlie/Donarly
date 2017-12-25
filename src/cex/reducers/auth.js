@@ -18,6 +18,7 @@ export const auth = (
 
     switch(type){
     case LOGIN_USER:
+        console.log("CALLED LOGIN_USER ")
         removeUser();
         return {
             ...state, ...defaultState
