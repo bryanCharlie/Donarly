@@ -18,11 +18,9 @@ export const auth = (
 
     switch(type){
     case LOGIN_USER:
+        removeUser();
         return {
-            ...state, ...{
-                isFetching: true,
-                error: false
-            }
+            ...state, ...defaultState
         };
     case LOGIN_RETURNING_USER:
         return {
@@ -32,16 +30,20 @@ export const auth = (
             }
         };
     case LOGIN_SUCCESS:
+        setUser(data);
         return {
             ...state, ...{
+                ...defaultState,
                 isFetching: false,
                 user: data,
                 message
             }
         };
     case LOGIN_FAILURE:
+        removeUser();
         return {
             ...state, ...{
+                ...defaultState,
                 isFetching: false,
                 error: true,
                 message
@@ -51,6 +53,7 @@ export const auth = (
         removeUser();
         return {
             ...state, ...{
+                ...defaultState,
                 isFetching: false,
                 error: false,
                 user: undefined,
@@ -59,14 +62,13 @@ export const auth = (
         };
     case REGISTER_USER:
         return{
-            ... state, ...{
-                isFetching: true
-            }
+            ... state, ...defaultState
         };
     case REGISTER_SUCCESS:
         setUser(data);
         return {
             ...state, ...{
+                ...defaultState,
                 isFetching: false,
                 user: data,
                 message
@@ -75,6 +77,7 @@ export const auth = (
     case REGISTER_FAILURE:
         return{
             ...state, ...{
+                ...defaultState,
                 isFetching: false,
                 user: undefined,
                 error: true,

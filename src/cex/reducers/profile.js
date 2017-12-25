@@ -4,7 +4,8 @@ const defaultState = {
     isfetching: true,
     error: false,
     message: undefined,
-    profile: undefined
+    profile: undefined,
+    userIsAuthenticated: false
 };
 
 export const profile = (
@@ -17,26 +18,29 @@ export const profile = (
     switch(type){
     case GET_PROFILE:
         return {
-            ...state,
-            isfetching: true,
-            error: false
+            ...state, ...{
+                ...defaultState
+            }
         };
 
     case GET_PROFILE_SUCCESS:
         return {
-            ...state,
-            isfetching: false,
-            error: false,
-            message: message,
-            profile: data
+            ...state, ...{
+                isfetching: false,
+                error: false,
+                message: message,
+                profile: data,
+                userIsAuthenticated: true
+            }
         };
 
     case GET_PROFILE_FAILURE:
         return {
-            ...state,
-            isfetching: false,
-            error: true,
-            message: message
+            ...state, ...{
+                isfetching: false,
+                error: true,
+                message: message
+            }
         };
 
     default:

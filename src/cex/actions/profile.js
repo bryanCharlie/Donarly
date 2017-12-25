@@ -1,5 +1,5 @@
 import config from 'config';
-import { GET } from 'lib/http';
+import { GET, formatQueryString } from 'lib/http';
 
 export const GET_PROFILE = 'GET_PROFILE';
 export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';
@@ -16,7 +16,7 @@ export const getUserProfile = () => {
             success: '',
             failure: 'An error occured. Please try again.',
             callAPI: (token) => {
-                return GET(`${config.API_PROFILE_ENDPOINT}/payment-profile`, {});
+                return GET(`${config.API_USERS_ENDPOINT}/user-profile`, {}, token);
             }
         }
     };

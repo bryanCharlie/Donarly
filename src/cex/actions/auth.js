@@ -1,4 +1,4 @@
-import { _FETCH, POST } from 'lib/http';
+import { _FETCH, POST, GET, formEncodedData, formatQueryString } from 'lib/http';
 import config from 'config';
 
 export const LOGIN_USER = 'LOGIN_USER';
@@ -19,7 +19,7 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 */
 
 export const loginUser = (user) => {
-    console.log(`${config.API_AUTH_ENDPOINT}/login`);
+    const formData = formEncodedData({ username: user.username, password: user.password });
     return{
         type: [ LOGIN_USER, LOGIN_SUCCESS, LOGIN_FAILURE ],
         http: {
@@ -27,8 +27,8 @@ export const loginUser = (user) => {
             failure: 'Invalid email or password',
             callAPI: (token) => {
                 return POST(`${config.API_AUTH_ENDPOINT}/login`, {
-                    body: JSON.stringify({ username: user.username, password: user.password })
-                });
+                    body: formData
+                }, token);
             }
         }
     };
@@ -62,6 +62,7 @@ export const logOutUser = () => {
 export const registerUser = (user) =>{
   // TODO Finish this...
     console.log(`${config.API_AUTH_ENDPOINT}/register`);
+    const formData = formEncodedData({ first_name: user.firstname, last_name: user.lastname, email: user.username, password: user.password });
     return{
         type: [REGISTER_USER, REGISTER_SUCCESS, REGISTER_FAILURE],
         http: {
@@ -69,8 +70,8 @@ export const registerUser = (user) =>{
             failure: 'Please try again.',
             callAPI: (token) => {
                 return POST(`${config.API_AUTH_ENDPOINT}/register`, {
-                    body: JSON.stringify({ first_name: user.firstname, last_name: user.lastname, email: user.username, password: user.password })
-                });
+                    body: formData
+                }, token);
             }
         }
     };

@@ -7,7 +7,7 @@ const user_key = config.user_key;
 const default_headers = {
     'credentials': 'include',
     'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'multipart/form-data; charset=utf-8'
 };
 
 export const getUser = async () => {
@@ -86,4 +86,24 @@ export const GET = ( endpoint, options, token ) => {
     return fetch( endpoint,
         { ...{ method: 'GET' }, headers: apply_auth_header(token), ...options }
     );
+};
+
+export const formatQueryString = (params) => {
+    const searchParams = new URLSearchParams();
+    for(const key in params) {
+        if(params.hasOwnProperty(key)){
+            searchParams.append(key, params[key]);
+        }
+    }
+    return searchParams.toString();
+};
+
+export const formEncodedData = (params) => {
+    const formData = new FormData();
+    for(const key in params) {
+        if(params.hasOwnProperty(key)){
+            formData.append(key, params[key]);
+        }
+    }
+    return formData;
 };

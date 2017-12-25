@@ -3,6 +3,7 @@ import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loginUser } from 'actions/auth';
+import { getUserProfile } from 'actions/profile';
 import { GlobalStyle, LoginStyle } from 'styles/main';
 
 
@@ -14,7 +15,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        loginUser
+        loginUser,
+        getUserProfile
     }, dispatch );
 };
 
@@ -35,10 +37,20 @@ export class Login extends Component {
         console.log(this.state.email);
         this.props.loginUser({username: this.state.email, password: this.state.password}).then(res => {
             if(this.props.auth.user){
-                this.props.navigation.navigate('NavigationScreen');
+                this.props.getUserProfile()
+                .then(res => {
+                    if(this.props.profile.userIsAuthenticated){
+                        this.props.navigation.navigate('NavigationScreen');
+                    }
+                    else {
+                        this.props.logOutUser();
+                        this.props.navigation.navigate('Home');
+                    }
+                });
             }
         });
     }
+
     render() {
         const displayError = () => {
             return ( <Text style={LoginStyle.hidden}>

@@ -9,7 +9,8 @@ import { GlobalStyle, HomeStyle } from 'styles/main';
 
 const mapStateToProps = state => {
     return {
-        auth: state.auth
+        auth: state.auth,
+        profile: state.profile
     };
 };
 
@@ -29,12 +30,23 @@ export class Home extends Component {
         super(props);
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         getUser().then(res => {
             if(res){
                 this.props.loginReturningUser(res);
             }
-        }).then(res => this.props.getUserProfile());
+        }).then(res => {
+            this.props.getUserProfile()
+            .then(res => {
+                if(this.props.profile.userIsAuthenticated){
+                    this.goToNavigationScreen();
+                }
+                else {
+                    this.props.logOutUser();
+                }
+            });
+        }
+        );
     }
 
     componentWillReceiveProps = (props) => {
@@ -50,7 +62,7 @@ export class Home extends Component {
     }
 
     goToSignUp = () => {
-        this.props.navigation.navigate('Categories');
+        this.props.navigation.navigate('Register');
     }
 
     goToLogin = () => {
