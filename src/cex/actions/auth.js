@@ -62,7 +62,7 @@ export const logOutUser = () => {
 export const registerUser = (user) =>{
   // TODO Finish this...
     console.log(`${config.API_AUTH_ENDPOINT}/register`);
-    const formData = formEncodedData({ first_name: user.firstname, last_name: user.lastname, email: user.username, password: user.password });
+    const formData = formEncodedData({ first_name: user.firstname, last_name: user.lastname, email: user.email, password: user.password });
     return{
         type: [REGISTER_USER, REGISTER_SUCCESS, REGISTER_FAILURE],
         http: {

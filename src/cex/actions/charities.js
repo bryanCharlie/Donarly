@@ -1,5 +1,5 @@
 import config from 'config';
-import { GET, POST } from 'lib/http';
+import { GET, POST, formatQueryString } from 'lib/http';
 
 export const GET_CHARITY_CATEGORIES = 'GET_CHARITY_CATEGORIES';
 export const GET_CHARITY_CATEGORIES_SUCCESS = 'GET_CHARITY_CATEGORIES_SUCCESS';
@@ -9,6 +9,7 @@ export const SEARCH_CHARITY_SUCCESS = 'SEARCH_CHARITY_SUCCESS';
 export const SEARCH_CHARITY_FAILURE = 'SEARCH_CHARITY_FAILURE';
 export const GET_CHARITY_DATA = 'GET_CHARITY_DATA';
 export const UPDATE_CURRENT_PAGE = 'UPDATE_CURRENT_PAGE';
+export const RESET_PAGE_COUNT = 'RESET_PAGE_COUNT'
 
 /*
     Called with no parameter
@@ -50,16 +51,14 @@ export const retreiveCategories = () => {
 */
 
 export const retreiveCharitiesByCategory  = (category, page_num) => {
+    const queryString = formatQueryString({category, page_num})
     return{
         type: [ SEARCH_CHARITY, SEARCH_CHARITY_SUCCESS, SEARCH_CHARITY_FAILURE ],
         http: {
             success: '',
             failure: 'Service currently unavailable. Please try again.',
             callAPI: (token) => {
-                return GET(`${config.API_CHARITIES_ENDPOINT}/organizations-by-category`, {
-                    category,
-                    search_value
-                }, token);
+                return GET(`${config.API_CHARITIES_ENDPOINT}/organizations-by-category?${queryString}`, {}, token);
             }
         }
     };
@@ -83,5 +82,11 @@ export const searhCharity = (search_value, page_num) => {
                 }, token);
             }
         }
+    };
+};
+
+export const resetPageCount = () => {
+    return {
+        type: RESET_PAGE_COUNT
     };
 };

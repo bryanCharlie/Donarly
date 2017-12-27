@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { View, Dimensions, TouchableOpacity, KeyboardAvoidingView, ScrollView, Image } from 'react-native';
+import { View, Dimensions, TouchableOpacity, KeyboardAvoidingView, ScrollView, Image, Text } from 'react-native';
 import { Button } from 'assets/Button';
 import { GlobalStyle } from 'styles/main';
 
-export const ImageButton = ({onButtonPress, imgSrc, imgH, imgW}) => {
+export const ImageButton = ({onButtonPress, imgSrc, imgH, imgW, text}) => {
     return(
         <View style = {GlobalStyle.imageButton} >
-        <TouchableOpacity onPress= { onButtonPress }>
-                <Image resizeMode='stretch' style={{height:imgH, width:imgW}} source={imgSrc}/>
-        </TouchableOpacity>
+            <TouchableOpacity onPress= { onButtonPress }>
+                    <Image resizeMode='stretch' style={{height:imgH, width:imgW}} source={imgSrc}>
+                        <Text>
+                            {text}
+                        </Text>
+                    </Image>
+            </TouchableOpacity>
         </View>
     );
 };

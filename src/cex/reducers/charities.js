@@ -1,15 +1,15 @@
 import { getUser, setUser, removeUser } from 'lib/http';
-import { GET_CHARITY_CATEGORIES, GET_CHARITY_CATEGORIES_SUCCESS, GET_CHARITY_CATEGORIES_FAILURE, SEARCH_CHARITY, SEARCH_CHARITY_SUCCESS, SEARCH_CHARITY_FAILURE } from 'actions/charities';
+import { GET_CHARITY_CATEGORIES, GET_CHARITY_CATEGORIES_SUCCESS, GET_CHARITY_CATEGORIES_FAILURE, SEARCH_CHARITY, SEARCH_CHARITY_SUCCESS, SEARCH_CHARITY_FAILURE, RESET_PAGE_COUNT } from 'actions/charities';
 import { AsyncStorage } from 'react-native';
 
 const defaultState = {
     //userAuthenticated: false
-    isFetching: true,
+    isFetching: false,
     error: false,
     categories: undefined,
     current_page: 1,
     message: undefined,
-    charities: undefined
+    charitiesList: undefined
 };
 
 export const charities = (
@@ -39,24 +39,33 @@ export const charities = (
         };
     case SEARCH_CHARITY:
         return {
-            ...state,
-            isFetching: true
+            ...state
         };
     case SEARCH_CHARITY_SUCCESS:
         return {
-            ...state,
-            isFetching: false,
-            current_page: state.current_page++,
-            charities: data
+            ...state, ...{
+                ...defaultState,
+                isFetching: false,
+                current_page: state.current_page++,
+                charitiesList: data
+            }
         };
     case SEARCH_CHARITY_FAILURE:
         return {
-            ...state,
-            isFetching: false,
-            current_page: 1,
-            error: true,
-            message
+            ...state, ...{
+                ...defaultState,
+                isFetching: false,
+                current_page: 1,
+                error: true,
+                message
+            }
         };
+    case RESET_PAGE_COUNT:
+        return {
+            ...state, ...{
+                ...defaultState
+            }
+        }
     default:
         return defaultState;
     }

@@ -41,6 +41,7 @@ export class Login extends Component {
             if(this.props.auth.user){
                 this.props.getUserProfile()
                 .then(res => {
+                    this.props.navigation.navigate('NavigationScreen')
                         console.log("IN LOGIN GETTING USER PROFILE ", this.props.profile)
                 });
             }

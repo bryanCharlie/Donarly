@@ -63,6 +63,7 @@ class RegisterForm extends Component {
             touched,
             secureTextEntry,
             placeholder,
+            onChangeText,
             ...inputProps
         } = props;
 
@@ -91,18 +92,21 @@ class RegisterForm extends Component {
             <View style = {RegisterFormStyle.inputLine}>
 
             <TextInput
-              underlineColorAndroid='transparent'
-              {...inputProps}
-              onChangeText={input.onChange}
-              onBlur={input.onBlur}
-              onFocus={input.onFocus}
-              value={input.value}
-              secureTextEntry={secureTextEntry}
-              type ={type}
-              placeholder ={placeholder}
-              placeholderTextColor = '#C08200'
-              style={RegisterFormStyle.input}
-              />
+            underlineColorAndroid='transparent'
+            {...inputProps}
+            onChangeText={(val) => {
+                input.onChange(val)
+                onChangeText(val)
+            }}
+            onBlur={input.onBlur}
+            onFocus={input.onFocus}
+            value={input.value}
+            secureTextEntry={secureTextEntry}
+            type ={type}
+            placeholder ={placeholder}
+            placeholderTextColor = '#C08200'
+            style={RegisterFormStyle.input}
+            />
             </View>
 
             <Text style = {RegisterFormStyle.errorNotice}>
@@ -157,6 +161,7 @@ class RegisterForm extends Component {
                 secureTextEntry = {false}
                 type ='text'
                 placeholder = "First Name"
+                onChangeText = {(val) => this.setState({firstname: val})}
                 />
 
                 <Field name = "lastname"
@@ -164,6 +169,7 @@ class RegisterForm extends Component {
                  secureTextEntry = {false}
                  type = 'text'
                  placeholder = "Last Name"
+                 onChangeText = {(val) => this.setState({lastname: val})}
                 />
 
                 <Field name = 'email'
@@ -171,6 +177,7 @@ class RegisterForm extends Component {
                 secureTextEntry = {false}
                 type = 'email'
                 placeholder = "Email"
+                onChangeText = {(val) => this.setState({email: val})}
                  />
 
                 <Field name = 'password'
@@ -178,6 +185,7 @@ class RegisterForm extends Component {
                 secureTextEntry = {true}
                 type = 'password'
                 placeholder = "Password"
+                onChangeText = {() => {}}
                 />
 
                 <Field name = 'confirmPassword'
@@ -185,6 +193,7 @@ class RegisterForm extends Component {
                 secureTextEntry = {true}
                 type = 'password'
                 placeholder = "Confirm Password"
+                onChangeText = {(val) => this.setState({password: val})}
                 />
 
                 <Text style = {RegisterFormStyle.agreement}>
