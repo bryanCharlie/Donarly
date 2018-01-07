@@ -46,7 +46,7 @@ export class Charities extends Component{
         //         ein: 2
         //     }
         // ]} />);
-        return <OrgDetail data={this.props.charities.charities} />;
+        return <OrgDetail data={this.props.charities.charitiesList} />;
     }
 
 }
