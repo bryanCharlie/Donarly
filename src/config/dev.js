@@ -1,4 +1,4 @@
-const API_ENDPOINT_BASE = 'https://flask-json-api.herokuapp.com/';
+const API_ENDPOINT_BASE = 'https://flask-json-api.herokuapp.com';
 const CC_PUBLIC_KEY = 'pk_test_hoqO8vgA9RK-VSXr6gCU1Q';
 
 let config = {
