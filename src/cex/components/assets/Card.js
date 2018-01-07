@@ -2,7 +2,7 @@
 //Generic Card
 
 import React, { Component } from 'react';
-import { View, Text, Image, ImageBackground, Platform } from 'react-native';
+import { View, Text, Image, ImageBackground, Platform, TouchableHighlight } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 import StarRating from 'react-native-star-rating';
@@ -33,6 +33,10 @@ export class Card extends Component {
     //     });
     // }
 
+    onCardClick = () => {
+        this.props.onClick && this.props.onClick()
+    }
+
     render() {
         const { 
             imageHeight,
@@ -41,14 +45,18 @@ export class Card extends Component {
             descWidth, 
             rating, 
             description, 
-            descriptionColor
+            descriptionColor,
+            onClick
         } = this.props;
 
         return (
-            <View style= {{
-                height: imageHeight,
-                marginTop: 5
-            }}>
+            <TouchableHighlight 
+                onPress = {this.onCardClick}
+                style = {{
+                    height: imageHeight,
+                    marginTop: 5
+                }}
+            >
                 <ImageBackground source={imgSrc} style={{ //Image
                     height: imageHeight,
                     width: descWidth,
@@ -123,7 +131,7 @@ export class Card extends Component {
                     </View>
                 </ImageBackground>
             
-            </View>
+            </TouchableHighlight>
         );
     }
 }

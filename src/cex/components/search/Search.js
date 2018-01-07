@@ -9,7 +9,6 @@ import { retreiveCategories } from 'actions/charities';
 import { FlatList } from 'components/assets/FlatList';
 import { SearchBar } from 'components/assets/SearchBar';
 import { retreiveCharitiesByCategory, resetPageCount } from 'actions/charities';
-import { Charities } from 'components/organizations/Charities';
 
 const mapStateToProps = state => {
     return {
@@ -68,7 +67,12 @@ export class Search extends Component {
     }
 
     renderCharities = (charities) => {
-        return <Charities/>
+        return <FlatList
+            showsVerticalScrollIndicator={true}
+            scrollEnabled={true}
+            data={charities}
+            type={'charity'}
+        />
     }
 
     render() {
