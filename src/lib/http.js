@@ -1,6 +1,7 @@
 import config from 'config';
 import { AsyncStorage } from 'react-native';
 
+const URLSearchParams = require('url-search-params');
 
 const user_key = config.user_key;
 
