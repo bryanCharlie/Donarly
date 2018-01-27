@@ -4,6 +4,7 @@
   	"transform-decorators-legacy",
     "transform-object-rest-spread",
     ["module-resolver", {
+        "cwd": "babelrc",
         "root": ["./src"],
         "alias": {
           "cex": "./src/cex",
