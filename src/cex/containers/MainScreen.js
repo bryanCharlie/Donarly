@@ -14,8 +14,6 @@ import { CreditContainer } from 'components/credit-card/CreditContainer';
 
 import { CardSwiper } from 'components/assets/CardSwiper';
 
-// import { ImageButton } from 'components/assets/ImageButton';
-
 //DrawerNavigator isn't doing anything as of now, So I comment it out. -RK
 
 // const HomeScreen = DrawerNavigator({
