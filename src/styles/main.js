@@ -177,8 +177,7 @@ export const LoginStyle = StyleSheet.create({
         padding: 30,
         flex: 1,
         width: null,
-        height: null,
-        resizeMode: 'stretch'
+        height: null
     },
     input: {
         height: 35,

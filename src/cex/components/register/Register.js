@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, ImageBackground, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { ReduxRegisterForm } from 'components/register/RegisterForm';
 import { NavigationActions } from 'react-navigation';
 
@@ -23,7 +23,7 @@ export class Register extends Component {
             <View style={RegisterStyle.container}>
                 <View style = {RegisterStyle.headerContainer}>
                     <TouchableOpacity onPress={this.navigateReturn}>
-                        <Image style = {RegisterStyle.backButtonStyle} source={require('icons/back.png')}/>
+                        <ImageBackground style = {RegisterStyle.backButtonStyle} source={require('icons/back.png')}/>
                     </TouchableOpacity>
 
                     <Text style = {RegisterStyle.header}>
