@@ -61,6 +61,22 @@ export const GlobalStyle = StyleSheet.create({
     }
 });
 
+export const LoadingScreenStyle = StyleSheet.create({
+    text: {
+        fontSize: 100,
+        color: '#2A9D8F',
+        fontWeight: 'bold',
+        fontFamily: 'Avenir',
+        textAlign: 'center'
+    },
+    container: {
+        height: Dimensions.get('window').height,
+        width: Dimensions.get('window').width,
+        backgroundColor: '#444444',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+});
 export const SearchStyle = StyleSheet.create({
     input: {
         textAlign: 'left',

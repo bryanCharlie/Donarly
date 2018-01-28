@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, TouchableOpacity, KeyboardAvoidingView, ScrollView, Image, Text } from 'react-native';
+import { View, Dimensions, TouchableOpacity, KeyboardAvoidingView, ScrollView, ImageBackground, Text } from 'react-native';
 import { Button } from 'assets/Button';
 import { GlobalStyle } from 'styles/main';
 
@@ -7,11 +7,8 @@ export const ImageButton = ({onButtonPress, imgSrc, imgH, imgW, text}) => {
     return(
         <View style = {GlobalStyle.imageButton} >
             <TouchableOpacity onPress= { onButtonPress }>
-                    <Image resizeMode='stretch' style={{height:imgH, width:imgW}} source={imgSrc}>
-                        <Text>
-                            {text}
-                        </Text>
-                    </Image>
+                <Text> {text} </Text>
+                <ImageBackground resizeMode='stretch' style={{height:imgH, width:imgW}} source={imgSrc}/>
             </TouchableOpacity>
         </View>
     );
