@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { BackAndroid, Image, View, Text, TouchableOpacity } from 'react-native'; //Image added for IOS back button
 import { Tile } from './Tile';
 import { Header } from './Header';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CategoriesStyle } from 'styles/main';
-import { retreiveCategories } from 'actions/charities';
+import { retrieveCategories } from 'actions/charities';
 import { FlatList } from 'components/assets/FlatList';
 import { SearchBar } from 'components/assets/SearchBar';
 import { retreiveCharitiesByCategory, resetPageCount } from 'actions/charities';
@@ -20,7 +20,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        retreiveCharitiesByCategory,
+        retrieveCharitiesByCategory,
         resetPageCount
     }, dispatch );
 };
@@ -37,14 +37,18 @@ export class Search extends Component {
         };
     }
 
+    static navigationOptions = {
+        header: null
+    }
+
     onCategoryClick = (index) => {
-        this.props.retreiveCharitiesByCategory(index, this.props.charities.current_page)
+        this.props.retrieveCharitiesByCategory(index, this.props.charities.current_page)
         .then(res => {
             this.props.charities.charitiesList && this.setState({
                 showCategories: false,
                 showCharities: true
             })
-        });
+        }); 
     }
 
     renderCategories = () => {
@@ -107,5 +111,8 @@ export class Search extends Component {
     }
 }
 
+BackAndroid.addEventListener("hardwareBackPress", () => {
+    return false // exit app
+})
 //TODO add constructor for props
 //TODO add style for ScrollView
