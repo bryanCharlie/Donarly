@@ -9,29 +9,13 @@ export class FlatList extends React.PureComponent {
         return index;
     }
 
-    renderItem = ({item}) => {
-        const { type } = this.props;
-        switch(type){
-        case 'category':
-            return <ImageButton
-                text={item.text}
-                onButtonPress={item.onCategoryClick}
-            />;
-        case 'charity':
-            return <Card
-                title = {item.charityName}
-                description = {item.tagLine}
-            />
-        }
-    };
-
     render() {
         return (
             <RNFlatList
                 data={this.props.data}
                 extraData={this.state}
                 keyExtractor={this.keyExtractor}
-                renderItem={this.renderItem}
+                renderItem={(data) => this.props.render(data, this.props.type)}
             />
         );
     }

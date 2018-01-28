@@ -34,7 +34,7 @@ export class Card extends Component {
     // }
 
     onCardClick = () => {
-        this.props.onClick && this.props.onClick()
+        this.props.onClick && this.props.onClick();
     }
 
     render() {

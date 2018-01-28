@@ -1,4 +1,4 @@
-const API_ENDPOINT_BASE = 'https://flask-json-api.herokuapp.com';
+const API_ENDPOINT_BASE = 'http://127.0.0.1:5000';
 const CC_PUBLIC_KEY = 'pk_test_hoqO8vgA9RK-VSXr6gCU1Q';
 
 let config = {
@@ -8,6 +8,7 @@ let config = {
     API_USERS_ENDPOINT: `${API_ENDPOINT_BASE}/users`,
     API_TRANSACTION_ENDPOINT: `${API_ENDPOINT_BASE}/transactions`,
     API_CHARITIES_ENDPOINT: `${API_ENDPOINT_BASE}/charities`,
+    API_CREDIT_CARD_ENDPOINT: `${API_ENDPOINT_BASE}/credit-card`,
     DEFAULT_PAGE_SIZE: 25
 };
 
