@@ -2,7 +2,7 @@ import React from 'react';
 import { View, FlatList as RNFlatList, Text, ActivityIndicator} from 'react-native';
 import { Dimensions } from 'react-native';
 import { ImageButton } from 'components/assets/ImageButton';
-import { Card } from 'components/assets/Card'
+import { Card } from 'components/assets/Card';
 import { SearchStyle } from 'styles/main';
 
 export class FlatList extends React.PureComponent {
@@ -52,7 +52,7 @@ export class FlatList extends React.PureComponent {
             return <Card
                 title = {item.charityName}
                 description = {item.tagLine}
-            />
+            />;
         }
     };
 
