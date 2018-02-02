@@ -27,7 +27,7 @@ export class LoadingScreen extends Component{
     }
 
     componentDidMount = () => {
-         this.props.logOutUser(); //to be used as necessarily while debugging
+        this.props.logOutUser(); //to be used when necessary while debugging
         getUser().then(res => {
             if(res){
                 this.props.loginReturningUser(res);

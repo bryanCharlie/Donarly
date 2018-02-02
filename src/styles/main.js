@@ -103,6 +103,11 @@ export const SearchStyle = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    loadingSpinner: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        padding: 40
     }
 });
 
@@ -194,7 +199,7 @@ export const LoginStyle = StyleSheet.create({
         flex: 1,
         width: null,
         height: null,
-        resizeMode: 'stretch'
+        // resizeMode: 'stretch' //commented out for now so the warning disappears - Robbi
     },
     input: {
         height: 35,

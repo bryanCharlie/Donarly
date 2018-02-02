@@ -3,6 +3,7 @@ import { View, FlatList as RNFlatList, Text, ActivityIndicator} from 'react-nati
 import { Dimensions } from 'react-native';
 import { ImageButton } from 'components/assets/ImageButton';
 import { Card } from 'components/assets/Card'
+import { SearchStyle } from 'styles/main';
 
 export class FlatList extends React.PureComponent {
     constructor(props){
@@ -11,21 +12,18 @@ export class FlatList extends React.PureComponent {
         this.state = {
             dataCount: 6,
             data: [],
-            error: null,
-            refreshing: false
+            loading: false,
         }
     }
 
-    componentDidMount(){
-        this.handleLoadMore();
-    }
-
     handleLoadMore = () => {
+        this.setState({
+            loading: true
+          });
         setTimeout(() => {
-            this.setState({
-                refreshing: true,
-                dataCount: this.state.dataCount + 3
-            })
+            this.setState((prevState) => {
+                return {dataCount: prevState.dataCount + 3};
+          });
         }, 2500);
     };
 
@@ -34,9 +32,9 @@ export class FlatList extends React.PureComponent {
     }
 
     renderFooter = () => {
-        if(!this.state.refreshing) return null
+        if(!this.state.loading) return null
         return(
-            <View style={{paddingVertical: 20}}>
+            <View style={ SearchStyle.loadingSpinner }>
                 <ActivityIndicator animating size="large"/>
             </View>
         )
@@ -65,10 +63,9 @@ export class FlatList extends React.PureComponent {
                 extraData={this.state}
                 keyExtractor={this.keyExtractor}
                 renderItem={this.renderItem}
-                refreshing={this.state.refreshing}
+                loading={this.state.loading}
                 ListFooterComponent={this.renderFooter}
                 onEndReached={this.handleLoadMore}
-                onEndReachedThreshold={100}
             />
         );
     }
