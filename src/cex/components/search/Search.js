@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BackAndroid, Image, View, Text, TouchableOpacity } from 'react-native'; //Image added for IOS back button
+import { BackHandler, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Tile } from './Tile';
 import { Header } from './Header';
 import { connect } from 'react-redux';
@@ -37,6 +37,19 @@ export class Search extends Component {
         };
     }
 
+    componentDidMount(){
+        BackHandler.addEventListener("hardwareBackPress", this.androidBackHandler.bind(this));
+    }
+
+    componentWillUnmount(){
+        BackHandler.removeEventListener("hardwareBackPress", this.androidBackHandler.bind(this));
+    }
+
+    androidBackHandler(){
+        BackHandler.exitApp() // exit app when android's back button is tapped
+        return true;
+    }  
+
     static navigationOptions = {
         header: null
     }
@@ -49,6 +62,10 @@ export class Search extends Component {
                 showCharities: true
             })
         }); 
+    }
+
+    static navigationOptions = {
+        header: null
     }
 
     renderCategories = () => {
@@ -111,8 +128,4 @@ export class Search extends Component {
     }
 }
 
-BackAndroid.addEventListener("hardwareBackPress", () => {
-    return false // exit app
-})
-//TODO add constructor for props
 //TODO add style for ScrollView

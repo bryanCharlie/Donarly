@@ -61,6 +61,22 @@ export const GlobalStyle = StyleSheet.create({
     }
 });
 
+export const LoadingScreenStyle = StyleSheet.create({
+    text: {
+        fontSize: 100,
+        color: '#2A9D8F',
+        fontWeight: 'bold',
+        fontFamily: 'Avenir',
+        textAlign: 'center'
+    },
+    container: {
+        height: Dimensions.get('window').height,
+        width: Dimensions.get('window').width,
+        backgroundColor: '#444444',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+});
 export const SearchStyle = StyleSheet.create({
     input: {
         textAlign: 'left',
@@ -87,6 +103,11 @@ export const SearchStyle = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    loadingSpinner: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        padding: 40
     }
 });
 
@@ -177,7 +198,8 @@ export const LoginStyle = StyleSheet.create({
         padding: 30,
         flex: 1,
         width: null,
-        height: null
+        height: null,
+        // resizeMode: 'stretch' //commented out for now so the warning disappears - Robbi
     },
     input: {
         height: 35,

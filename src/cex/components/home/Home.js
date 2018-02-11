@@ -1,52 +1,11 @@
 import React, { Component } from 'react';
 import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getUser, removeUser, getToken } from 'lib/http';
-import { loginUser, loginReturningUser, logOutUser } from 'actions/auth';
-import { getUserProfile } from 'actions/profile';
 import { GlobalStyle, HomeStyle } from 'styles/main';
-
-const mapStateToProps = state => {
-    return {
-        auth: state.auth,
-        profile: state.profile
-    };
-};
-
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators({
-        loginUser,
-        loginReturningUser,
-        logOutUser,
-        getUserProfile
-    }, dispatch );
-};
-
-@connect(mapStateToProps, mapDispatchToProps)
+/* I moved everything to loading screen -RD */
 
 export class Home extends Component {
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount = () => {
-        getUser().then(res => {
-            if(res){
-                this.props.loginReturningUser(res);
-            }
-        }).then(res => {
-            this.props.getUserProfile()
-            .then(res => {
-                if(this.props.profile.userIsAuthenticated){
-                    this.goToNavigationScreen();
-                }
-                else {
-                    this.props.logOutUser();
-                }
-            });
-        }
-        );
     }
 
     componentWillReceiveProps = (props) => {
@@ -57,10 +16,6 @@ export class Home extends Component {
         header: null
     }
 
-    goToNavigationScreen = () => {//Note: not being used
-        this.props.navigation.navigate('NavigationScreen');
-    }
-
     goToSignUp = () => {
         this.props.navigation.navigate('Register');
     }
@@ -68,6 +23,7 @@ export class Home extends Component {
     goToLogin = () => {
         this.props.navigation.navigate('Login');
     }
+    
     render() {
         return (
             <View style = {HomeStyle.viewContainer}>
