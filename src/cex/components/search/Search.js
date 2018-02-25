@@ -8,8 +8,9 @@ import { CategoriesStyle } from 'styles/main';
 import { retrieveCategories } from 'actions/charities';
 import { FlatList } from 'components/assets/FlatList';
 import { SearchBar } from 'components/assets/SearchBar';
-import { retrieveCharitiesByCategory, resetPageCount } from 'actions/charities';
-import { RegisterStyle, SearchStyle } from 'styles/main';
+import { retreiveCharitiesByCategory, resetPageCount } from 'actions/charities';
+import { ImageButton } from 'components/assets/ImageButton';
+import { Card } from 'components/assets/Card'
 
 const mapStateToProps = state => {
     return {
@@ -85,6 +86,7 @@ export class Search extends Component {
                 {text: 'Research and Public Policy', onCategoryClick: () => this.onCategoryClick(11)}
             ]}
             type={'category'}
+            render={this.renderCardItem}
         />
     }
 
@@ -94,7 +96,24 @@ export class Search extends Component {
             scrollEnabled={true}
             data={charities}
             type={'charity'}
+            render={this.renderCardItem}
         />
+    }
+
+    renderCardItem = ({item}, type) => {
+        switch(type){
+        case 'category':
+            return <ImageButton
+                text={item.text}
+                onButtonPress={item.onCategoryClick}
+            />;
+        case 'charity':
+            return <Card
+                title = {item.charityName}
+                description = {item.tagLine}
+                onClick={() => {}}
+            />
+        }
     }
 
     render() {

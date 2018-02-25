@@ -52,7 +52,7 @@ export class FlatList extends React.PureComponent {
             return <Card
                 title = {item.charityName}
                 description = {item.tagLine}
-            />
+            />;
         }
     };
 
