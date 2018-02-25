@@ -2,7 +2,7 @@ import React from 'react';
 import { View, FlatList as RNFlatList, Text, ActivityIndicator} from 'react-native';
 import { Dimensions } from 'react-native';
 import { ImageButton } from 'components/assets/ImageButton';
-import { Card } from 'components/assets/Card'
+import { Card } from 'components/assets/Card';
 import { SearchStyle } from 'styles/main';
 
 export class FlatList extends React.PureComponent {
@@ -62,7 +62,7 @@ export class FlatList extends React.PureComponent {
                 data={this.props.data.slice(0, this.state.dataCount)}
                 extraData={this.state}
                 keyExtractor={this.keyExtractor}
-                renderItem={this.renderItem}
+                renderItem={this.renderItem}//renderItem={(data) => this.props.render(data, this.props.type)}
                 loading={this.state.loading}
                 ListFooterComponent={this.renderFooter}
                 onEndReached={this.handleLoadMore}
