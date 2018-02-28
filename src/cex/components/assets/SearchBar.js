@@ -32,7 +32,8 @@ export class SearchBar extends Component{
     render(){
         return (
             <View>
-              <View style={SearchStyle.barContainer}>
+                <View style={SearchStyle.topBar}/>
+                <View style={SearchStyle.barContainer}>
                   <View style={SearchStyle.inputBar}>
                   <Image source={require('images/search.png')} style={SearchStyle.image}/>
                   <TextInput
