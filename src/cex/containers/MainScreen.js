@@ -25,7 +25,7 @@ import { CardSwiper } from 'components/assets/CardSwiper';
 // });
 
 export const MainScreen = StackNavigator({
-    WebModal: {screen: WebModal},
+    //WebModal: {screen: WebModal},
     Home: { screen: Home },
     Search: { screen: Search },
     Login: { screen: Login },

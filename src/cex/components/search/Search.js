@@ -9,6 +9,7 @@ import { retreiveCategories } from 'actions/charities';
 import { FlatList } from 'components/assets/FlatList';
 import { SearchBar } from 'components/assets/SearchBar';
 import { retreiveCharitiesByCategory, resetPageCount } from 'actions/charities';
+import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 
 const mapStateToProps = state => {
     return {
@@ -34,7 +35,17 @@ export class Search extends Component {
             showCharities: false
         };
     }
-
+    static navigationOptions = {
+        tabBarLabel: 'Home',
+        tabBarIcon: ({tintColor}) => {
+            return( <MaterialIcons
+                      name='home'
+                      size={35}
+                      color={ tintColor }
+                  />);
+        },
+        header: null
+    }
     onCategoryClick = (index) => {
         this.props.retreiveCharitiesByCategory(index, this.props.charities.current_page)
         .then(res => {
