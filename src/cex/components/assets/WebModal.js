@@ -7,7 +7,7 @@ const html = `
 
 
 <!-- Include PandaJS -->
-<script type="text/javascript" src="http://d2t45z63lq9zlh.cloudfront.net/panda-v0.0.5.min.js"></script>
+<script type="text/javascript" src="lib/pandaLib.js"></script>
 
 <!--
 <script type="text/javascript">function hello(){
@@ -73,10 +73,11 @@ const html = `
 </script>
 
 `;
-
-const js = `  // Call Panda.init() with your Panda Publishable Key and the DOM id of the
+const wateva = require("lib/pandaLib")
+const js = `<script>
+// Call Panda.init() with your Panda Publishable Key and the DOM id of the
 // credit card-related form element
-console.log('me ah get cyall');
+console.log('me ah get cyal');
 Panda.init('pk_test_hoqO8vgA9RK-VSXr6gCU1Q', 'panda_cc_form');
 
 Panda.on('success', function(cardToken) {
@@ -84,16 +85,19 @@ Panda.on('success', function(cardToken) {
   // This token is used in PandaPay API calls for creating donations and grants
   // so that you don't have to worry about security concerns with dealing with
   // credit card data.
-  console.log('tokenized called');
-  window.postMessage(cardToken);
+  alert('success!')
+  window.postMessage(cardToken,*);
 });
 
 Panda.on('error', function(errors) {
   // errors is a human-readable list of things that went wrong
   //  (invalid card number, missing last name, etc.)
+  console.log(errors);
+  alert(errors);
   window.postMessage('something fuk up');
 });
-`;
+
+</script>`;
 export class WebModal extends Component {
     constructor(props){
         super(props);
@@ -141,6 +145,7 @@ export class WebModal extends Component {
         // }
         
         // const data = this.props.data;
+
         if(Platform.OS === 'Android')
         {
             return(
@@ -159,11 +164,10 @@ export class WebModal extends Component {
 
                <WebView  source={{html, baseUrl: '/'}}
                 style={{flex: 1}}
-                injectedJavaScript ={`document.querySelector("#myid").style.backgroundColor='blue'`}
+                injectedJavaScript ={wateva}
                 onMessage = {this.onMessage}
                 javaScriptEnabledAndroid={true}
                 javaScriptEnabled={true}
-                domStorageEnabled={true}
                 mixedContentMode='always' />
 
         );
