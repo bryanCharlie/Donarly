@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { BackHandler, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Tile } from './Tile';
 import { Header } from './Header';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CategoriesStyle } from 'styles/main';
-import { retreiveCategories } from 'actions/charities';
+import { retrieveCategories } from 'actions/charities';
 import { FlatList } from 'components/assets/FlatList';
 import { SearchBar } from 'components/assets/SearchBar';
 import { retreiveCharitiesByCategory, resetPageCount } from 'actions/charities';
 import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
+import { ImageButton } from 'components/assets/ImageButton';
+import { Card } from 'components/assets/Card'
 
 const mapStateToProps = state => {
     return {
@@ -19,7 +21,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        retreiveCharitiesByCategory,
+        retrieveCharitiesByCategory,
         resetPageCount
     }, dispatch );
 };
@@ -46,14 +48,36 @@ export class Search extends Component {
         },
         header: null
     }
+
+    componentDidMount(){
+        BackHandler.addEventListener("hardwareBackPress", this.androidBackHandler.bind(this));
+    }
+
+    componentWillUnmount(){
+        BackHandler.removeEventListener("hardwareBackPress", this.androidBackHandler.bind(this));
+    }
+
+    androidBackHandler(){
+        BackHandler.exitApp() // exit app when android's back button is tapped
+        return true;
+    }  
+
+    static navigationOptions = {
+        header: null
+    }
+
     onCategoryClick = (index) => {
-        this.props.retreiveCharitiesByCategory(index, this.props.charities.current_page)
+        this.props.retrieveCharitiesByCategory(index, this.props.charities.current_page)
         .then(res => {
             this.props.charities.charitiesList && this.setState({
                 showCategories: false,
                 showCharities: true
             })
-        });
+        }); 
+    }
+
+    static navigationOptions = {
+        header: null
     }
 
     renderCategories = () => {
@@ -74,6 +98,7 @@ export class Search extends Component {
                 {text: 'Research and Public Policy', onCategoryClick: () => this.onCategoryClick(11)}
             ]}
             type={'category'}
+            render={this.renderCardItem}
         />
     }
 
@@ -83,7 +108,24 @@ export class Search extends Component {
             scrollEnabled={true}
             data={charities}
             type={'charity'}
+            render={this.renderCardItem}
         />
+    }
+
+    renderCardItem = ({item}, type) => {
+        switch(type){
+        case 'category':
+            return <ImageButton
+                text={item.text}
+                onButtonPress={item.onCategoryClick}
+            />;
+        case 'charity':
+            return <Card
+                title = {item.charityName}
+                description = {item.tagLine}
+                onClick={() => {}}
+            />
+        }
     }
 
     render() {
@@ -98,5 +140,4 @@ export class Search extends Component {
     }
 }
 
-//TODO add constructor for props
 //TODO add style for ScrollView

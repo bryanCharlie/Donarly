@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput, ImageBackground, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loginUser, logOutUser } from 'actions/auth';
@@ -56,7 +56,7 @@ export class Login extends Component {
         };
 
         return (
-            <Image source={require('images/bg4.png')} style={LoginStyle.container}>
+            <ImageBackground source={require('images/bg4.png')} style={LoginStyle.container}>
                 <View style={LoginStyle.viewContainer}>
                     <TextInput
                         placeholder="Username"
@@ -89,7 +89,7 @@ export class Login extends Component {
                         </Text>
                     </TouchableOpacity>
                 </View>
-            </Image>
+            </ImageBackground>
         );
     }
 }

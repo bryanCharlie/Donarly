@@ -7,9 +7,9 @@ import { Charities } from 'components/organizations/Charities';
 import { Settings } from 'components/calculator/Calculator';
 
 export const NavigationScreen = TabNavigator({
-    Home: { screen: Search },
-    Settings: { screen: Settings }
-}, //RouteConfigs
+        Home: { screen: Search },
+        Settings: { screen: Settings }
+    }, //RouteConfigs
     {
         tabBarOptions: {
             // activeTintColor: '#2A9D8F',

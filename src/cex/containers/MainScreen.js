@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React, { Component } from 'react';
 import { DrawerNavigator, StackNavigator } from 'react-navigation';
 import { Home } from 'components/home/Home';
+import { LoadingScreen } from 'components/loading-screen/LoadingScreen';
 import { Login } from 'components/login/Login';
 import { Register } from 'components/register/Register';
 import { NavigationScreen } from './NavigationScreen';
@@ -16,8 +17,6 @@ import { OrgModal } from 'components/assets/OrgModal';
 
 import { CardSwiper } from 'components/assets/CardSwiper';
 
-// import { ImageButton } from 'components/assets/ImageButton';
-
 //DrawerNavigator isn't doing anything as of now, So I comment it out. -RK
 
 // const HomeScreen = DrawerNavigator({
@@ -25,7 +24,8 @@ import { CardSwiper } from 'components/assets/CardSwiper';
 // });
 
 export const MainScreen = StackNavigator({
-    //WebModal: {screen: WebModal},
+
+    LoadingScreen: { screen: LoadingScreen },
     Home: { screen: Home },
     Search: { screen: Search },
     Login: { screen: Login },

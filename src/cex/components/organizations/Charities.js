@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { OrgDetail } from './OrgDetail';
-import { retreiveCategories, searhCharity } from 'actions/charities';
+import { retrieveCategories, searchCharity } from 'actions/charities';
 
 const mapStateToProps = state => {
     return {
@@ -13,9 +13,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        retreiveCategories,
-        // retreiveCharitiesByCategory,
-        searhCharity
+        retrieveCategories,
+        // retrieveCharitiesByCategory,
+        searchCharity
     }, dispatch );
 };
 
@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => {
 
 export class Charities extends Component{
     componentWillMount = () => {
-        // this.props.retreiveCharitiesByCategory('');
+        // this.props.retrieveCharitiesByCategory('');
     }
 
     render(){
