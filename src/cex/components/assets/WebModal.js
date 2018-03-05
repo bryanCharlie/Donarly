@@ -73,28 +73,52 @@ const html = `
 </script>
 
 `;
-const wateva = require("lib/pandaLib")
-const js = `<script>
-// Call Panda.init() with your Panda Publishable Key and the DOM id of the
-// credit card-related form element
-console.log('me ah get cyal');
-Panda.init('pk_test_hoqO8vgA9RK-VSXr6gCU1Q', 'panda_cc_form');
+const js = `
+<script>
 
+console.log('me ah get cyal');
+
+Panda.init('pk_test_hoqO8vgA9RK-VSXr6gCU1Q', 'panda_cc_form');
 Panda.on('success', function(cardToken) {
   // You now have a token you can use to refer to that credit card later.
   // This token is used in PandaPay API calls for creating donations and grants
   // so that you don't have to worry about security concerns with dealing with
   // credit card data.
-  alert('success!')
-  window.postMessage(cardToken,*);
+  alert('success!');
+  // document.getElementById("token").innerHTML = cardToken;
+  // document.getElementById("token").addEventListener('click', function(e){
+  //   e.preventDefault();
+  //   $("token").text(cardToken);
+  // });
+  console.log("cardtoken====");
+  console.log(cardToken);  
+
+$("#tokenize").click(function(event){
+    //event.preventDefault();
+    $("#token").text("cardToken");
+    $("#token").text(cardToken);
+  });
+
+  $("#token").text(cardToken);
+  window.postMessage(cardToken, "*");
+  var msg = JSON.stringify(cardToken);
+  window.postMessage(msg, "*");
+  
+    //window.postMessage(cardToken, "*");
+
+  $("token").text(msg);
 });
+
+$("#token").text("cardToken");
+console.log("HELLOOOOO");
 
 Panda.on('error', function(errors) {
   // errors is a human-readable list of things that went wrong
-  //  (invalid card number, missing last name, etc.)
+  // (invalid card number, missing last name, etc.)
   console.log(errors);
   alert(errors);
-  window.postMessage('something fuk up');
+  window.postMessage('something fuk up', "*");
+  $("#token").text("cardToken");
 });
 
 </script>`;
@@ -118,10 +142,29 @@ export class WebModal extends Component {
     static navigationOptions = {
         header: null
     }
-    onMessage(data)
-    {
-        if(data !== 'something fuk up'){
-            console.log('dis dat token',data);
+    onMessage(data){
+        console.log("in onMessage");
+        this.postMessage(event.nativeEvent.data);
+        let msgData;
+        try{
+            msgData=JSON.parse(event.nativeEvent.data);
+        }
+        catch(err){
+            console.warn(err);
+            return;
+        }
+        const response = this[msgData.targetFunc].apply(this, [msgData]);
+        msgData.isSuccessfull = true;
+        msgData.args = [response];
+        this.myWebView.postMessage(JSON.stringify(msgData))
+
+        this.postMessage(JSON.stringify(msgData))
+
+        this.postMessage(msgData)
+    //webviewbridge ends
+        console.log(event.nativeEvent.data);
+        if(event.nativeEvent.data !== 'something fuk up'){
+            console.log('dis dat token', event.nativeEvent.data);
         }
         else{
             console.log('token fuk up');
@@ -131,7 +174,7 @@ export class WebModal extends Component {
     injectjs()
     {
         let jsCode ='console.log("IWASRAN")';
-        return jsCode;
+        return js;
     }
     render() {
         // console.log('Modal Props: ', this.props.data);
@@ -145,7 +188,7 @@ export class WebModal extends Component {
         // }
         
         // const data = this.props.data;
-
+        console.log("test");
         if(Platform.OS === 'Android')
         {
             return(
@@ -160,21 +203,19 @@ export class WebModal extends Component {
                 />
             );
         }
+        console.log("before ios");
         return (
-
-               <WebView  source={{html, baseUrl: '/'}}
+               <WebView  source={{uri: 'http://127.0.0.1:5000/signup'}}
                 style={{flex: 1}}
-                injectedJavaScript ={wateva}
                 onMessage = {this.onMessage}
                 javaScriptEnabledAndroid={true}
+                injectedJavaScript ={js}
                 javaScriptEnabled={true}
                 mixedContentMode='always' />
-
         );
+        console.log("after ios");
     }
 }
-
-
 
 const styles = StyleSheet.create({
     flexParent: {
