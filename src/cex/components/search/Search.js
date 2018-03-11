@@ -9,8 +9,9 @@ import { retrieveCategories } from 'actions/charities';
 import { FlatList } from 'components/assets/FlatList';
 import { SearchBar } from 'components/assets/SearchBar';
 import { retrieveCharitiesByCategory, resetPageCount } from 'actions/charities';
+import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import { ImageButton } from 'components/assets/ImageButton';
-import { Card } from 'components/assets/Card'
+import { Card } from 'components/assets/Card';
 
 const mapStateToProps = state => {
     return {
@@ -36,6 +37,17 @@ export class Search extends Component {
             showCharities: false
         };
     }
+    static navigationOptions = {
+        tabBarLabel: 'Home',
+        tabBarIcon: ({tintColor}) => {
+            return( <MaterialIcons
+                      name='home'
+                      size={35}
+                      color={ tintColor }
+                  />);
+        },
+        header: null
+    }
 
     componentDidMount(){
         BackHandler.addEventListener("hardwareBackPress", this.androidBackHandler.bind(this));
@@ -50,10 +62,13 @@ export class Search extends Component {
         return true;
     }  
 
+<<<<<<< HEAD
+=======
     static navigationOptions = {
         header: null
     }
 
+>>>>>>> 7eae97943e0473413ad6445b2d54555d0d64fc5a
     onCategoryClick = (index) => {
         this.props.retrieveCharitiesByCategory(index, this.props.charities.current_page)
         .then(res => {
@@ -64,9 +79,6 @@ export class Search extends Component {
         }); 
     }
 
-    static navigationOptions = {
-        header: null
-    }
 
     renderCategories = () => {
         return <FlatList

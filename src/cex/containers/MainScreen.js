@@ -12,6 +12,8 @@ import { Search } from 'components/search/Search';
 import { OrgDetail } from 'components/organizations/OrgDetail';
 import { Card } from 'components/assets/Card';
 import { CreditContainer } from 'components/credit-card/CreditContainer';
+import { WebModal } from 'components/assets/WebModal';
+import { OrgModal } from 'components/assets/OrgModal';
 
 import { CardSwiper } from 'components/assets/CardSwiper';
 
@@ -22,6 +24,10 @@ import { CardSwiper } from 'components/assets/CardSwiper';
 // });
 
 export const MainScreen = StackNavigator({
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7eae97943e0473413ad6445b2d54555d0d64fc5a
     LoadingScreen: { screen: LoadingScreen },
     Home: { screen: Home },
     Search: { screen: Search },
