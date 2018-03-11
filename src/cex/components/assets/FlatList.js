@@ -62,7 +62,7 @@ export class FlatList extends React.PureComponent {
                 data={this.props.data.slice(0, this.state.dataCount)}
                 extraData={this.state}
                 keyExtractor={this.keyExtractor}
-                renderItem={this.renderItem}
+                renderItem={this.renderItem}//renderItem={(data) => this.props.render(data, this.props.type)}
                 loading={this.state.loading}
                 ListFooterComponent={this.renderFooter}
                 onEndReached={this.handleLoadMore}
