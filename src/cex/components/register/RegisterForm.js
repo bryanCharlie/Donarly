@@ -140,7 +140,7 @@ class RegisterForm extends Component {
             if(this.props.auth.user){
               this.props.navigation.dispatch(resetAction);
             }
-        });
+        }); 
     }
 
     onChange=(text)=>{

@@ -61,10 +61,26 @@ export const GlobalStyle = StyleSheet.create({
     }
 });
 
+export const LoadingScreenStyle = StyleSheet.create({
+    text: {
+        fontSize: 100,
+        color: '#2A9D8F',
+        fontWeight: 'bold',
+        fontFamily: 'Avenir',
+        textAlign: 'center'
+    },
+    container: {
+        height: Dimensions.get('window').height,
+        width: Dimensions.get('window').width,
+        backgroundColor: '#444444',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+});
 export const SearchStyle = StyleSheet.create({
     input: {
         textAlign: 'left',
-        height: 36,
+        height: 50,
         fontSize: 20,
         color: '#06594b',
         fontFamily: 'Avenir-Roman',
@@ -75,7 +91,7 @@ export const SearchStyle = StyleSheet.create({
         width: 32,
         margin: 9
     },
-    container: {
+    barContainer: {
         width: Dimensions.get('window').width,
         height: 54,
         borderWidth: 9,
@@ -83,10 +99,15 @@ export const SearchStyle = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    bar: {
+    inputBar: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    loadingSpinner: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        padding: 40
     }
 });
 
@@ -178,7 +199,7 @@ export const LoginStyle = StyleSheet.create({
         flex: 1,
         width: null,
         height: null,
-        resizeMode: 'stretch'
+        // resizeMode: 'stretch' //commented out for now so the warning disappears - Robbi
     },
     input: {
         height: 35,
@@ -329,15 +350,6 @@ export const CreditStyle = StyleSheet.create({
     backButtonStyle: {
         width: 30,
         height: 32
-    },
-    title: {
-        paddingTop: 10,
-        opacity: 0.9,
-        marginBottom: 20,
-        color: '#ffffff',
-        fontWeight: '700',
-        fontSize: 20,
-        backgroundColor: 'transparent'
     }
 });
 export const RegisterStyle = StyleSheet.create({
@@ -372,14 +384,5 @@ export const RegisterStyle = StyleSheet.create({
     backButtonStyle: {
         width: 30,
         height: 32
-    },
-    title: {
-        paddingTop: 10,
-        opacity: 0.9,
-        marginBottom: 20,
-        color: '#ffffff',
-        fontWeight: '700',
-        fontSize: 20,
-        backgroundColor: 'transparent'
     }
 });

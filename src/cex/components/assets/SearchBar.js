@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput,  View, Image } from 'react-native';
 import { SearchStyle } from 'styles/main';
-import { retreiveCategories } from 'actions/charities';
+import { retrieveCategories } from 'actions/charities';
 
 
 export class SearchBar extends Component{
@@ -32,8 +32,8 @@ export class SearchBar extends Component{
     render(){
         return (
             <View>
-              <View style={SearchStyle.container}>
-                  <View style={SearchStyle.bar}>
+              <View style={SearchStyle.barContainer}>
+                  <View style={SearchStyle.inputBar}>
                   <Image source={require('images/search.png')} style={SearchStyle.image}/>
                   <TextInput
                   style={SearchStyle.input}

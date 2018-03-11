@@ -15,7 +15,7 @@ export const RESET_PAGE_COUNT = 'RESET_PAGE_COUNT'
     Called with no parameter
 */
 
-export const retreiveCategories = () => {
+export const retrieveCategories = () => {
     return{
         type: [ GET_CHARITY_CATEGORIES, GET_CHARITY_CATEGORIES_SUCCESS, GET_CHARITY_CATEGORIES_FAILURE ],
         http: {
@@ -33,7 +33,7 @@ export const retreiveCategories = () => {
 
     The Category will be the index of the selection. For example to get charities by category "Animals"
 
-    retreiveCharitiesByCategory(0, <page_num>)
+    retrieveCharitiesByCategory(0, <page_num>)
 
     [
         "Animals",
@@ -50,7 +50,7 @@ export const retreiveCategories = () => {
     ]
 */
 
-export const retreiveCharitiesByCategory  = (category, page_num) => {
+export const retrieveCharitiesByCategory  = (category, page_num) => {
     const queryString = formatQueryString({category, page_num})
     return{
         type: [ SEARCH_CHARITY, SEARCH_CHARITY_SUCCESS, SEARCH_CHARITY_FAILURE ],
@@ -69,7 +69,7 @@ export const retreiveCharitiesByCategory  = (category, page_num) => {
     general search function.
 */
 
-export const searhCharity = (search_value, page_num) => {
+export const searchCharity = (search_value, page_num) => {
     return{
         type: [ SEARCH_CHARITY, SEARCH_CHARITY_SUCCESS, SEARCH_CHARITY_FAILURE ],
         http: {
