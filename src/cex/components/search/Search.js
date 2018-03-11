@@ -8,7 +8,7 @@ import { CategoriesStyle } from 'styles/main';
 import { retrieveCategories } from 'actions/charities';
 import { FlatList } from 'components/assets/FlatList';
 import { SearchBar } from 'components/assets/SearchBar';
-import { retreiveCharitiesByCategory, resetPageCount } from 'actions/charities';
+import { retrieveCharitiesByCategory, resetPageCount } from 'actions/charities';
 import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import { ImageButton } from 'components/assets/ImageButton';
 import { Card } from 'components/assets/Card';
