@@ -24,6 +24,10 @@ import { CardSwiper } from 'components/assets/CardSwiper';
 // });
 
 export const MainScreen = StackNavigator({
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7eae97943e0473413ad6445b2d54555d0d64fc5a
     LoadingScreen: { screen: LoadingScreen },
     Home: { screen: Home },
     Search: { screen: Search },

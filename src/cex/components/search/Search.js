@@ -62,6 +62,13 @@ export class Search extends Component {
         return true;
     }  
 
+<<<<<<< HEAD
+=======
+    static navigationOptions = {
+        header: null
+    }
+
+>>>>>>> 7eae97943e0473413ad6445b2d54555d0d64fc5a
     onCategoryClick = (index) => {
         this.props.retrieveCharitiesByCategory(index, this.props.charities.current_page)
         .then(res => {
