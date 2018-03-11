@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 export const GlobalStyle = StyleSheet.create({
@@ -90,6 +90,10 @@ export const SearchStyle = StyleSheet.create({
         height: 32,
         width: 32,
         margin: 9
+    },
+    topBar: {
+        height : (Platform.OS === 'ios') ? 15 : 0,
+        backgroundColor: '#e4572e'
     },
     barContainer: {
         width: Dimensions.get('window').width,
