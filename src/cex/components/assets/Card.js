@@ -123,11 +123,11 @@ export class Card extends Component {
                         <View style={{
                             paddingTop: 2,
                             paddingLeft: 8,
-                            height: (imageHeight * 30) / 100,
+                            height: (imageHeight * 15) / 100,
                             width: descWidth,
                             backgroundColor: descriptionColor //Dynamic color change
                         }}>
-                            <Text>{description}</Text>
+                            <Text>{description.length >= 50 ? `${description.substring(0,50)}...` : description}</Text>
                         </View>
                     </View>
                 </ImageBackground>

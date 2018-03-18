@@ -10,7 +10,8 @@ import { FlatList } from 'components/assets/FlatList';
 import { SearchBar } from 'components/assets/SearchBar';
 import { retrieveCharitiesByCategory, resetPageCount } from 'actions/charities';
 import { ImageButton } from 'components/assets/ImageButton';
-import { Card } from 'components/assets/Card'
+import { Card } from 'components/assets/Card';
+import { OrgModal } from 'components/organizations/OrgModal';
 
 const mapStateToProps = state => {
     return {
@@ -32,21 +33,22 @@ export class Search extends Component {
         this.state = {
             categories: [],
             showCategories: true,
+            showModal:false,
             charities: [],
             showCharities: false
         };
     }
 
     componentDidMount(){
-        BackHandler.addEventListener("hardwareBackPress", this.androidBackHandler.bind(this));
+        BackHandler.addEventListener('hardwareBackPress', this.androidBackHandler.bind(this));
     }
 
     componentWillUnmount(){
-        BackHandler.removeEventListener("hardwareBackPress", this.androidBackHandler.bind(this));
+        BackHandler.removeEventListener('hardwareBackPress', this.androidBackHandler.bind(this));
     }
 
     androidBackHandler(){
-        BackHandler.exitApp() // exit app when android's back button is tapped
+        BackHandler.exitApp(); // exit app when android's back button is tapped
         return true;
     }  
 
@@ -60,12 +62,14 @@ export class Search extends Component {
             this.props.charities.charitiesList && this.setState({
                 showCategories: false,
                 showCharities: true
-            })
+            });
         }); 
     }
 
-    static navigationOptions = {
-        header: null
+    onCharityClick = () => {
+        this.setState({
+            showModal: true
+        });
     }
 
     renderCategories = () => {
@@ -87,7 +91,7 @@ export class Search extends Component {
             ]}
             type={'category'}
             render={this.renderCardItem}
-        />
+        />;
     }
 
     renderCharities = (charities) => {
@@ -97,7 +101,7 @@ export class Search extends Component {
             data={charities}
             type={'charity'}
             render={this.renderCardItem}
-        />
+        />;
     }
 
     renderCardItem = ({item}, type) => {
@@ -111,8 +115,8 @@ export class Search extends Component {
             return <Card
                 title = {item.charityName}
                 description = {item.tagLine}
-                onClick={() => {}}
-            />
+                onClick={this.onCharityClick}
+            />;
         }
     }
 

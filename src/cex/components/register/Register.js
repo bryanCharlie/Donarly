@@ -3,7 +3,7 @@ import { View, ImageBackground, Text, ScrollView, TouchableOpacity } from 'react
 import { ReduxRegisterForm } from 'components/register/RegisterForm';
 import { NavigationActions } from 'react-navigation';
 
-import { GlobalStyle, RegisterStyle } from 'styles/main';
+import { GlobalStyle, LoginRegisterStyle } from 'styles/main';
 
 export class Register extends Component {
     constructor(props) {
@@ -20,13 +20,13 @@ export class Register extends Component {
 
     render() {
         return (
-            <View style={RegisterStyle.container}>
-                <View style = {RegisterStyle.headerContainer}>
+            <View style={LoginRegisterStyle.container}>
+                <View style = {LoginRegisterStyle.headerContainer}>
                     <TouchableOpacity onPress={this.navigateReturn}>
-                        <ImageBackground style = {RegisterStyle.backButtonStyle} source={require('icons/back.png')}/>
+                        <ImageBackground style = {LoginRegisterStyle.backButtonStyle} source={require('icons/back.png')}/>
                     </TouchableOpacity>
 
-                    <Text style = {RegisterStyle.header}>
+                    <Text style = {LoginRegisterStyle.header}>
                         Enter Profile Info
                     </Text>
                 </View>

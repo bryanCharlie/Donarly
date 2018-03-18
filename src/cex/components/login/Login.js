@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loginUser, logOutUser } from 'actions/auth';
 import { getUserProfile } from 'actions/profile';
-import { GlobalStyle, LoginStyle } from 'styles/main';
+import { GlobalStyle, LoginFormStyle, LoginRegisterStyle, FormStyle } from 'styles/main';
+import Foundation from 'react-native-vector-icons/Foundation';
 
 
 const mapStateToProps = state => {
@@ -35,14 +36,22 @@ export class Login extends Component {
         };
     }
 
+    static navigationOptions = {
+        header: null
+    }
+
+    navigateReturn = () => {
+        this.props.navigation.goBack();
+    }
+
     onLogin = () => {
         console.log(this.state.email);
         this.props.loginUser({username: this.state.email, password: this.state.password}).then(res => {
             if(this.props.auth.user){
                 this.props.getUserProfile()
                 .then(res => {
-                    this.props.navigation.navigate('NavigationScreen')
-                        console.log("IN LOGIN GETTING USER PROFILE ", this.props.profile)
+                    this.props.navigation.navigate('NavigationScreen');
+                    console.log('IN LOGIN GETTING USER PROFILE ', this.props.profile);
                 });
             }
         });
@@ -50,46 +59,56 @@ export class Login extends Component {
 
     render() {
         const displayError = () => {
-            return ( <Text style={LoginStyle.hidden}>
+            return ( <Text>
                 Invalid Password. Please try again.
             </Text> );
         };
 
         return (
-            <ImageBackground source={require('images/bg4.png')} style={LoginStyle.container}>
-                <View style={LoginStyle.viewContainer}>
-                    <TextInput
-                        placeholder="Username"
-                        placeholderTextColor= "#f7f2f2"
-                        returnKeyType="next"
-                        onSubmitEditing={() => this.password.focus()}
-                        autoCorrect={false}
-                        autoCapitalize="none"
-                        style={LoginStyle.input}
-                        onChangeText={(text) => {
-                            this.setState({email: text});
-                        }}
-                    />
-                    <TextInput
-                        placeholder="Password"
-                        placeholderTextColor= "#f7f2f2"
-                        returnKeyType="go"
-                        style={LoginStyle.input}
-                        secureTextEntry={true}
-                        ref = {(input) => this.password = input}
-                        onChangeText={(text) => {
-                            this.setState({password: text});
-                        }}
-                    />
+            <View style={LoginRegisterStyle.container}>
+                <View style = {LoginRegisterStyle.headerContainer}>
+                    <TouchableOpacity onPress={this.navigateReturn}>
+                        <Foundation name='x' size={32} color='#fff' />
+                    </TouchableOpacity>
+
+                </View>
+                <View style={LoginFormStyle.container}>
+                    <View style={[FormStyle.inputLine, LoginFormStyle.input]}>
+                        <TextInput
+                            underlineColorAndroid='transparent'
+                            placeholder="Username"
+                            returnKeyType="next"
+                            onSubmitEditing={() => this.password.focus()}
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            onChangeText={(text) => {
+                                this.setState({email: text});
+                            }}
+                            style={FormStyle.input}
+                        />
+                    </View>
+                    <View style={[FormStyle.inputLine, LoginFormStyle.input]}>
+                        <TextInput
+                            underlineColorAndroid='transparent'
+                            placeholder="Password"
+                            returnKeyType="go"
+                            secureTextEntry={true}
+                            onChangeText={(text) => {
+                                this.setState({password: text});
+                            }}
+                            style={FormStyle.input}
+                        />
+                    </View>
                     <TouchableOpacity
-                        style = {LoginStyle.buttonContainer}
-                        onPress={this.onLogin}>
-                        <Text style={LoginStyle.button}>
+                        onPress={this.onLogin}
+                        style = {FormStyle.buttonContainer}    
+                    >
+                        <Text style = {FormStyle.button}>
                             Login
                         </Text>
                     </TouchableOpacity>
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }

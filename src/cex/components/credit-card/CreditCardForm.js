@@ -34,10 +34,10 @@ class CreditCardForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: '',
             cardNumber: '',
             exp: '',
             cvv: '',
-            country: '',
             error: false
         };
       //  this.confirmPassword = this.confirmPassword.bind(this);
@@ -143,7 +143,7 @@ class CreditCardForm extends Component {
         const stateprop = this.props.name;
         this.setState({stateprop : text}).then(res => {
             this.validate(text);
-        })
+        });
     }
 
     render() {
@@ -151,6 +151,13 @@ class CreditCardForm extends Component {
         return (
 
             <View>
+
+                <Field name = 'name'
+                component = {this.MyTextInput}
+                secureTextEntry = {false}
+                type = 'text'
+                placeholder = "Name on card"
+                />
 
                 <Field name = "CardNumber "
                 component = {this.MyTextInput}
@@ -173,33 +180,21 @@ class CreditCardForm extends Component {
                 placeholder = "CVV"
                  />
 
-                <Field name = 'Country'
-                component = {this.MyTextInput}
-                secureTextEntry = {true}
-                type = 'text'
-                placeholder = "Country"
-                />
-
-                <Field name = 'Zip'
-                component = {this.MyTextInput}
-                secureTextEntry = {true}
-                type = 'text'
-                placeholder = "Zip Code"
-                />
-
                 <Text style = {CreditFormStyle.agreement}>
-                By creating an account, you agree to our {'\n'}
+                By adding a payment card, you agree to our {'\n'}
                     <Text style = {CreditFormStyle.boldText}>
-                    Terms & Conditions
+                    Terms &amp; Conditions
                     </Text> and <Text style = {CreditFormStyle.boldText}>
                     Privacy Policy
                     </Text>
                 </Text>
-                <TouchableOpacity onPress = {this.onSignUp} style = {CreditFormStyle.buttonContainer}>
-                    <Text style = {CreditFormStyle.signUpButton}>
-                        Finish
-                    </Text>
-                </TouchableOpacity>
+                <View style={CreditFormStyle.buttonContainer}>
+                    <TouchableOpacity onPress = {this.onSignUp} style = {CreditFormStyle.button}>
+                        <Text style = {CreditFormStyle.signUpButton}>
+                            ADD
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }

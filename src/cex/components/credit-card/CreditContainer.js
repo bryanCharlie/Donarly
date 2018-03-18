@@ -27,7 +27,7 @@ export class CreditContainer extends Component {
                     </TouchableOpacity>
 
                     <Text style = {CreditStyle.header}>
-                        Enter Financial Info
+                        Payment
                     </Text>
                 </View>
 

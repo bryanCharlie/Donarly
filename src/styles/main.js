@@ -197,46 +197,7 @@ export const CategoriesStyle = StyleSheet.create({
     }
 });
 
-export const LoginStyle = StyleSheet.create({
-    container: {
-        padding: 30,
-        flex: 1,
-        width: null,
-        height: null,
-        // resizeMode: 'stretch' //commented out for now so the warning disappears - Robbi
-    },
-    input: {
-        height: 35,
-        color: '#ffffff',
-        marginBottom: 10,
-        paddingHorizontal : 10,
-        borderRadius: 10,
-        fontWeight: '500',
-        borderWidth: 1,
-        borderColor: '#FFFFFF',
-        opacity: 0.9
-    },
-    viewContainer: {
-        flex: 1,
-        justifyContent:'center'
-    },
-    buttonContainer:{
-        backgroundColor: '#ffffff',
-        opacity: 0.5,
-        marginTop: 30,
-        borderRadius: 10,
-        padding: 10,
-        justifyContent: 'center'
-    },
-    button: {
-        color: '#D6D700',
-        fontSize: 7,
-        textAlign: 'center',
-        fontWeight: 'bold'
-    }
-});
-
-export const RegisterFormStyle = StyleSheet.create({
+export const FormStyle = StyleSheet.create({
     errorNotice: {
         fontSize: 10,
         fontWeight: '100',
@@ -273,7 +234,7 @@ export const RegisterFormStyle = StyleSheet.create({
         marginBottom: 15,
         justifyContent: 'center'
     },
-    signUpButton: {
+    button: {
         textAlign: 'center',
         fontWeight: '600'
     }
@@ -308,17 +269,23 @@ export const CreditFormStyle = StyleSheet.create({
         fontWeight: '700'
     },
     buttonContainer:{
-        backgroundColor: '#ffffff',
-        opacity: 0.5,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    button: {
+        backgroundColor: 'rgb(9, 39, 50)',
+        width: responsiveWidth(35),
         marginTop: 15,
         borderRadius: 10,
-        padding: 10,
-        marginBottom: 15,
-        justifyContent: 'center'
+        padding: 7,
+        marginBottom: 15
     },
     signUpButton: {
         textAlign: 'center',
-        fontWeight: '600'
+        fontWeight: '900',
+        fontSize: 25,
+        color: '#fff'
     }
 });
 
@@ -341,7 +308,7 @@ export const CreditStyle = StyleSheet.create({
         flex: 1,
         width: null,
         height: null,
-        backgroundColor: '#022F40'
+        backgroundColor: 'rgb(6, 48, 64)'
     },
     logoContainer:{
         alignItems: 'center',
@@ -356,7 +323,19 @@ export const CreditStyle = StyleSheet.create({
         height: 32
     }
 });
-export const RegisterStyle = StyleSheet.create({
+
+export const LoginFormStyle = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    input: {
+        width: responsiveWidth(55)
+    }
+});
+
+export const LoginRegisterStyle = StyleSheet.create({
     headerContainer: {
         flexDirection: 'row',
         marginBottom: 30

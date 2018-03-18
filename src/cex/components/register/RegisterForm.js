@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import { registerUser } from 'actions/auth';
-import { RegisterFormStyle } from 'styles/main';
+import { FormStyle } from 'styles/main';
 import { validate } from 'lib/validation';
 
 const mapStateToProps = state => {
@@ -89,7 +89,7 @@ class RegisterForm extends Component {
 
         return (
           <View>
-            <View style = {RegisterFormStyle.inputLine}>
+            <View style = {FormStyle.inputLine}>
 
             <TextInput
             underlineColorAndroid='transparent'
@@ -105,11 +105,11 @@ class RegisterForm extends Component {
             type ={type}
             placeholder ={placeholder}
             placeholderTextColor = '#C08200'
-            style={RegisterFormStyle.input}
+            style={FormStyle.input}
             />
             </View>
 
-            <Text style = {RegisterFormStyle.errorNotice}>
+            <Text style = {FormStyle.errorNotice}>
             {this.showError(meta.dirty, meta.touched, meta.error)}
             </Text>
 
@@ -196,16 +196,16 @@ class RegisterForm extends Component {
                 onChangeText = {(val) => this.setState({password: val})}
                 />
 
-                <Text style = {RegisterFormStyle.agreement}>
+                <Text style = {FormStyle.agreement}>
                 By creating an account, you agree to our {'\n'}
-                    <Text style = {RegisterFormStyle.boldText}>
+                    <Text style = {FormStyle.boldText}>
                     Terms & Conditions
-                    </Text> and <Text style = {RegisterFormStyle.boldText}>
+                    </Text> and <Text style = {FormStyle.boldText}>
                     Privacy Policy
                     </Text>
                 </Text>
-                <TouchableHighlight onPress = {this.onSignUp} style = {RegisterFormStyle.buttonContainer}>
-                    <Text style = {RegisterFormStyle.signUpButton}>
+                <TouchableHighlight onPress = {this.onSignUp} style = {FormStyle.buttonContainer}>
+                    <Text style = {FormStyle.button}>
                         Next
                     </Text>
                 </TouchableHighlight>

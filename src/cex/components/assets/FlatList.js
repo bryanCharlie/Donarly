@@ -12,18 +12,18 @@ export class FlatList extends React.PureComponent {
         this.state = {
             dataCount: 6,
             data: [],
-            loading: false,
-        }
+            loading: false
+        };
     }
 
     handleLoadMore = () => {
         this.setState({
             loading: true
-          });
+        });
         setTimeout(() => {
             this.setState((prevState) => {
                 return {dataCount: prevState.dataCount + 3};
-          });
+            });
         }, 2500);
     };
 
@@ -32,12 +32,12 @@ export class FlatList extends React.PureComponent {
     }
 
     renderFooter = () => {
-        if(!this.state.loading) return null
+        if(!this.state.loading) return null;
         return(
             <View style={ SearchStyle.loadingSpinner }>
                 <ActivityIndicator animating size="large"/>
             </View>
-        )
+        );
     }
 
     renderItem = ({item}) => {
