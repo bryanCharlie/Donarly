@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Modal, Text, Image, ScrollView, TouchableHighlight, ActivityIndicator, WebView, Platform } from 'react-native';
+import { Alert, View, StyleSheet, Modal, Text, Image, ScrollView, TouchableHighlight, ActivityIndicator, WebView, Platform } from 'react-native';
 import { List, ListItem, Button} from 'react-native-elements';
+import { GET, getUser } from 'lib/http';
 import {WebViewAndroid} from 'react-native-webview-android';
 
 const html = `
-
-
 <!-- Include PandaJS -->
 <script type="text/javascript" src="lib/pandaLib.js"></script>
 
@@ -71,10 +70,14 @@ const html = `
   });
 
 </script>
-
 `;
+//NOTE: Placing comments inside the injectedJavaScript property of WebView breaks bridge communication on Android
 const js = `
 <script>
+
+GET('http://localhost:5000/signup',{}).then(res => {
+    console.log(res);
+})
 
 console.log('me ah get cyal');
 
@@ -90,28 +93,27 @@ Panda.on('success', function(cardToken) {
   //   e.preventDefault();
   //   $("token").text(cardToken);
   // });
-  console.log("cardtoken====");
+  console.log("cardtoken below");
   console.log(cardToken);  
-
-$("#tokenize").click(function(event){
-    //event.preventDefault();
-    $("#token").text("cardToken");
-    $("#token").text(cardToken);
-  });
-
-  $("#token").text(cardToken);
-  window.postMessage(cardToken, "*");
+  window.onload = waitForBridge(cardToken);
+  console.log("Posted on window---thrown cardtoken");
   var msg = JSON.stringify(cardToken);
-  window.postMessage(msg, "*");
-  
-    //window.postMessage(cardToken, "*");
-
-  $("token").text(msg);
+  $("#token").text(msg);
 });
 
-$("#token").text("cardToken");
-console.log("HELLOOOOO");
-
+function waitForBridge(data){
+    if (window.postMessage.length !== 1){
+      console.log("inside wait for bridge 2" + data);
+      window.postMessage('trial....and failure', '*');
+      setTimeout(waitForBridge, 200);
+    }
+    else {
+      console.log("inside wait for bridge");
+      window.postMessage('trial....');
+    }
+}
+$("#token").text("cardToken using JQuery");
+console.log("HELLOOOOOfrontEnd");
 Panda.on('error', function(errors) {
   // errors is a human-readable list of things that went wrong
   // (invalid card number, missing last name, etc.)
@@ -120,15 +122,15 @@ Panda.on('error', function(errors) {
   window.postMessage('something fuk up', "*");
   $("#token").text("cardToken");
 });
-
 </script>`;
+
 export class WebModal extends Component {
     constructor(props){
         super(props);
         this.state = {
             isModalVisible: false
         };
-     //   this.setModalVisible = this.setModalVisible.bind(this);
+        // this.setModalVisible = this.setModalVisible.bind(this);
     }
 
     // componentWillReceiveProps(nextProps) {
@@ -142,37 +144,57 @@ export class WebModal extends Component {
     static navigationOptions = {
         header: null
     }
-    onMessage(data){
-        console.log("in onMessage");
-        this.postMessage(event.nativeEvent.data);
-        let msgData;
-        try{
-            msgData=JSON.parse(event.nativeEvent.data);
-        }
-        catch(err){
-            console.warn(err);
-            return;
-        }
-        const response = this[msgData.targetFunc].apply(this, [msgData]);
-        msgData.isSuccessfull = true;
-        msgData.args = [response];
-        this.myWebView.postMessage(JSON.stringify(msgData))
+    
+    _onLoad(state) {
+        // console.log(state.url);
+        // if (state.url.indexOf(BASEURL + '/auth/success') != -1) {
+        //   let token = state.url.split("token=")[1];
+        //   token = token.substring(0, token.length - 4);
+        //   NavigationsActions.back();
+        //   SessionActions.setSession(token);
+        // }
+      }
 
-        this.postMessage(JSON.stringify(msgData))
-
-        this.postMessage(msgData)
-    //webviewbridge ends
-        console.log(event.nativeEvent.data);
-        if(event.nativeEvent.data !== 'something fuk up'){
-            console.log('dis dat token', event.nativeEvent.data);
-        }
-        else{
-            console.log('token fuk up');
-        }
+    onMessage(event){
+    //     console.log("in onMessage");
+    //     let msgData;
+    //     try{
+    //         msgData=JSON.parse(data);
+    //     }
+    //     catch(err){
+    //         console.warn(err);
+    //         return;
+    //     }
+    //     const response = this[msgData.targetFunc].apply(this, [msgData]);
+    //     msgData.isSuccessfull = true;
+    //     msgData.args = [response];
+    //     this.myWebView.postMessage(JSON.stringify(msgData))
+    //     this.postMessage(JSON.stringify(msgData))
+    //     this.postMessage(msgData)
+    //     webviewbridge ends
+    //     console.log(event.nativeEvent.data);
+    //     if(event.nativeEvent.data !== 'something fuk up'){
+    //         console.log('dis dat token', event.nativeEvent.data);
+    //     }
+    //     else{
+            console.log('token fuk up' + event.nativeEvent.data);
+    //     }
     }
 
-    injectjs()
-    {
+    // onMessage = event => {
+    //     console.log(event);
+    //     console.log('token fuk up' + event.nativeEvent.data);
+    //     Alert.alert(
+    //       'On Message',
+    //       event.nativeEvent.data,
+    //       [
+    //         {text: 'OK'},
+    //       ],
+    //       { cancelable: true }
+    //     )
+    // }
+      
+    injectjs(){
         let jsCode ='console.log("IWASRAN")';
         return js;
     }
@@ -188,13 +210,14 @@ export class WebModal extends Component {
         // }
         
         // const data = this.props.data;
+        // jsCode = 'window.postMessage("test");'
         console.log("test");
         if(Platform.OS === 'Android')
         {
             return(
                 <WebViewAndroid
                 source={{html, baseUrl: '/'}}
-                javaScriptEnabled={true}
+                javaScriptEnabledAndroid={true}
                 style={{flex: 1}}
                 injectedJavaScript ={`document.querySelector("#myid").style.backgroundColor='blue'`}
                 onMessage = {this.onMessage}
@@ -203,12 +226,12 @@ export class WebModal extends Component {
                 />
             );
         }
-        console.log("before ios");
         return (
                <WebView  source={{uri: 'http://127.0.0.1:5000/signup'}}
+                onNavigationStateChange={this._onLoad}
                 style={{flex: 1}}
                 onMessage = {this.onMessage}
-                javaScriptEnabledAndroid={true}
+                javaScriptEnabled={true}
                 injectedJavaScript ={js}
                 javaScriptEnabled={true}
                 mixedContentMode='always' />
